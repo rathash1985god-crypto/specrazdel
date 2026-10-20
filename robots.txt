@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rathash1985god-crypto.github.io/specrazdel/sitemap.xml
