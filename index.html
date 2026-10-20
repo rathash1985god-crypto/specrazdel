@@ -2,55 +2,44 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <title>Защита от БПЛА, ПБ, ГОЧС и Антитеррор | Проектная документация</title>
-    <meta name="description" content="Профессиональная разработка разделов ПБ, ГОЧС, антитеррористической защищенности и защиты от БПЛА. Проходим госэкспертизу с первого раза. Опыт 17 лет. Оренбург.">
+    <title>Разработка разделов ПБ, ГОЧС, ТБЭ и ООС | Проектная документация</title>
+    <meta name="description" content="Профессиональная разработка разделов пожарной безопасности (ПБ), гражданской обороны (ГОЧС), охраны окружающей среды и ТБЭ. Проходим госэкспертизу с первого раза. Опыт 17 лет. Оренбург.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Библиотека анимаций AOS для кинематографического скролла -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
-            --fire-orange: #ff4500;
-            --neon-amber: #ff9900;
-            --cyber-blue: #00f0ff;
-            --dark-bg: #050508;
-            --card-bg: rgba(18, 18, 26, 0.9);
-            --border-glow: rgba(255, 69, 0, 0.4);
+            --primary: #ff9900;
+            --primary-dark: #e08500;
+            --dark: #0b0b0b;
+            --light: #141414;
+            --card-bg: #1a1a1a;
+            --text-gray: #a0a0a0;
+            --border-color: #2a2a2a;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
         html { scroll-behavior: smooth; }
-        body { color: #fff; background-color: var(--dark-bg); line-height: 1.6; overflow-x: hidden; }
+        body { color: #fff; background-color: var(--dark); line-height: 1.6; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
-
-        /* Тактический фон с сеткой и эффектом тревоги/радара */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -2;
-            pointer-events: none;
-        }
-
+        
         /* Header */
-        header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(5, 5, 8, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 153, 0, 0.2); z-index: 1000; }
+        header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(11, 11, 11, 0.85); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
         .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 20px; }
-        .logo { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.3rem; letter-spacing: 1px; text-transform: uppercase; }
-        .logo span { color: var(--fire-orange); text-shadow: 0 0 15px var(--fire-orange); }
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 0.5px; }
+        .logo span { color: var(--primary); }
         nav ul { display: flex; list-style: none; gap: 30px; align-items: center; }
         nav a { font-size: 0.95rem; font-weight: 500; color: #ccc; }
-        nav a:hover { color: var(--neon-amber); text-shadow: 0 0 10px var(--neon-amber); }
-        .header-phone { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.95rem; background: rgba(255, 69, 0, 0.1); padding: 10px 20px; border-radius: 4px; border: 1px solid var(--fire-orange); box-shadow: 0 0 15px rgba(255, 69, 0, 0.3); transition: 0.3s; }
-        .header-phone:hover { background: var(--fire-orange); color: #fff; box-shadow: 0 0 25px var(--fire-orange); }
+        nav a:hover { color: var(--primary); text-shadow: 0 0 10px rgba(255,153,0,0.5); }
+        .header-phone { font-weight: 600; font-size: 0.95rem; background: rgba(255,255,255,0.05); padding: 8px 16px; border-radius: 30px; border: 1px solid var(--border-color); transition: 0.3s; }
+        .header-phone:hover { border-color: var(--primary); background: rgba(255,153,0,0.1); }
 
-        /* Hero Section с экшен-эффектом */
-        @keyframes fireGlow {
-            0% { filter: brightness(1) contrast(1.05); }
-            50% { filter: brightness(1.15) contrast(1.2) drop-shadow(0 0 30px rgba(255, 69, 0, 0.6)); }
-            100% { filter: brightness(1) contrast(1.05); }
+        /* Hero Section с кинематографическим зумом */
+        @keyframes cinematicZoom {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+            100% { transform: scale(1); }
         }
         .hero { 
             min-height: 100vh; 
@@ -65,120 +54,90 @@
         .hero-bg {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(5,5,8,0.7), rgba(5,5,8,0.95)), url('assets/img/6d973a13-0343-45e6-abd4-4c5f8f274799-12119908.jpeg') center/cover no-repeat;
-            animation: fireGlow 8s infinite alternate ease-in-out;
+            background: linear-gradient(rgba(11,11,11,0.6), rgba(11,11,11,0.85)), url('assets/img/6d973a13-0343-45e6-abd4-4c5f8f274799-12119908.jpeg') center/cover no-repeat;
+            animation: cinematicZoom 25s infinite alternate ease-in-out;
             z-index: -1;
         }
-        .hero-content { max-width: 950px; margin: 0 auto; position: relative; z-index: 2; }
-        .badge { 
-            display: inline-block; 
-            background: rgba(255, 69, 0, 0.2); 
-            border: 1px solid var(--fire-orange); 
-            color: var(--neon-amber); 
-            padding: 6px 16px; 
-            font-family: 'Orbitron', sans-serif; 
-            font-size: 0.85rem; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            margin-bottom: 25px; 
-            border-radius: 2px;
-            box-shadow: 0 0 15px rgba(255, 69, 0, 0.4);
-        }
-        .hero h1 { font-family: 'Orbitron', sans-serif; font-size: clamp(2.2rem, 4.5vw, 3.8rem); font-weight: 900; line-height: 1.2; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
-        .hero h1 span { color: var(--fire-orange); text-shadow: 0 0 25px rgba(255, 69, 0, 0.8); }
-        .hero h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); font-weight: 400; color: #d0d0d0; margin-bottom: 45px; }
+        .hero-content { max-width: 900px; margin: 0 auto; position: relative; z-index: 2; }
+        .hero h1 { font-size: clamp(2.2rem, 4.5vw, 3.8rem); font-weight: 800; line-height: 1.2; margin-bottom: 25px; letter-spacing: -0.5px; }
+        .hero h1 span { color: var(--primary); text-shadow: 0 0 20px rgba(255,153,0,0.3); }
+        .hero h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 400; color: #ddd; margin-bottom: 40px; }
         
-        /* Экшен-кнопка */
-        .btn-action { 
+        /* 3D VR Кнопки */
+        .btn-vr { 
             display: inline-block; 
-            background: linear-gradient(135deg, var(--fire-orange), #ff0000); 
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark)); 
             color: #fff; 
-            padding: 18px 42px; 
-            font-family: 'Orbitron', sans-serif;
+            padding: 16px 36px; 
+            border-radius: 50px; 
             font-weight: 700; 
             font-size: 1.05rem; 
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 4px; 
-            box-shadow: 0 0 30px rgba(255, 69, 0, 0.6); 
-            transition: all 0.3s ease;
-            border: 1px solid #ff7b50;
+            box-shadow: 0 10px 30px rgba(255, 153, 0, 0.4); 
+            transform-style: preserve-3d;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255,255,255,0.2);
         }
-        .btn-action:hover { 
-            transform: translateY(-4px) scale(1.03); 
-            box-shadow: 0 0 50px rgba(255, 69, 0, 0.9); 
-            background: linear-gradient(135deg, #ff5722, #ff0000);
+        .btn-vr:hover { 
+            transform: translateY(-5px) scale(1.05); 
+            box-shadow: 0 15px 40px rgba(255, 153, 0, 0.6); 
         }
 
         /* Services Section */
         .services { padding: 120px 20px; max-width: 1200px; margin: 0 auto; }
         .section-title { text-align: center; margin-bottom: 70px; }
-        .section-title h2 { font-family: 'Orbitron', sans-serif; font-size: 2.8rem; font-weight: 900; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
-        .section-title h2 span { color: var(--neon-amber); }
-        .section-title p { color: #999; font-size: 1.1rem; }
+        .section-title h2 { font-size: 2.8rem; font-weight: 800; margin-bottom: 15px; letter-spacing: -0.5px; }
+        .section-title p { color: var(--text-gray); font-size: 1.1rem; }
         
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 35px; }
         
-        /* Тактические карточки с неоновыми углами */
+        /* 3D Карточки с эффектом стекла и глубины */
         .service-card { 
             background: var(--card-bg); 
-            border: 1px solid rgba(255, 153, 0, 0.2); 
-            border-radius: 8px; 
+            border: 1px solid var(--border-color); 
+            border-radius: 20px; 
             overflow: hidden; 
             display: flex; 
             flex-direction: column; 
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            position: relative;
-        }
-        .service-card::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 3px;
-            background: linear-gradient(90deg, var(--fire-orange), var(--neon-amber));
-            opacity: 0;
-            transition: 0.4s;
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .service-card:hover { 
-            transform: translateY(-8px); 
-            border-color: var(--fire-orange);
-            box-shadow: 0 15px 40px rgba(255, 69, 0, 0.3);
+            transform: translateY(-10px) rotateX(2deg) rotateY(2deg); 
+            box-shadow: 0 20px 50px rgba(255,153,0,0.15);
+            border-color: rgba(255,153,0,0.3);
         }
-        .service-card:hover::after { opacity: 1; }
-        
         .service-img-wrap { overflow: hidden; height: 220px; position: relative; }
-        .service-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; filter: contrast(1.1); }
-        .service-card:hover .service-img { transform: scale(1.08); }
+        .service-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s; }
+        .service-card:hover .service-img { transform: scale(1.1); }
         
         .service-body { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
-        .service-body h3 { font-family: 'Orbitron', sans-serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 15px; color: #fff; line-height: 1.4; }
-        .service-body p { font-size: 0.95rem; color: #b0b0b0; margin-bottom: 25px; flex-grow: 1; }
+        .service-body h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 15px; color: #fff; }
+        .service-body p { font-size: 0.95rem; color: var(--text-gray); margin-bottom: 25px; flex-grow: 1; }
         
         .service-btn { 
             align-self: flex-start; 
             padding: 12px 25px; 
-            border: 1px solid rgba(255,255,255,0.2); 
-            border-radius: 4px; 
-            font-family: 'Orbitron', sans-serif;
+            border: 1px solid var(--border-color); 
+            border-radius: 10px; 
             font-weight: 600; 
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            background: rgba(255,255,255,0.02);
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.03);
             transition: 0.3s;
         }
         .service-btn:hover { 
-            background: var(--neon-amber); 
-            color: #000; 
-            border-color: var(--neon-amber);
-            box-shadow: 0 0 20px rgba(255, 153, 0, 0.5);
+            background: var(--primary); 
+            color: #fff; 
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px rgba(255,153,0,0.3);
         }
 
-        /* Info Block (Антитеррор и БПЛА акцент) */
-        .info-section { background: linear-gradient(180deg, var(--dark-bg), #0f0a05); padding: 100px 20px; border-top: 1px solid rgba(255,69,0,0.3); border-bottom: 1px solid rgba(255,69,0,0.3); }
-        .info-container { max-width: 900px; margin: 0 auto; background: var(--card-bg); padding: 60px; border-radius: 12px; border: 1px solid var(--fire-orange); box-shadow: 0 0 40px rgba(255, 69, 0, 0.2); }
-        .info-container h2 { font-family: 'Orbitron', sans-serif; font-size: 2rem; margin-bottom: 20px; color: var(--fire-orange); font-weight: 900; text-transform: uppercase; }
-        .info-container h4 { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; color: var(--cyber-blue); }
-        .info-container p { color: #cccccc; margin-bottom: 20px; font-size: 1.05rem; }
+        /* Info Block */
+        .info-section { background-color: var(--light); padding: 100px 20px; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .info-container { max-width: 900px; margin: 0 auto; background: var(--card-bg); padding: 60px; border-radius: 24px; border: 1px solid var(--border-color); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+        .info-container h2 { font-size: 2rem; margin-bottom: 20px; color: #20bf6b; font-weight: 800; }
+        .info-container h4 { font-size: 1.25rem; font-weight: 600; margin-bottom: 20px; color: #4facfe; }
+        .info-container p { color: var(--text-gray); margin-bottom: 20px; font-size: 1.05rem; }
 
         /* Contacts Section */
         .contacts { padding: 120px 20px; max-width: 1200px; margin: 0 auto; }
@@ -186,16 +145,16 @@
         .contact-box { 
             background: var(--card-bg); 
             padding: 40px; 
-            border-radius: 8px; 
-            border: 1px solid rgba(255, 153, 0, 0.2);
+            border-radius: 20px; 
+            border: 1px solid var(--border-color);
             transition: 0.3s;
         }
-        .contact-box:hover { border-color: var(--neon-amber); box-shadow: 0 0 25px rgba(255, 153, 0, 0.2); transform: translateY(-5px); }
-        .contact-box h4 { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; color: var(--neon-amber); text-transform: uppercase; }
-        .contact-box p { color: #cccccc; font-size: 1.05rem; line-height: 1.8; }
+        .contact-box:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .contact-box h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 15px; color: #fff; }
+        .contact-box p { color: var(--text-gray); font-size: 1.05rem; line-height: 1.8; }
 
         /* Footer */
-        footer { background: #020203; color: #666; text-align: center; padding: 40px 20px; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05); }
+        footer { background: #050505; color: #777; text-align: center; padding: 40px 20px; font-size: 0.9rem; border-top: 1px solid var(--border-color); }
 
         @media (max-width: 768px) {
             nav { display: none; }
@@ -212,7 +171,7 @@
             <nav>
                 <ul>
                     <li><a href="#services">Услуги</a></li>
-                    <li><a href="#about">Безопасность</a></li>
+                    <li><a href="#about">О проекте</a></li>
                     <li><a href="#contacts">Контакты</a></li>
                 </ul>
             </nav>
@@ -223,17 +182,16 @@
     <section class="hero" id="main">
         <div class="hero-bg"></div>
         <div class="hero-content" data-aos="zoom-in" data-aos-duration="1200">
-            <span class="badge">🛡️ Безопасность и защита нового поколения</span>
-            <h1>Проектирование <span>ПБ, ГОЧС</span> и защита от <span>БПЛА</span> для объектов</h1>
-            <h3>Разработка спецразделов проектной документации. Антитеррористическая защищенность. Проходим госэкспертизу с первого раза. Опыт 17 лет.</h3>
-            <a href="https://max.ru/id561901317631_1_bot" class="btn-action" target="_blank">Экстренная консультация</a>
+            <h1>Проектирование <span>ПБ</span> и <span>ГОЧС</span> для гражданских и промышленных объектов</h1>
+            <h3>Проходим государственную экспертизу с первого раза. Опыт работы 17 лет.</h3>
+            <a href="https://max.ru/id561901317631_1_bot" class="btn-vr" target="_blank">Получить консультацию</a>
         </div>
     </section>
 
     <section class="services" id="services">
         <div class="section-title" data-aos="fade-up">
-            <h2>Наши <span>спецразделы</span></h2>
-            <p>Надежная проектная защита от чрезвычайных ситуаций, пожаров и внешних угроз</p>
+            <h2>Наши услуги</h2>
+            <p>Профессиональная разработка разделов проектной документации под ключ</p>
         </div>
         <div class="services-grid">
             
@@ -242,8 +200,8 @@
                     <img src="assets/img/de488a2b-c5f4-4855-8fc9-133f9139b0cf-12180663.jpeg" alt="Пожарная безопасность" class="service-img">
                 </div>
                 <div class="service-body">
-                    <h3>Раздел 9 «Пожарная безопасность» (ПБ)</h3>
-                    <p>Проектирование систем пожаротушения, путей эвакуации и огнезащиты по нормам ФЗ №123 и СП 1.13130.2020. Полная гарантия прохождения экспертизы.</p>
+                    <h3>Раздел 9 «Пожарная безопасность»</h3>
+                    <p>Учитываем особенности здания, эвакуационные пути, системы пожаротушения по нормам ФЗ №123 и СП 1.13130.2020.</p>
                     <a href="https://vk.com/market/product/razdel-pb-46528576-3720730" class="service-btn" target="_blank">Подробнее</a>
                 </div>
             </div>
@@ -254,7 +212,7 @@
                 </div>
                 <div class="service-body">
                     <h3>Предварительный аудит объекта</h3>
-                    <p>Аудит проектных решений на соответствие нормам безопасности. Надежная страховка от возвратов с госэкспертизы и лишних затрат.</p>
+                    <p>Сначала аудит, потом экспертиза — надежная страховка от дорогостоящих доработок архитектурных решений.</p>
                     <a href="https://vk.com/market/product/audit-obekta-proektirovania-na-sootvetstvia-normam-po-pozharnoy-bezopasnosti-46528576-5710178" class="service-btn" target="_blank">Подробнее</a>
                 </div>
             </div>
@@ -264,8 +222,8 @@
                     <img src="assets/img/4582be30-3503-46ad-905d-cf8db93c5d17-12180665.jpeg" alt="Гражданская оборона" class="service-img">
                 </div>
                 <div class="service-body">
-                    <h3>Раздел 13 «Гражданская оборона и ЧС» (ГОЧС)</h3>
-                    <p>Комплекс мероприятий по защите персонала и населения при авариях, взрывах, пожарах и стихийных бедствиях. Разработка инструкций под МЧС.</p>
+                    <h3>Раздел 13 «Гражданская оборона (ГОЧС)»</h3>
+                    <p>Проверка возможных ЧС, планов эвакуации и полная готовность к прохождению проверок МЧС.</p>
                     <a href="https://vk.com/market/product/razdel-gochs-46528576-3453846" class="service-btn" target="_blank">Подробнее</a>
                 </div>
             </div>
@@ -275,8 +233,8 @@
                     <img src="assets/img/a9c3c633-54ed-431b-a3b4-f27610363bcb-12180662.jpeg" alt="Охрана окружающей среды" class="service-img">
                 </div>
                 <div class="service-body">
-                    <h3>Раздел 8 «Охрана окружающей среды» (ООС)</h3>
-                    <p>Расчеты и проектирование минимизации вреда экологии, водам, воздуху и почве. Полное соответствие нормативам Росприроднадзора.</p>
+                    <h3>Раздел 8 «Охрана окружающей среды»</h3>
+                    <p>Анализ воздействия на воду, воздух, почву и соблюдение строгих требований Росприроднадзора.</p>
                     <a href="https://vk.com/market/product/razdel-oos-46528576-3720629" class="service-btn" target="_blank">Подробнее</a>
                 </div>
             </div>
@@ -286,8 +244,8 @@
                     <img src="assets/img/4b8c8ec0-4b03-4b2e-b973-773e448c9489-12180664.jpeg" alt="Безопасная эксплуатация" class="service-img">
                 </div>
                 <div class="service-body">
-                    <h3>Раздел 10 «Требования безопасной эксплуатации» (ТБЭ)</h3>
-                    <p>Инженерные решения для безопасного обслуживания зданий, предотвращения аварийных ситуаций и защиты конструкций.</p>
+                    <h3>Раздел 10 «Безопасная эксплуатация»</h3>
+                    <p>Требования к обеспечению безопасной эксплуатации объектов, учет оборудования и сценариев аварий.</p>
                     <a href="https://vk.com/market/product/razdel-tbe-46528576-3720968" class="service-btn" target="_blank">Подробнее</a>
                 </div>
             </div>
@@ -297,41 +255,46 @@
 
     <section class="info-section" id="about">
         <div class="info-container" data-aos="flip-up" data-aos-duration="1000">
-            <h2>⚠️ Антитеррористическая защита и БПЛА</h2>
-            <h4>Современные угрозы требуют опережающего инженерного проектирования.</h4>
-            <p>Мы разрабатываем специализированные проектные решения по защите гражданских и промышленных объектов от несанкционированного проникновения, техногенных угроз и атак беспилотных летательных аппаратов (БПЛА).</p>
-            <p><strong>Результат:</strong> Полная безопасность объекта, соответствие строгим государственным регламентам и прохождение экспертизы без сдвига сроков.</p>
+            <h2>Почему проекты по ПБ и ГОЧС возвращают на госэкспертизе?</h2>
+            <h4>Большинство возвратов происходят не из-за «плохого проекта», а из-за несостыковок между разделами.</h4>
+            <p>Формально документация может соответствовать сводам правил (СП), но эксперты сразу выявляют расхождения в расчетах и проектных решениях, а также шаблонный подход к ГОЧС без привязки к конкретному объекту.</p>
+            <p><strong>Результат:</strong> потеря времени, сдвиг сроков и авральные правки. Гораздо эффективнее выявлять эти риски заранее.</p>
         </div>
     </section>
 
     <section class="contacts" id="contacts">
         <div class="section-title" data-aos="fade-up">
             <h2>Контакты</h2>
-            <p>Свяжитесь со специалистами по проектированию безопасности</p>
+            <p>Свяжитесь с нами удобным способом</p>
         </div>
         <div class="contacts-grid">
             <div class="contact-box" data-aos="fade-right">
-                <h4>Адрес офиса</h4>
+                <h4>Адрес</h4>
                 <p>г. Оренбург, пр-кт Гагарина, 29/2</p>
             </div>
             <div class="contact-box" data-aos="fade-up">
-                <h4>Режим работы</h4>
+                <h4>Время работы</h4>
                 <p>Пн–Пт: 10:00 — 19:00<br>Сб–Вс: выходной</p>
             </div>
             <div class="contact-box" data-aos="fade-left">
-                <h4>Прямая связь</h4>
+                <h4>Для связи</h4>
                 <p>+7 (996) 078-90-54<br>designer.85@bk.ru</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 СпецРаздел ПД. Все права защищены. Тактический веб-дизайн безопасности на GitHub Pages.</p>
+        <p>&copy; 2026 СпецРаздел ПД. Все права защищены. Кинематографический веб-дизайн на GitHub Pages.</p>
     </footer>
 
+    <!-- Скрипт библиотеки плавной анимации AOS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      AOS.init({ duration: 1000, once: true, offset: 100 });
+      AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100
+      });
     </script>
 </body>
 </html>
