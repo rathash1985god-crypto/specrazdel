@@ -237,14 +237,27 @@
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             recognition = new SpeechRecognition();
             recognition.lang = 'ru-RU';
-            recognition.interimResults = false;
+            recognition.interimResults = true;
             recognition.maxAlternatives = 1;
 
             recognition.onresult = function(event) {
-                const speechResult = event.results[0][0].transcript;
-                document.getElementById('userInput').value = speechResult;
-                stopRecording();
-                sendUserMessage();
+                let interimTranscript = '';
+                let finalTranscript = '';
+
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    if (event.results[i].isFinal) {
+                        finalTranscript += event.results[i][0].transcript;
+                    } else {
+                        interimTranscript += event.results[i][0].transcript;
+                    }
+                }
+
+                const inputField = document.getElementById('userInput');
+                if (finalTranscript) {
+                    inputField.value = finalTranscript;
+                } else if (interimTranscript) {
+                    inputField.value = interimTranscript;
+                }
             };
 
             recognition.onerror = function(event) {
@@ -263,9 +276,14 @@
             }
             if (isRecording) {
                 recognition.stop();
+                stopRecording();
             } else {
-                recognition.start();
-                startRecording();
+                try {
+                    recognition.start();
+                    startRecording();
+                } catch (e) {
+                    stopRecording();
+                }
             }
         }
 
@@ -274,7 +292,7 @@
             const micBtn = document.getElementById('micBtn');
             micBtn.classList.add('recording');
             micBtn.innerHTML = '⏹';
-            document.getElementById('userInput').placeholder = 'Слушаю вас...';
+            document.getElementById('userInput').placeholder = 'Говорите, слушаю вас...';
         }
 
         function stopRecording() {
@@ -311,6 +329,10 @@
             const input = document.getElementById('userInput');
             const text = input.value.trim();
             if (!text) return;
+
+            if (isRecording && recognition) {
+                recognition.stop();
+            }
 
             const messagesContainer = document.getElementById('chatMessages');
             messagesContainer.innerHTML += `<div class="chat-msg user">${text}</div>`;
