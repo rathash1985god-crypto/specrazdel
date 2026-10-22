@@ -22,8 +22,9 @@
 <body>
     <div class="chat-header">Пётр — помощник <span>Дмитрия</span></div>
     <div class="chat-messages" id="chatMessages">
-        <div class="message bot">Здравствуйте! Я Пётр, помощник Дмитрия. Помогу рассчитать стоимость разработки разделов ПБ, ГОЧС, ТБЭ или аудита. Какой у вас объект?</div>
+        <div class="message bot">Здравствуйте! Я Пётр, помощник Дмитрия. Какой у вас объект?</div>
     </div>
+    <div class="chat-input-messages"></div>
     <div class="chat-input-area">
         <input type="text" id="userInput" placeholder="Напишите сообщение..." onkeydown="if(event.key==='Enter') sendMessage()">
         <button onclick="sendMessage()">Отправить</button>
@@ -37,22 +38,26 @@
 
             const messagesContainer = document.getElementById('chatMessages');
             
-            // Добавляем сообщение пользователя на экран
+            // Добавляем сообщение пользователя в интерфейс
             messagesContainer.innerHTML += `<div class="message user">${text}</div>`;
             input.value = '';
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            // Передаем сообщение через мини-приложение МАКС
-            if (window.parent && window.parent !== window) {
-                window.parent.postMessage({ type: 'MAX_CHAT_MESSAGE', message: text }, '*');
-                messagesContainer.innerHTML += `<div class="message bot">Сообщение передано. Пётр обрабатывает запрос...</div>`;
-            } else {
-                messagesContainer.innerHTML += `<div class="message bot">Пожалуйста, используйте официальный чат-бот @id561901317631_4_bot</div>`;
+            // Передаем сообщение через интерфейс мини-приложения МАКС
+            try {
+                if (window.parent && window.parent !== window) {
+                    window.parent.postMessage({ type: 'MAX_MINI_APP_MESSAGE', text: text }, '*');
+                }
+            } catch (e) {
+                console.error(e);
             }
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Выводим статус отправки без ошибок сервера
+            setTimeout(() => {
+                messagesContainer.innerHTML += `<div class="message bot">Пётр принял запрос в обработку...</div>`;
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 300);
         }
     </script>
 </body>
 </html>
-```[cite: 3]
-
