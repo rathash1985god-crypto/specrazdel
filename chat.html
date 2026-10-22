@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пётр — Помощник Дмитрия</title>
+    <style>
+        body { background-color: #0b0b0b; color: #fff; font-family: 'Inter', sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; height: 100vh; }
+        .chat-header { background: #1a1a1a; padding: 15px; text-align: center; border-bottom: 1px solid #2a2a2a; font-weight: 700; font-size: 1.1rem; }
+        .chat-header span { color: #ff9900; }
+        .chat-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+        .message { max-width: 80%; padding: 12px 16px; border-radius: 15px; font-size: 0.95rem; line-height: 1.4; }
+        .message.bot { background: #1a1a1a; align-self: flex-start; border: 1px solid #2a2a2a; }
+        .message.user { background: #ff9900; color: #000; align-self: flex-end; font-weight: 500; }
+        .chat-input-area { padding: 15px; background: #1a1a1a; border-top: 1px solid #2a2a2a; display: flex; gap: 10px; }
+        input { flex: 1; background: #0b0b0b; border: 1px solid #2a2a2a; padding: 12px 15px; border-radius: 10px; color: #fff; font-size: 1rem; outline: none; }
+        input:focus { border-color: #ff9900; }
+        button { background: #ff9900; color: #000; border: none; padding: 0 20px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #e08500; }
+    </style>
+</head>
+<body>
+    <div class="chat-header">Пётр — помощник <span>Дмитрия</span></div>
+    <div class="chat-messages" id="chatMessages">
+        <div class="message bot">Здравствуйте! Я Пётр, помощник Дмитрия. Помогу рассчитать стоимость разработки разделов ПБ, ГОЧС, ТБЭ или аудита. Какой у вас объект?</div>
+    </div>
+    <div class="chat-input-area">
+        <input type="text" id="userInput" placeholder="Напишите сообщение..." onkeydown="if(event.key==='Enter') sendMessage()">
+        <button onclick="sendMessage()">Отправить</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const messagesContainer = document.getElementById('chatMessages');
+            
+            // Добавляем сообщение пользователя на экран
+            messagesContainer.innerHTML += `<div class="message user">${text}</div>`;
+            input.value = '';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Отправляем запрос твоему бэкенду/боту
+            fetch('https:// твой-сервер-или-вебхук /api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text })
+            })
+            .then(res => res.json())
+            .then(data => {
+                messagesContainer.innerHTML += `<div class="message bot">${data.reply}</div>`;
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            })
+            .catch(err => {
+                messagesContainer.innerHTML += `<div class="message bot">Извините, произошла ошибка связи. Попробуйте еще раз.</div>`;
+            });
+        }
+    </script>
+</body>
+</html>
