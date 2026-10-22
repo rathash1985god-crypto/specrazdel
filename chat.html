@@ -2,33 +2,52 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Пётр — Помощник Дмитрия</title>
     <!-- Официальный скрипт SDK мини-приложений платформы МАКС -->
     <script src="https://platform.max.ru/js/web-app.js"></script>
     <style>
-        body { background-color: #0b0b0b; color: #fff; font-family: 'Inter', sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; height: 100vh; }
-        .chat-header { background: #1a1a1a; padding: 15px; text-align: center; border-bottom: 1px solid #2a2a2a; font-weight: 700; font-size: 1.1rem; }
-        .chat-header span { color: #ff9900; }
-        .chat-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
-        .message { max-width: 80%; padding: 12px 16px; border-radius: 15px; font-size: 0.95rem; line-height: 1.4; word-break: break-word; }
-        .message.bot { background: #1a1a1a; align-self: flex-start; border: 1px solid #2a2a2a; }
-        .message.user { background: #ff9900; color: #000; align-self: flex-end; font-weight: 500; }
-        .chat-input-area { padding: 15px; background: #1a1a1a; border-top: 1px solid #2a2a2a; display: flex; gap: 10px; }
-        input { flex: 1; background: #0b0b0b; border: 1px solid #2a2a2a; padding: 12px 15px; border-radius: 10px; color: #fff; font-size: 1rem; outline: none; }
-        input:focus { border-color: #ff9900; }
-        button { background: #ff9900; color: #000; border: none; padding: 0 20px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s; }
-        button:hover { background: #e08500; }
+        :root { --primary: #ff9900; --primary-dark: #e08500; --dark: #0b0b0b; --card-bg: #1a1a1a; --border-color: #2a2a2a; --text-gray: #a0a0a0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--dark); color: #fff; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+        
+        .chat-header { background: var(--card-bg); padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); }
+        .chat-header-info h2 { font-size: 1.05rem; font-weight: 700; color: #fff; }
+        .chat-header-info h2 span { color: var(--primary); }
+        .chat-header-info p { font-size: 0.8rem; color: var(--text-gray); margin-top: 2px; }
+        .back-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #fff; padding: 6px 12px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: 0.2s; }
+        .back-btn:hover { background: rgba(255,255,255,0.1); }
+
+        .chat-messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+        .message { max-width: 85%; padding: 12px 16px; border-radius: 14px; font-size: 0.95rem; line-height: 1.4; word-break: break-word; }
+        .message.bot { background: var(--card-bg); align-self: flex-start; border: 1px solid var(--border-color); color: #fff; }
+        .message.user { background: var(--primary); color: #000; align-self: flex-end; font-weight: 500; }
+
+        .chat-input-area { padding: 15px 20px; background: var(--card-bg); border-top: 1px solid var(--border-color); display: flex; gap: 10px; align-items: center; }
+        input { flex: 1; background: var(--dark); border: 1px solid var(--border-color); padding: 12px 15px; border-radius: 10px; color: #fff; font-size: 0.95rem; outline: none; transition: 0.2s; }
+        input:focus { border-color: var(--primary); }
+        
+        button.send-btn { background: var(--primary); color: #000; border: none; padding: 0 20px; height: 46px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s; flex-shrink: 0; }
+        button.send-btn:hover { background: var(--primary-dark); }
     </style>
 </head>
 <body>
-    <div class="chat-header">Пётр — помощник <span>Дмитрия</span></div>
-    <div class="chat-messages" id="chatMessages">
-        <div class="message bot">Здравствуйте! Я Пётр, помощник Дмитрия. Какой у вас объект?</div>
+
+    <div class="chat-header">
+        <div class="chat-header-info">
+            <h2>Пётр — помощник <span>Дмитрия</span></h2>
+            <p>Проектное бюро · Оренбург</p>
+        </div>
+        <a href="index.html" class="back-btn">На главную</a>
     </div>
+
+    <div class="chat-messages" id="chatMessages">
+        <div class="message bot" id="welcomeMsg">Здравствуйте! Я Пётр, помощник Дмитрия. Какой у вас объект?</div>
+    </div>
+
     <div class="chat-input-area">
         <input type="text" id="userInput" placeholder="Напишите сообщение..." onkeydown="if(event.key==='Enter') sendMessage()">
-        <button onclick="sendMessage()">Отправить</button>
+        <button class="send-btn" onclick="sendMessage()">Отправить</button>
     </div>
 
     <script>
@@ -37,7 +56,14 @@
             window.Max.WebApp.ready();
         }
 
-        function sendMessage() {
+        // Подхватываем услугу из ссылки, если клиент пришел с карточки услуги
+        const urlParams = new URLSearchParams(window.location.search);
+        const contextService = urlParams.get('context');
+        if (contextService) {
+            document.getElementById('welcomeMsg').innerText = `Интересует направление: "${contextService}". Расскажите подробнее про ваш объект (площадь, назначение)?`;
+        }
+
+        async function sendMessage() {
             const input = document.getElementById('userInput');
             const text = input.value.trim();
             if (!text) return;
@@ -52,11 +78,9 @@
             // Отправка данных через штатный механизм мини-приложений МАКС в чат-бот
             try {
                 if (window.Max && window.Max.WebApp && typeof window.Max.WebApp.sendData === 'function') {
-                    // Передаем данные в бот через официальный метод SDK
-                    window.Max.WebApp.sendData(JSON.stringify({ text: text }));
+                    window.Max.WebApp.sendData(JSON.stringify({ text: text, context: contextService || "Общая консультация" }));
                 } else if (window.parent && window.parent !== window) {
-                    // Резервный мост для iframe-виджета на сайте
-                    window.parent.postMessage({ type: 'MAX_MINI_APP_MESSAGE', text: text }, '*');
+                    window.parent.postMessage({ type: 'MAX_MINI_APP_MESSAGE', text: text, context: contextService }, '*');
                 }
             } catch (e) {
                 console.error("Ошибка отправки в МАКС:", e);
