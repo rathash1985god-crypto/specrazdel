@@ -339,9 +339,12 @@
             input.value = '';
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            fetch('https://speaking-copied-domain-pills.trycloudflare.com/api/chat', {
+            fetch('https://crazy-rockets-search.loca.lt/api/chat', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Bypass-Tunnel-Reminder': 'true'
+                },
                 body: JSON.stringify({ message: text, context: currentContext })
             })
             .then(res => res.json())
