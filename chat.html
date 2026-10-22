@@ -75,15 +75,35 @@
             input.value = '';
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            // Отправка данных через штатный механизм мини-приложений МАКС в чат-бот
+            try {
+                // Прямой запрос на локальный Flask-сервер Петра (/api/chat)
+                const response = await fetch('http://127.0.0.1:5000/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        message: text, 
+                        context: contextService || "Общая консультация" 
+                    })
+                });
+
+                const data = await response.json();
+                const reply = data.reply || "Уточните параметры объекта.";
+
+                // Выводим ответ Петра в интерфейс
+                messagesContainer.innerHTML += `<div class="message bot">${reply}</div>`;
+            } catch (e) {
+                console.error("Ошибка связи с ядром:", e);
+                messagesContainer.innerHTML += `<div class="message bot">Сервер временно недоступен. Проверьте запуск скрипта на ПК.</div>`;
+            }
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Дополнительная отправка в МАКС, если открыто внутри платформы
             try {
                 if (window.Max && window.Max.WebApp && typeof window.Max.WebApp.sendData === 'function') {
                     window.Max.WebApp.sendData(JSON.stringify({ text: text, context: contextService || "Общая консультация" }));
-                } else if (window.parent && window.parent !== window) {
-                    window.parent.postMessage({ type: 'MAX_MINI_APP_MESSAGE', text: text, context: contextService }, '*');
                 }
-            } catch (e) {
-                console.error("Ошибка отправки в МАКС:", e);
+            } catch (err) {
+                console.error("Ошибка отправки в МАКС:", err);
             }
         }
     </script>
