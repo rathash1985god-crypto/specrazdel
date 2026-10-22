@@ -339,7 +339,7 @@
             input.value = '';
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            fetch('http://127.0.0.1:5000/api/chat', {
+            fetch('https://speaking-copied-domain-pills.trycloudflare.com/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: text, context: currentContext })
