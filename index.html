@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <title>Раздел Антитеррористическая защищенность объектов</title>
-    <meta name="description" content="Разработка подраздела антитеррористической защищенности (АТЗ) для объектов. Опыт работы с 2010 года. Цена от 25 000 ₽. Оренбург.">
+    <title>Разработка спецразделов проектной документации | ПБ, ГОЧС, ТБЭ</title>
+    <meta name="description" content="Разработка разделов ПБ, ГОЧС, ТБЭ, аудит планировочных решений, антитеррористическая защищенность и расчет категорий. Опыт с 2010 года. Оренбург.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -26,65 +26,160 @@
         :root { --primary: #ff9900; --primary-dark: #e08500; --dark: #0b0b0b; --light: #141414; --card-bg: #1a1a1a; --text-gray: #a0a0a0; --border-color: #2a2a2a; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
         html { scroll-behavior: smooth; }
-        body { color: #fff; background-color: var(--dark); line-height: 1.6; }
+        body { color: #fff; background-color: var(--dark); line-height: 1.6; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         
         header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(11, 11, 11, 0.85); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
         .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 20px; }
-        .logo { font-weight: 800; font-size: 1.2rem; }
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 0.5px; }
         .logo span { color: var(--primary); }
         nav ul { display: flex; list-style: none; gap: 25px; align-items: center; }
         nav a { font-size: 0.95rem; font-weight: 500; color: #ccc; }
         nav a:hover { color: var(--primary); }
         .header-phone { font-weight: 600; font-size: 0.95rem; background: rgba(255,255,255,0.05); padding: 8px 16px; border-radius: 30px; border: 1px solid var(--border-color); }
 
-        .page-hero { padding: 160px 20px 80px; max-width: 900px; margin: 0 auto; text-align: center; }
-        .page-hero h1 { font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 800; margin-bottom: 20px; line-height: 1.2; }
-        .page-hero h1 span { color: var(--primary); }
-        .page-hero p { font-size: 1.2rem; color: var(--text-gray); margin-bottom: 30px; }
+        .hero { min-height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; padding: 140px 20px 80px; }
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(11,11,11,0.6), rgba(11,11,11,0.85)), url('assets/img/6d973a13-0343-45e6-abd4-4c5f8f274799-12119908.jpeg') center/cover no-repeat; z-index: -1; }
+        .hero-content { max-width: 900px; margin: 0 auto; position: relative; z-index: 2; }
+        .hero h1 { font-size: clamp(2.2rem, 4.5vw, 3.8rem); font-weight: 800; line-height: 1.2; margin-bottom: 25px; }
+        .hero h1 span { color: var(--primary); }
+        .hero h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 400; color: #ddd; margin-bottom: 40px; }
         
-        .price-badge { display: inline-block; background: rgba(255,153,0,0.1); border: 1px solid var(--primary); color: var(--primary); padding: 10px 25px; border-radius: 30px; font-weight: 700; font-size: 1.2rem; margin-bottom: 30px; }
+        .btn-vr { display: inline-block; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; padding: 16px 36px; border-radius: 50px; font-weight: 700; font-size: 1.05rem; box-shadow: 0 10px 30px rgba(255, 153, 0, 0.4); border: 1px solid rgba(255,255,255,0.2); }
+        .btn-vr:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255, 153, 0, 0.6); }
 
-        .content-block { max-width: 900px; margin: 0 auto 80px; padding: 0 20px; }
-        .card-box { background: var(--card-bg); border: 1px solid var(--border-color); padding: 40px; border-radius: 20px; margin-bottom: 30px; }
-        .card-box h3 { font-size: 1.5rem; margin-bottom: 15px; color: #fff; }
-        .card-box p { color: var(--text-gray); margin-bottom: 15px; }
+        .services { padding: 120px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 70px; }
+        .section-title h2 { font-size: 2.8rem; font-weight: 800; margin-bottom: 15px; }
+        .section-title p { color: var(--text-gray); font-size: 1.1rem; }
         
-        .btn-vr { display: inline-block; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; padding: 16px 36px; border-radius: 50px; font-weight: 700; font-size: 1.05rem; box-shadow: 0 10px 30px rgba(255, 153, 0, 0.4); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
+        .service-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .service-card:hover { transform: translateY(-5px); border-color: rgba(255,153,0,0.3); }
+        .service-body { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
+        .service-price { font-size: 1.25rem; font-weight: 800; color: var(--primary); margin-bottom: 10px; }
+        .service-body h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 15px; color: #fff; }
+        .service-body p { font-size: 0.95rem; color: var(--text-gray); margin-bottom: 25px; flex-grow: 1; }
         
+        .service-btn { align-self: flex-start; padding: 12px 25px; border: 1px solid var(--border-color); border-radius: 10px; font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.03); }
+        .service-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+        .contacts { padding: 120px 20px; max-width: 1200px; margin: 0 auto; }
+        .contacts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px; }
+        .contact-box { background: var(--card-bg); padding: 40px; border-radius: 20px; border: 1px solid var(--border-color); }
+        .contact-box h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 15px; color: #fff; }
+        .contact-box p { color: var(--text-gray); font-size: 1.05rem; line-height: 1.8; }
+
         footer { background: #050505; color: #777; text-align: center; padding: 40px 20px; font-size: 0.9rem; border-top: 1px solid var(--border-color); }
+        @media (max-width: 768px) { nav { display: none; } }
     </style>
 </head>
 <body>
 
     <header>
         <div class="header-container">
-            <div class="logo"><a href="index.html">СпецРаздел<span>ПД</span></a></div>
+            <div class="logo">СпецРаздел<span>ПД</span></div>
             <nav>
                 <ul>
-                    <li><a href="index.html">← На главную</a></li>
-                    <li><a href="index.html#services">Все услуги</a></li>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
                 </ul>
             </nav>
             <a href="tel:+79960789054" class="header-phone">+7 (996) 078-90-54</a>
         </div>
     </header>
 
-    <div class="page-hero" data-aos="fade-up">
-        <div class="price-badge">Цена: от 25 000 до 37 000 ₽</div>
-        <h1>Раздел <span>«Антитеррористическая защищенность»</span></h1>
-        <p>Разработка обязательных проектных подразделов АТЗ для гражданских и промышленных объектов под требования экспертов.</p>
-        <a href="https://max.ru/id561901317631_1_bot" class="btn-vr" target="_blank">Получить КП за 15 минут</a>
-    </div>
-
-    <div class="content-block">
-        <div class="card-box" data-aos="fade-up">
-            <h3>Особенности разработки подраздела АТЗ:</h3>
-            <p>• Учет категорийности объектов и актуальных постановлений Правительства РФ.</p>
-            <p>• Проектирование инженерно-технических средств охраны, контроля доступа и систем наблюдения.</p>
-            <p>• Полное сопровождение проектной документации до получения положительного заключения экспертизы.</p>
+    <section class="hero" id="main">
+        <div class="hero-bg"></div>
+        <div class="hero-content" data-aos="zoom-in" data-aos-duration="1200">
+            <h1>Разработка спецразделов <span>проектной документации</span></h1>
+            <h3>Узкая специализация · Опыт работы с 2010 года · Госэкспертиза с первого раза</h3>
+            <a href="https://max.ru/id561901317631_1_bot" class="btn-vr" target="_blank">Получить КП за 15 минут</a>
         </div>
-    </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Наши услуги</h2>
+            <p>Основные инженерные разделы и специализированные направления</p>
+        </div>
+        <div class="services-grid">
+            
+            <!-- Раздел 9 ПБ -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-body">
+                    <div class="service-price">27 000 – 93 000 ₽</div>
+                    <h3>Раздел 9 «Пожарная безопасность» (ПБ)</h3>
+                    <p>Разработка проектной документации по требованиям ФЗ №123 и СП 1.13130.2020. Согласование с первого раза.</p>
+                    <a href="razdel-9-pozharnaya-bezopasnost.html" class="service-btn">Перейти на страницу</a>
+                </div>
+            </div>
+
+            <!-- Раздел 13 ГОЧС -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-body">
+                    <div class="service-price">30 000 – 160 000 ₽</div>
+                    <h3>Раздел 13 «ПМ ГОЧС»</h3>
+                    <p>Инженерно-технические мероприятия гражданской обороны и предупреждения чрезвычайных ситуаций.</p>
+                    <a href="razdel-13-pmgochs.html" class="service-btn">Перейти на страницу</a>
+                </div>
+            </div>
+
+            <!-- Раздел 10 ТБЭ -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-body">
+                    <div class="service-price">22 000 – 45 000 ₽</div>
+                    <h3>Раздел 10 «Безопасная эксплуатация» (ТБЭ)</h3>
+                    <p>Требования к обеспечению безопасной эксплуатации объектов капитального строительства.</p>
+                    <a href="razdel-tbe-safety.html" class="service-btn">Перейти на страницу</a>
+                </div>
+            </div>
+
+            <!-- Аудит -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-body">
+                    <div class="service-price">5 000 – 45 000 ₽</div>
+                    <h3>Аудит по пожарным нормам планировочных решений</h3>
+                    <p>Сначала аудит, потом экспертиза — надежная страховка от дорогостоящих доработок архитектурных решений.</p>
+                    <a href="audit-pozharnyh-norm.html" class="service-btn">Перейти на страницу</a>
+                </div>
+            </div>
+
+            <!-- Антитеррор -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-body">
+                    <div class="service-price">25 000 – 37 000 ₽</div>
+                    <h3>Раздел «Антитеррористическая защищенность»</h3>
+                    <p>Разработка отдельного проектного подраздела под актуальные требования законодательства и экспертов.</p>
+                    <a href="antiterroristicheskaya-zashchishchennost.html" class="service-btn">Перейти на страницу</a>
+                </div>
+            </div>
+
+            <!-- Расчет категорий -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-body">
+                    <div class="service-price">800 – 2 000 ₽ / м³</div>
+                    <h3>Расчёт категории помещений по взрывопожароопасности</h3>
+                    <p>Определение категорий помещений производственного и складского назначения по СП 12.13330.2009.</p>
+                    <a href="raschet-kategoriy-pomeshcheniy.html" class="service-btn">Перейти на страницу</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="contacts" id="contacts">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Контакты</h2>
+            <p>Свяжитесь для обсуждения вашего объекта</p>
+        </div>
+        <div class="contacts-grid">
+            <div class="contact-box"><h4>Адрес</h4><p>г. Оренбург, пр-кт Гагарина, 29/2</p></div>
+            <div class="contact-box"><h4>График</h4><p>Пн–Пт: 10:00 — 19:00</p></div>
+            <div class="contact-box"><h4>Связь</h4><p>+7 (996) 078-90-54<br>designer.85@bk.ru</p></div>
+        </div>
+    </section>
 
     <footer><p>&copy; 2026 СпецРаздел ПД. Все права защищены.</p></footer>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
