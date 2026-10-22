@@ -14,7 +14,7 @@
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            for (let j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
         })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113686176', 'ym');
         ym(113686176, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
@@ -204,9 +204,7 @@
             <span>Пётр — Помощник Дмитрия</span>
             <button class="chat-close-btn" onclick="closeChat()">✕</button>
         </div>
-        <div class="chat-widget-messages" id="chatMessages">
-            <div class="chat-msg bot">Здравствуйте! Я Пётр, помощник Дмитрия. Помогу рассчитать смету и подготовить договор. Какой у вас объект?</div>
-        </div>
+        <div class="chat-widget-messages" id="chatMessages"></div>
         <div class="chat-widget-input">
             <input type="text" id="userInput" placeholder="Введите сообщение..." onkeydown="if(event.key==='Enter') sendUserMessage()">
             <button onclick="sendUserMessage()">➤</button>
@@ -224,9 +222,13 @@
             document.getElementById('chat-widget-container').style.display = 'flex';
             
             const messagesContainer = document.getElementById('chatMessages');
-            // Если чат открыли по конкретной услуге, бот сразу приветствует с учетом контекста
-            if(contextName !== "Общая консультация") {
-                messagesContainer.innerHTML += `<div class="chat-msg bot">Здравствуйте! Вижу, вас интересует направление: <b>${contextName}</b>. Расскажите подробнее про ваш объект (площадь, назначение), и я подготовлю предварительный расчет.</div>`;
+            messagesContainer.innerHTML = ''; // Очищаем историю при открытии
+            
+            // Если открыто по конкретной услуге — пишем без слова "Здравствуйте", начиная сразу с "Вижу"
+            if(contextName !== "Общая консультация по спецразделам" && contextName !== "Общая консультация") {
+                messagesContainer.innerHTML += `<div class="chat-msg bot">Вижу, вас интересует направление: <b>${contextName}</b>. Расскажите подробнее про ваш объект (площадь, назначение), и я подготовлю предварительный расчет.</div>`;
+            } else {
+                messagesContainer.innerHTML += `<div class="chat-msg bot">Здравствуйте! Я Пётр, помощник Дмитрия. Помогу рассчитать смету и подготовить договор. Какой у вас объект?</div>`;
             }
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
@@ -245,7 +247,7 @@
             input.value = '';
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            // Связь с локальным бэкендом Петра (или сервером обработки)
+            // Связь с локальным бэкендом Петра
             fetch('http://127.0.0.1:5000/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
