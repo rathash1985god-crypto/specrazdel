@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Пётр — Помощник Дмитрия</title>
+    <!-- Официальный скрипт SDK мини-приложений платформы МАКС -->
+    <script src="https://platform.max.ru/js/web-app.js"></script>
     <style>
         body { background-color: #0b0b0b; color: #fff; font-family: 'Inter', sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; height: 100vh; }
         .chat-header { background: #1a1a1a; padding: 15px; text-align: center; border-bottom: 1px solid #2a2a2a; font-weight: 700; font-size: 1.1rem; }
@@ -24,13 +26,17 @@
     <div class="chat-messages" id="chatMessages">
         <div class="message bot">Здравствуйте! Я Пётр, помощник Дмитрия. Какой у вас объект?</div>
     </div>
-    <div class="chat-input-messages"></div>
     <div class="chat-input-area">
         <input type="text" id="userInput" placeholder="Напишите сообщение..." onkeydown="if(event.key==='Enter') sendMessage()">
         <button onclick="sendMessage()">Отправить</button>
     </div>
 
     <script>
+        // Инициализация WebApp платформы МАКС при загрузке
+        if (window.Max && window.Max.WebApp) {
+            window.Max.WebApp.ready();
+        }
+
         function sendMessage() {
             const input = document.getElementById('userInput');
             const text = input.value.trim();
@@ -38,25 +44,23 @@
 
             const messagesContainer = document.getElementById('chatMessages');
             
-            // Добавляем сообщение пользователя в интерфейс
+            // Отображаем сообщение пользователя в интерфейсе чата
             messagesContainer.innerHTML += `<div class="message user">${text}</div>`;
             input.value = '';
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            // Передаем сообщение через интерфейс мини-приложения МАКС
+            // Отправка данных через штатный механизм мини-приложений МАКС в чат-бот
             try {
-                if (window.parent && window.parent !== window) {
+                if (window.Max && window.Max.WebApp && typeof window.Max.WebApp.sendData === 'function') {
+                    // Передаем данные в бот через официальный метод SDK
+                    window.Max.WebApp.sendData(JSON.stringify({ text: text }));
+                } else if (window.parent && window.parent !== window) {
+                    // Резервный мост для iframe-виджета на сайте
                     window.parent.postMessage({ type: 'MAX_MINI_APP_MESSAGE', text: text }, '*');
                 }
             } catch (e) {
-                console.error(e);
+                console.error("Ошибка отправки в МАКС:", e);
             }
-
-            // Выводим статус отправки без ошибок сервера
-            setTimeout(() => {
-                messagesContainer.innerHTML += `<div class="message bot">Пётр принял запрос в обработку...</div>`;
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }, 300);
         }
     </script>
 </body>
