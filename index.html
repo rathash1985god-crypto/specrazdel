@@ -45,7 +45,7 @@
         .hero h1 span { color: var(--primary); }
         .hero h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 400; color: #ddd; margin-bottom: 40px; }
         
-        .btn-vr { display: inline-block; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; padding: 16px 36px; border-radius: 50px; font-weight: 700; font-size: 1.05rem; box-shadow: 0 10px 30px rgba(255, 153, 0, 0.4); border: 1px solid rgba(255,255,255,0.2); }
+        .btn-vr { display: inline-block; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; padding: 16px 36px; border-radius: 50px; font-weight: 700; font-size: 1.05rem; box-shadow: 0 10px 30px rgba(255, 153, 0, 0.4); border: 1px solid rgba(255,255,255,0.2); cursor: pointer; }
         .btn-vr:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255, 153, 0, 0.6); }
 
         .services { padding: 120px 20px; max-width: 1200px; margin: 0 auto; }
@@ -61,7 +61,7 @@
         .service-body h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 15px; color: #fff; }
         .service-body p { font-size: 0.95rem; color: var(--text-gray); margin-bottom: 25px; flex-grow: 1; }
         
-        .service-btn { align-self: flex-start; padding: 12px 25px; border: 1px solid var(--border-color); border-radius: 10px; font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.03); }
+        .service-btn { align-self: flex-start; padding: 12px 25px; border: 1px solid var(--border-color); border-radius: 10px; font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.03); cursor: pointer; color: #fff; }
         .service-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
 
         .contacts { padding: 120px 20px; max-width: 1200px; margin: 0 auto; }
@@ -71,6 +71,21 @@
         .contact-box p { color: var(--text-gray); font-size: 1.05rem; line-height: 1.8; }
 
         footer { background: #050505; color: #777; text-align: center; padding: 40px 20px; font-size: 0.9rem; border-top: 1px solid var(--border-color); }
+
+        /* Стили для встроенного чат-виджета на сайте */
+        #chat-widget-container { position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: none; width: 380px; max-width: 90vw; height: 500px; background: #141414; border: 1px solid var(--border-color); border-radius: 20px; box-shadow: 0 15px 50px rgba(0,0,0,0.8); flex-direction: column; overflow: hidden; }
+        .chat-widget-header { background: #1a1a1a; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); font-weight: 700; }
+        .chat-widget-header span { color: var(--primary); }
+        .chat-close-btn { background: none; border: none; color: #aaa; font-size: 1.2rem; cursor: pointer; }
+        .chat-widget-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem; }
+        .chat-msg { max-width: 85%; padding: 10px 14px; border-radius: 12px; line-height: 1.4; }
+        .chat-msg.bot { background: #1a1a1a; align-self: flex-start; border: 1px solid var(--border-color); }
+        .chat-msg.user { background: var(--primary); color: #000; align-self: flex-end; font-weight: 500; }
+        .chat-widget-input { padding: 12px; background: #1a1a1a; border-top: 1px solid var(--border-color); display: flex; gap: 8px; }
+        .chat-widget-input input { flex: 1; background: #0b0b0b; border: 1px solid var(--border-color); padding: 10px 12px; border-radius: 8px; color: #fff; outline: none; font-size: 0.9rem; }
+        .chat-widget-input input:focus { border-color: var(--primary); }
+        .chat-widget-input button { background: var(--primary); color: #000; border: none; padding: 0 16px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+
         @media (max-width: 768px) { nav { display: none; } }
     </style>
 </head>
@@ -95,7 +110,7 @@
         <div class="hero-content" data-aos="zoom-in" data-aos-duration="1200">
             <h1>Разработка спецразделов <span>проектной документации</span></h1>
             <h3>Узкая специализация · Опыт работы с 2010 года · Госэкспертиза с первого раза</h3>
-            <a href="https://max.ru/id561901317631_1_bot" class="btn-vr" target="_blank">Получить КП за 15 минут</a>
+            <button class="btn-vr" onclick="openChat('Общая консультация по спецразделам')">Получить КП за 15 минут</button>
         </div>
     </section>
 
@@ -112,7 +127,7 @@
                     <div class="service-price">27 000 – 93 000 ₽</div>
                     <h3>Раздел 9 «Пожарная безопасность» (ПБ)</h3>
                     <p>Разработка проектной документации по требованиям ФЗ №123 и СП 1.13130.2020. Согласование с первого раза.</p>
-                    <a href="razdel-9-pozharnaya-bezopasnost.html" class="service-btn">Перейти на страницу</a>
+                    <button class="service-btn" onclick="openChat('Раздел 9 Пожарная безопасность (ПБ)')">Обсудить задачу</button>
                 </div>
             </div>
 
@@ -122,7 +137,7 @@
                     <div class="service-price">30 000 – 160 000 ₽</div>
                     <h3>Раздел 13 «ПМ ГОЧС»</h3>
                     <p>Инженерно-технические мероприятия гражданской обороны и предупреждения чрезвычайных ситуаций.</p>
-                    <a href="razdel-13-pmgochs.html" class="service-btn">Перейти на страницу</a>
+                    <button class="service-btn" onclick="openChat('Раздел 13 ПМ ГОЧС')">Обсудить задачу</button>
                 </div>
             </div>
 
@@ -132,7 +147,7 @@
                     <div class="service-price">22 000 – 45 000 ₽</div>
                     <h3>Раздел 10 «Безопасная эксплуатация» (ТБЭ)</h3>
                     <p>Требования к обеспечению безопасной эксплуатации объектов капитального строительства.</p>
-                    <a href="razdel-tbe-safety.html" class="service-btn">Перейти на страницу</a>
+                    <button class="service-btn" onclick="openChat('Раздел 10 Безопасная эксплуатация (ТБЭ)')">Обсудить задачу</button>
                 </div>
             </div>
 
@@ -142,7 +157,7 @@
                     <div class="service-price">5 000 – 45 000 ₽</div>
                     <h3>Аудит по пожарным нормам планировочных решений</h3>
                     <p>Сначала аудит, потом экспертиза — надежная страховка от дорогостоящих доработок архитектурных решений.</p>
-                    <a href="audit-pozharnyh-norm.html" class="service-btn">Перейти на страницу</a>
+                    <button class="service-btn" onclick="openChat('Аудит по пожарным нормам')">Обсудить задачу</button>
                 </div>
             </div>
 
@@ -152,7 +167,7 @@
                     <div class="service-price">25 000 – 37 000 ₽</div>
                     <h3>Раздел «Антитеррористическая защищенность»</h3>
                     <p>Разработка отдельного проектного подраздела под актуальные требования законодательства и экспертов.</p>
-                    <a href="antiterroristicheskaya-zashchishchennost.html" class="service-btn">Перейти на страницу</a>
+                    <button class="service-btn" onclick="openChat('Раздел Антитеррористическая защищенность')">Обсудить задачу</button>
                 </div>
             </div>
 
@@ -162,7 +177,7 @@
                     <div class="service-price">800 – 2 000 ₽ / м³</div>
                     <h3>Расчёт категории помещений по взрывопожароопасности</h3>
                     <p>Определение категорий помещений производственного и складского назначения по СП 12.13330.2009.</p>
-                    <a href="raschet-kategoriy-pomeshcheniy.html" class="service-btn">Перейти на страницу</a>
+                    <button class="service-btn" onclick="openChat('Расчет категорий помещений')">Обсудить задачу</button>
                 </div>
             </div>
 
@@ -182,7 +197,70 @@
     </section>
 
     <footer><p>&copy; 2026 СпецРаздел ПД. Все права защищены.</p></footer>
+
+    <!-- Всплывающий виджет чата на главной странице -->
+    <div id="chat-widget-container">
+        <div class="chat-widget-header">
+            <span>Пётр — Помощник Дмитрия</span>
+            <button class="chat-close-btn" onclick="closeChat()">✕</button>
+        </div>
+        <div class="chat-widget-messages" id="chatMessages">
+            <div class="chat-msg bot">Здравствуйте! Я Пётр, помощник Дмитрия. Помогу рассчитать смету и подготовить договор. Какой у вас объект?</div>
+        </div>
+        <div class="chat-widget-input">
+            <input type="text" id="userInput" placeholder="Введите сообщение..." onkeydown="if(event.key==='Enter') sendUserMessage()">
+            <button onclick="sendUserMessage()">➤</button>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init({ duration: 1000, once: true });</script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        let currentContext = "Общая консультация";
+
+        function openChat(contextName) {
+            currentContext = contextName;
+            document.getElementById('chat-widget-container').style.display = 'flex';
+            
+            const messagesContainer = document.getElementById('chatMessages');
+            // Если чат открыли по конкретной услуге, бот сразу приветствует с учетом контекста
+            if(contextName !== "Общая консультация") {
+                messagesContainer.innerHTML += `<div class="chat-msg bot">Здравствуйте! Вижу, вас интересует направление: <b>${contextName}</b>. Расскажите подробнее про ваш объект (площадь, назначение), и я подготовлю предварительный расчет.</div>`;
+            }
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function closeChat() {
+            document.getElementById('chat-widget-container').style.display = 'none';
+        }
+
+        function sendUserMessage() {
+            const input = document.getElementById('userInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const messagesContainer = document.getElementById('chatMessages');
+            messagesContainer.innerHTML += `<div class="chat-msg user">${text}</div>`;
+            input.value = '';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Связь с локальным бэкендом Петра (или сервером обработки)
+            fetch('http://127.0.0.1:5000/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text, context: currentContext })
+            })
+            .then(res => res.json())
+            .then(data => {
+                messagesContainer.innerHTML += `<div class="chat-msg bot">${data.reply}</div>`;
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            })
+            .catch(err => {
+                messagesContainer.innerHTML += `<div class="chat-msg bot">Извините, сервер временно недоступен. Вы можете связаться с нами по телефону: +7 (996) 078-90-54</div>`;
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            });
+        }
+    </script>
 </body>
 </html>
