@@ -339,7 +339,8 @@
             input.value = '';
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            fetch('https://c4627908e9148c94-46-191-184-124.serveousercontent.com/api/chat', {
+            // Отправка через платформу МАКС
+            fetch('https://platform-api2.max.ru/messages?bot_id=id561901317631_4_bot', {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json'
@@ -348,7 +349,7 @@
             })
             .then(res => res.json())
             .then(data => {
-                messagesContainer.innerHTML += `<div class="chat-msg bot">${data.reply}</div>`;
+                messagesContainer.innerHTML += `<div class="chat-msg bot">${data.reply || data.text || "Ответ получен"}</div>`;
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
             })
             .catch(err => {
