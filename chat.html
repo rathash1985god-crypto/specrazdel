@@ -9,7 +9,7 @@
         .chat-header { background: #1a1a1a; padding: 15px; text-align: center; border-bottom: 1px solid #2a2a2a; font-weight: 700; font-size: 1.1rem; }
         .chat-header span { color: #ff9900; }
         .chat-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
-        .message { max-width: 80%; padding: 12px 16px; border-radius: 15px; font-size: 0.95rem; line-height: 1.4; }
+        .message { max-width: 80%; padding: 12px 16px; border-radius: 15px; font-size: 0.95rem; line-height: 1.4; word-break: break-word; }
         .message.bot { background: #1a1a1a; align-self: flex-start; border: 1px solid #2a2a2a; }
         .message.user { background: #ff9900; color: #000; align-self: flex-end; font-weight: 500; }
         .chat-input-area { padding: 15px; background: #1a1a1a; border-top: 1px solid #2a2a2a; display: flex; gap: 10px; }
@@ -42,21 +42,17 @@
             input.value = '';
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            // Отправляем запрос твоему бэкенду/боту
-            fetch('https:// твой-сервер-или-вебхук /api/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: text })
-            })
-            .then(res => res.json())
-            .then(data => {
-                messagesContainer.innerHTML += `<div class="message bot">${data.reply}</div>`;
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            })
-            .catch(err => {
-                messagesContainer.innerHTML += `<div class="message bot">Извините, произошла ошибка связи. Попробуйте еще раз.</div>`;
-            });
+            // Передаем сообщение через мини-приложение МАКС
+            if (window.parent && window.parent !== window) {
+                window.parent.postMessage({ type: 'MAX_CHAT_MESSAGE', message: text }, '*');
+                messagesContainer.innerHTML += `<div class="message bot">Сообщение передано. Пётр обрабатывает запрос...</div>`;
+            } else {
+                messagesContainer.innerHTML += `<div class="message bot">Пожалуйста, используйте официальный чат-бот @id561901317631_4_bot</div>`;
+            }
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
     </script>
 </body>
 </html>
+```[cite: 3]
+
