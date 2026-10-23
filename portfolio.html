@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Портфолио выполненных проектов | СпецРазделы ПД</title>
+    <meta name="description" content="Реализованные проекты по спецразделам ПБ, ГОЧС, ООС, ТБЭ с 2008 года. Пройденные экспертизы и Главгосэкспертиза.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root { --primary: #ff9900; --primary-dark: #e08500; --dark: #0b0b0b; --card-bg: #1a1a1a; --text-gray: #a0a0a0; --border-color: #2a2a2a; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { color: #fff; background-color: var(--dark); line-height: 1.6; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        
+        header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(11, 11, 11, 0.9); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-weight: 800; font-size: 1.1rem; letter-spacing: 0.5px; }
+        .logo span { color: var(--primary); }
+        nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
+        nav a { font-size: 0.9rem; font-weight: 500; color: #ccc; }
+        nav a:hover { color: var(--primary); }
+        .header-phone { font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); white-space: nowrap; }
+
+        .portfolio-container { max-width: 1000px; margin: 120px auto 80px; padding: 0 20px; }
+        .section-title { text-align: center; margin-bottom: 40px; }
+        .section-title h1 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; margin-bottom: 10px; }
+        .section-title p { color: var(--text-gray); font-size: 1rem; }
+
+        .cloud-banner { background: var(--card-bg); border: 1px solid var(--primary); border-radius: 16px; padding: 25px; text-align: center; margin-bottom: 40px; }
+        .cloud-banner h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: #fff; }
+        .cloud-banner p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 15px; }
+        .btn-cloud { display: inline-block; background: var(--primary); color: #000; padding: 12px 24px; border-radius: 10px; font-weight: 700; font-size: 0.95rem; transition: 0.3s; }
+        .btn-cloud:hover { background: var(--primary-dark); }
+
+        .year-block { margin-bottom: 40px; }
+        .year-title { font-size: 1.4rem; font-weight: 700; color: var(--primary); border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 20px; }
+        
+        .projects-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .project-item { background: var(--card-bg); border: 1px solid var(--border-color); padding: 16px 20px; border-radius: 12px; font-size: 0.95rem; color: #ddd; }
+        .project-item strong { color: #fff; }
+
+        .note-box { background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 20px; border-radius: 12px; font-size: 0.9rem; color: var(--text-gray); margin-top: 40px; }
+
+        footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border-color); color: var(--text-gray); font-size: 0.85rem; }
+
+        @media (max-width: 768px) { nav { display: none; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">СпецРаздел<span>ПД</span></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="index.html#services">Услуги</a></li>
+                    <li><a href="portfolio.html" style="color: var(--primary);">Портфолио</a></li>
+                    <li><a href="index.html#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+            <a href="tel:+79960789054" class="header-phone">+7 (996) 078-90-54</a>
+        </div>
+    </header>
+
+    <div class="portfolio-container" data-aos="fade-up">
+        <div class="section-title">
+            <h1>Выполненные проекты</h1>
+            <p>Реализованные спецразделы проектной документации и успешно пройденные экспертизы</p>
+        </div>
+
+        <div class="cloud-banner">
+            <h3>Архив документов в облаке</h3>
+            <p>Полный образец разделов и структурированные примеры доступны по ссылке в облачном хранилище</p>
+            <a href="https://disk.360.yandex.ru/d/h34c8HWqC3I8Hg" target="_blank" class="btn-cloud">Открыть архив в Яндекс.Диске</a>
+        </div>
+
+        <div class="year-block">
+            <div class="year-title">2022 год</div>
+            <ul class="projects-list">
+                <li class="project-item">1. Разделы ГОЧС, ПБ: <strong>«Крышная котельная многофункционального торгового центра»</strong> (Московская обл., с. Ильинское)</li>
+                <li class="project-item">2. Раздел ГОЧС: <strong>«Строительство котельной»</strong> (г. Алматы / Козельск)</li>
+                <li class="project-item">3. Разделы ООС и ПБ: <strong>«Строительство сетей в п. Кедровый»</strong> (ул. Старая Набережная)</li>
+                <li class="project-item">4. Раздел ООС: <strong>«Общежитие для временного проживания работников»</strong> (г. Анадырь)</li>
+                <li class="project-item">5. Раздел ГОЧС: <strong>«Реконструкция литейного двора доменной печи №3»</strong></li>
+                <li class="project-item">6. Раздел ООС: <strong>«Многоэтажные жилые дома в квартале ул. Кремлевская – Восстания»</strong> (г. Тюмень, жилой дом ГП-5, ГП-6, ГП-7)</li>
+                <li class="project-item">7. Раздел ООС: <strong>«Реконструкция незавершенного производственного здания»</strong> (Самарская область, с. Курумоч)</li>
+                <li class="project-item">8. Раздел ГОЧС и ПБ: <strong>«Участок распределения продуктов переработки крупоцеха»</strong> (Чувашская Республика, Новочебоксарск)</li>
+                <li class="project-item">9. Раздел ООС: <strong>«Частный жилой дом в п. Никольская слобода-2»</strong> (МО, Красногорск)</li>
+                <li class="project-item">10. Разделы ТБЭ, ЭЭ, АТЗ: <strong>«Реконструкция гаража под учебно-лабораторный корпус»</strong> (г. Екатеринбург)</li>
+                <li class="project-item">11. Раздел ГОЧС и ПБ: <strong>«Участок сушки и фракционирования песка на заводе»</strong> (МО, г. Егорьевск)</li>
+                <li class="project-item">12. Разделы ООС, ПБ, ТБЭ: <strong>«Гидротехническое сооружение-плотина на р. Усолка»</strong> (Дзержинский район)</li>
+                <li class="project-item">13. Раздел ООС: <strong>«Гостиничный комплекс по ул. Стартовая»</strong> (г. Новосибирск)</li>
+                <li class="project-item">14. Раздел ООС: <strong>«Складской комплекс»</strong> (МО, Раменский г.о.)</li>
+                <li class="project-item">15. Раздел ПБ: <strong>«Строительство мелиоративной системы орошаемого участка»</strong> (Оренбургская область)</li>
+                <li class="project-item">16. Раздел ЭЭ: <strong>«Складской комплекс»</strong> (МО, Раменский г.о.)</li>
+                <li class="project-item">17. Раздел ГОЧС: <strong>«Аммиачная компрессорная корпус №2»</strong> (г. Владимир)</li>
+                <li class="project-item">18. Раздел ООС: <strong>«Техническое перевооружение ГРС Неделинской ПТФ»</strong> (Калужская область)</li>
+                <li class="project-item">19. Раздел ООС: <strong>«Теплогазоснабжение производственных зданий АО «Мелькомбинат №3»</strong> (г. Москва)</li>
+                <li class="project-item">20. Раздел ООС: <strong>«Склад с админ. назначением в Заельцовском районе»</strong> (г. Новосибирск)</li>
+            </ul>
+        </div>
+
+        <div class="year-block">
+            <div class="year-title">2023 год</div>
+            <ul class="projects-list">
+                <li class="project-item">1. Раздел ООС: <strong>«Техническое перевооружение ГРС Возрождение»</strong> (Московская область, Коломна)</li>
+                <li class="project-item">2. Раздел ООС: <strong>«Техническое перевооружение ГРС Средний Икорец»</strong> (Воронежская область)</li>
+                <li class="project-item">3. Раздел 9 (ПБ) и ООС: <strong>«Спортивный комплекс в п. Угольные Копи»</strong></li>
+                <li class="project-item">4. Раздел ЭЭ: <strong>«Капитальный ремонт кровли МБУ СП СШОР «Ермак» и «СШОР №1»</strong> (г. Сургут)</li>
+                <li class="project-item">5. Раздел ООС: <strong>«Блочно-модульная котельная 7,5 МВт»</strong> (г. Южно-Сахалинск)</li>
+                <li class="project-item">6. Раздел ГОЧС: <strong>Газораспределительная станция</strong> (Байкалово, Главгосэкспертиза)</li>
+                <li class="project-item">7. Разделы ТБЭ, ПБ, ГОЧС: <strong>«Строительство цеха для производства круп»</strong></li>
+                <li class="project-item">8. Разделы ТБЭ, ГОЧС, ПБ: <strong>«Реконструкция сушильно-очистительного комплекса ООО «Петропавловский зерновой комплекс»</strong> (Челябинская область)</li>
+                <li class="project-item">9. Разделы ГОЧС, ТБЭ, ПБ: <strong>«Склад силосного хранения»</strong> (Самарская область, Кошкинский район)</li>
+                <li class="project-item">10. Разделы ГОЧС, ТБЭ, ПБ: <strong>«Строительство комплекса сортировки зерна»</strong> (Приморский край, пгт. Сибирцево)</li>
+                <li class="project-item">11. Раздел ООС: <strong>«Производственно-складское здание»</strong> (г. Москва, Зеленоград, Алабушево)</li>
+            </ul>
+        </div>
+
+        <div class="year-block">
+            <div class="year-title">2024 год</div>
+            <ul class="projects-list">
+                <li class="project-item">1. Разделы ПБ, ТБЭ: <strong>«Очистные сооружения канализации»</strong> (Калужская область, п. Бабынино)</li>
+                <li class="project-item">2. Разделы ГОЧС, ООС: <strong>«Трубопровод системы газоснабжения к котельной парк-отеля «Тургояк-Резорт»</strong> (Челябинская область)</li>
+                <li class="project-item">3. Раздел ПБ: <strong>«Строительство 10 скважин водозабора №2»</strong> (ЗАТО Северск, Томская область)</li>
+                <li class="project-item">4. Разделы ПБ, ООС: <strong>«Административное здание»</strong> (г. Челябинск, Госэкспертиза)</li>
+                <li class="project-item">5. Раздел ПБ: <strong>«Проектирование жилой застройки в границах ул. Пригородной»</strong> (г. Краснодар)</li>
+                <li class="project-item">6. Разделы ПБ, ТБЭ, ООС: <strong>«Капитальный ремонт корпуса ИПХФ РАН под лабораторию»</strong> (МО, Черноголовка)</li>
+                <li class="project-item">7. Раздел ГОЧС: <strong>«Плавильный участок №2 ферросплавного цеха с печью РКО-22»</strong></li>
+                <li class="project-item">8. Разделы ПБ, ООС: <strong>«Строительство магистрального трубопровода от Бердюгинского участка»</strong> (Ирбит, Свердловская область)</li>
+                <li class="project-item">9. Раздел ПБ: <strong>«Строительство складского здания»</strong> (МО, Пушкинский г.о., д. Нововоронино)</li>
+            </ul>
+        </div>
+
+        <div class="year-block">
+            <div class="year-title">2025 год</div>
+            <ul class="projects-list">
+                <li class="project-item">1. Разделы ПБ, ТБЭ: <strong>«Строительство колумбария для захоронения урн с прахом»</strong> (Республика Крым, г. Ялта)</li>
+                <li class="project-item">2. Раздел ТБЭ: <strong>«Цех горячего цинкования»</strong></li>
+                <li class="project-item">3. Разделы ПБ, ООС: <strong>«Здание тех. обслуживания автомобильной техники и офисов»</strong> (МО, г. Химки, Старошереметьевское шоссе)</li>
+                <li class="project-item">4. Раздел ГОЧС (ГлавГосэкспертиза): <strong>«Плавильный участок №2 ферросплавного цеха (ООО «Металекс»»</strong></li>
+            </ul>
+        </div>
+
+        <div class="note-box">
+            <strong>Примечание:</strong> В данном перечне представлены ключевые проекты, успешно прошедшие экспертизу или завершенные на объектах, где прохождение экспертизы не требовалось.
+        </div>
+    </div>
+
+    <footer><p>&copy; 2026 СпецРаздел ПД. Все права защищены.</p></footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 800, once: true });</script>
+</body>
+</html>
