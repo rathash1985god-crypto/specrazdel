@@ -4,30 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Пётр — Помощник Дмитрия</title>
-    <!-- Официальный скрипт SDK мини-приложений платформы МАКС -->
-    <script src="https://platform.max.ru/js/web-app.js"></script>
     <style>
         :root { --primary: #ff9900; --primary-dark: #e08500; --dark: #0b0b0b; --card-bg: #1a1a1a; --border-color: #2a2a2a; --text-gray: #a0a0a0; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: var(--dark); color: #fff; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
         
-        .chat-header { background: var(--card-bg); padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); }
+        .chat-header { background: var(--card-bg); padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px scale(1) solid var(--border-color); flex-shrink: 0; }
         .chat-header-info h2 { font-size: 1.05rem; font-weight: 700; color: #fff; }
         .chat-header-info h2 span { color: var(--primary); }
         .back-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: #fff; padding: 6px 12px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: 0.2s; }
         .back-btn:hover { background: rgba(255,255,255,0.1); }
 
-        .chat-messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
-        .message { max-width: 85%; padding: 12px 16px; border-radius: 14px; font-size: 0.95rem; line-height: 1.4; word-break: break-word; }
-        .message.bot { background: var(--card-bg); align-self: flex-start; border: 1px solid var(--border-color); color: #fff; }
-        .message.user { background: var(--primary); color: #000; align-self: flex-end; font-weight: 500; }
-
-        .chat-input-area { padding: 15px 20px; background: var(--card-bg); border-top: 1px solid var(--border-color); display: flex; gap: 10px; align-items: center; }
-        input { flex: 1; background: var(--dark); border: 1px solid var(--border-color); padding: 12px 15px; border-radius: 10px; color: #fff; font-size: 0.95rem; outline: none; transition: 0.2s; }
-        input:focus { border-color: var(--primary); }
+        .chat-container { flex: 1; display: flex; flex-direction: column; background: var(--dark); position: relative; overflow: hidden; }
         
-        button.send-btn { background: var(--primary); color: #000; border: none; padding: 0 20px; height: 46px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s; flex-shrink: 0; }
-        button.send-btn:hover { background: var(--primary-dark); }
+        /* Контейнер для официального Telegram виджета */
+        #telegram-chat-container {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #111;
+        }
     </style>
 </head>
 <body>
@@ -39,56 +38,28 @@
         <a href="index.html" class="back-btn">На главную</a>
     </div>
 
-    <div class="chat-messages" id="chatMessages">
-        <div class="message bot" id="welcomeMsg">Здравствуйте! Я Пётр, помощник Дмитрия. Какой у вас объект?</div>
-    </div>
-
-    <div class="chat-input-area">
-        <input type="text" id="userInput" placeholder="Напишите сообщение..." onkeydown="if(event.key==='Enter') sendMessage()">
-        <button class="send-btn" onclick="sendMessage()">Отправить</button>
+    <div class="chat-container">
+        <!-- Официальный виджет Telegram-чата встраивается прямо сюда -->
+        <div id="telegram-chat-container">
+            <script async src="https://telegram.org/js/telegram-widget.js?22" 
+                data-telegram-discussion="specrazdel_pd_bot" 
+                data-chats-list="true"
+                data-userpic="true"
+                data-dark="1"
+                data-colorful="1"
+                data-width="100%"
+                data-height="100%">
+            </script>
+        </div>
     </div>
 
     <script>
-        // Инициализация WebApp платформы МАКС при загрузке
-        if (window.Max && window.Max.WebApp) {
-            window.Max.WebApp.ready();
-        }
-
         // Подхватываем услугу из ссылки, если клиент пришел с карточки услуги на сайте
         const urlParams = new URLSearchParams(window.location.search);
         const contextService = urlParams.get('context');
         if (contextService) {
-            document.getElementById('welcomeMsg').innerText = `Интересует направление: "${contextService}". Расскажите подробнее про ваш объект (площадь, назначение)?`;
-        }
-
-        function sendMessage() {
-            const input = document.getElementById('userInput');
-            const text = input.value.trim();
-            if (!text) return;
-
-            const messagesContainer = document.getElementById('chatMessages');
-            
-            // Отображаем сообщение пользователя в интерфейсе чата на сайте
-            messagesContainer.innerHTML += `<div class="message user">${text}</div>`;
-            input.value = '';
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-            const botMsgId = 'msg-' + Date.now();
-            messagesContainer.innerHTML += `<div class="message bot" id="${botMsgId}">Пётр печатает ответ...</div>`;
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-            try {
-                // Безопасная передача данных в инфраструктуру Max SDK
-                if (window.Max && window.Max.WebApp && typeof window.Max.WebApp.sendData === 'function') {
-                    window.Max.WebApp.sendData(JSON.stringify({ 
-                        text: text, 
-                        context: contextService || "Общая консультация по спецразделам" 
-                    }));
-                }
-            } catch (err) {
-                console.error("Ошибка отправки через Max SDK:", err);
-            }
+            console.log("Выбранное направление услуги:", contextService);
         }
     </script>
 </body>
-</html> 
+</html>
