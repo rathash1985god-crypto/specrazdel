@@ -61,7 +61,7 @@
         .service-body h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; color: #fff; }
         .service-body p { font-size: 0.9rem; color: var(--text-gray); margin-bottom: 20px; flex-grow: 1; }
         
-        .service-btn { align-self: stretch; padding: 12px; border: 1px solid var(--border-color); border-radius: 10px; font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.03); cursor: pointer; color: #fff; text-align: center; }
+        .service-btn { display: block; align-self: stretch; padding: 12px; border: 1px solid var(--border-color); border-radius: 10px; font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.03); cursor: pointer; color: #fff; text-align: center; }
         .service-btn:hover { background: var(--primary); color: #000; border-color: var(--primary); }
 
         .portfolio-section { padding: 80px 20px; max-width: 1000px; margin: 0 auto; }
@@ -114,7 +114,7 @@
         <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
             <h1>Разработка спецразделов <span>проектной документации</span></h1>
             <h3>Узкая специализация · Опыт работы с 2008 года · Госэкспертиза с первого раза</h3>
-            <button class="btn-vr" onclick="openChat('Общая консультация по спецразделам')">Задать вопрос инженеру</button>
+            <a href="https://max.ru/id561901317631_4_bot" target="_blank" class="btn-vr">Задать вопрос инженеру</a>
         </div>
     </section>
 
@@ -130,7 +130,7 @@
                     <div class="service-price">27 000 – 93 000 ₽</div>
                     <h3>Раздел 9 «Пожарная безопасность» (ПБ)</h3>
                     <p>Разработка проектной документации по требованиям ФЗ №123 и СП 1.13130.2020. Согласование с первого раза.</p>
-                    <button class="service-btn" onclick="openChat('Раздел 9 Пожарная безопасность (ПБ)')">Обсудить задачу</button>
+                    <a href="https://max.ru/id561901317631_4_bot" target="_blank" class="service-btn">Обсудить задачу</a>
                 </div>
             </div>
 
@@ -139,7 +139,7 @@
                     <div class="service-price">30 000 – 160 000 ₽</div>
                     <h3>Раздел 13 «ПМ ГОЧС»</h3>
                     <p>Инженерно-технические мероприятия гражданской обороны и предупреждения чрезвычайных ситуаций.</p>
-                    <button class="service-btn" onclick="openChat('Раздел 13 ПМ ГОЧС')">Обсудить задачу</button>
+                    <a href="https://max.ru/id561901317631_4_bot" target="_blank" class="service-btn">Обсудить задачу</a>
                 </div>
             </div>
 
@@ -148,7 +148,7 @@
                     <div class="service-price">22 000 – 45 000 ₽</div>
                     <h3>Раздел 10 «Безопасная эксплуатация» (ТБЭ)</h3>
                     <p>Требования к обеспечению безопасной эксплуатации объектов капитального строительства.</p>
-                    <button class="service-btn" onclick="openChat('Раздел 10 Безопасная эксплуатация (ТБЭ)')">Обсудить задачу</button>
+                    <a href="https://max.ru/id561901317631_4_bot" target="_blank" class="service-btn">Обсудить задачу</a>
                 </div>
             </div>
 
@@ -157,7 +157,7 @@
                     <div class="service-price">5 000 – 45 000 ₽</div>
                     <h3>Аудит по пожарным нормам планировочных решений</h3>
                     <p>Сначала аудит, потом экспертиза — надежная страховка от дорогостоящих доработок архитектурных решений.</p>
-                    <button class="service-btn" onclick="openChat('Аудит по пожарным нормам')">Обсудить задачу</button>
+                    <a href="https://max.ru/id561901317631_4_bot" target="_blank" class="service-btn">Обсудить задачу</a>
                 </div>
             </div>
 
@@ -166,7 +166,7 @@
                     <div class="service-price">25 000 – 37 000 ₽</div>
                     <h3>Раздел «Антитеррористическая защищенность»</h3>
                     <p>Разработка отдельного проектного подраздела под актуальные требования законодательства и экспертов.</p>
-                    <button class="service-btn" onclick="openChat('Раздел Антитеррористическая защищенность')">Обсудить задачу</button>
+                    <a href="https://max.ru/id561901317631_4_bot" target="_blank" class="service-btn">Обсудить задачу</a>
                 </div>
             </div>
 
@@ -175,7 +175,7 @@
                     <div class="service-price">800 – 2 000 ₽ / м³</div>
                     <h3>Расчёт категории помещений по взрывопожароопасности</h3>
                     <p>Определение категорий помещений производственного и складского назначения по СП 12.13330.2009.</p>
-                    <button class="service-btn" onclick="openChat('Расчет категорий помещений')">Обсудить задачу</button>
+                    <a href="https://max.ru/id561901317631_4_bot" target="_blank" class="service-btn">Обсудить задачу</a>
                 </div>
             </div>
 
@@ -285,11 +285,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true });
-
-        function openChat(contextName) {
-            // Переход на страницу chat.html с передачей выбранной услуги
-            window.location.href = `chat.html?context=${encodeURIComponent(contextName)}`;
-        }
     </script>
 </body>
 </html>
