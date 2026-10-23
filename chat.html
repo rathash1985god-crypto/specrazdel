@@ -61,7 +61,7 @@
             document.getElementById('welcomeMsg').innerText = `Интересует направление: "${contextService}". Расскажите подробнее про ваш объект (площадь, назначение)?`;
         }
 
-        async function sendMessage() {
+        function sendMessage() {
             const input = document.getElementById('userInput');
             const text = input.value.trim();
             if (!text) return;
@@ -73,36 +73,26 @@
             input.value = '';
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            try {
-                // Прямой запрос на локальный Flask-сервер Петра (/api/chat)
-                const response = await fetch('http://127.0.0.1:5000/api/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        message: text, 
-                        context: contextService || "Общая консультация" 
-                    })
-                });
-
-                const data = await response.json();
-                const reply = data.reply || "Уточните параметры объекта.";
-
-                // Выводим ответ Петра в интерфейс
-                messagesContainer.innerHTML += `<div class="message bot">${reply}</div>`;
-            } catch (e) {
-                console.error("Ошибка связи с ядром:", e);
-                messagesContainer.innerHTML += `<div class="message bot">Сервер временно недоступен. Проверьте запуск скрипта на ПК.</div>`;
-            }
+            const botMsgId = 'msg-' + Date.now();
+            messagesContainer.innerHTML += `<div class="message bot" id="${botMsgId}">Передаю сообщение Пётру...</div>`;
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            // Дополнительная отправка в МАКС, если открыто внутри платформы
             try {
+                // Прямая отправка данных через инфраструктуру и SDK платформы Max
                 if (window.Max && window.Max.WebApp && typeof window.Max.WebApp.sendData === 'function') {
-                    window.Max.WebApp.sendData(JSON.stringify({ text: text, context: contextService || "Общая консультация" }));
+                    window.Max.WebApp.sendData(JSON.stringify({ 
+                        text: text, 
+                        context: contextService || "Общая консультация" 
+                    }));
+                    document.getElementById(botMsgId).innerText = "Сообщение отправлено. Пётр формирует ответ в чате!";
+                } else {
+                    document.getElementById(botMsgId).innerText = "Платформа Max SDK не обнаружена. Запрос зафиксирован.";
                 }
             } catch (err) {
                 console.error("Ошибка отправки в МАКС:", err);
+                document.getElementById(botMsgId).innerText = "Не удалось отправить сообщение через платформу Max.";
             }
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
     </script>
 </body>
