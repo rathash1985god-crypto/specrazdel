@@ -49,12 +49,12 @@
     </div>
 
     <script>
-        // Инициализация платформы Макс при загрузке
+        // Инициализация WebApp платформы МАКС при загрузке
         if (window.Max && window.Max.WebApp) {
             window.Max.WebApp.ready();
         }
 
-        // Подхватываем услугу из ссылки (например, аудит или пожарка)
+        // Подхватываем услугу из ссылки, если клиент пришел с карточки услуги на сайте
         const urlParams = new URLSearchParams(window.location.search);
         const contextService = urlParams.get('context');
         if (contextService) {
@@ -68,34 +68,27 @@
 
             const messagesContainer = document.getElementById('chatMessages');
             
-            // Выводим сообщение пользователя в интерфейс
+            // Отображаем сообщение пользователя в интерфейсе чата
             messagesContainer.innerHTML += `<div class="message user">${text}</div>`;
             input.value = '';
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            // Информируем, что сообщение ушло в систему Max, откуда его заберет Пётр
+            // Индикатор набора ответа
             const botMsgId = 'msg-' + Date.now();
             messagesContainer.innerHTML += `<div class="message bot" id="${botMsgId}">Пётр печатает ответ...</div>`;
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
             try {
-                // Если мини-апп открыт в Max, отправляем данные через штатный метод SDK платформы
+                // Передаем данные в систему MAX, откуда их заберет ваш локальный скрипт Пётр по токену
                 if (window.Max && window.Max.WebApp && typeof window.Max.WebApp.sendData === 'function') {
                     window.Max.WebApp.sendData(JSON.stringify({ 
                         text: text, 
                         context: contextService || "Общая консультация" 
                     }));
-                } else {
-                    // Если открыто просто для теста в браузере
-                    setTimeout(() => {
-                        document.getElementById(botMsgId).innerText = "Сообщение принято. (Внутри Max его заберет ваш скрипт Пётр по токену).";
-                    }, 800);
                 }
             } catch (err) {
-                console.error("Ошибка:", err);
-                document.getElementById(botMsgId).innerText = "Сообщение отправлено в обработку.";
+                console.error("Ошибка отправки в МАКС:", err);
             }
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
     </script>
 </body>
