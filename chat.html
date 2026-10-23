@@ -68,28 +68,27 @@
 
             const messagesContainer = document.getElementById('chatMessages');
             
-            // Отображаем сообщение пользователя в интерфейсе чата
+            // Отображаем сообщение пользователя в интерфейсе чата на сайте
             messagesContainer.innerHTML += `<div class="message user">${text}</div>`;
             input.value = '';
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-            // Индикатор набора ответа
             const botMsgId = 'msg-' + Date.now();
             messagesContainer.innerHTML += `<div class="message bot" id="${botMsgId}">Пётр печатает ответ...</div>`;
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
             try {
-                // Передаем данные в систему MAX, откуда их заберет ваш локальный скрипт Пётр по токену
+                // Безопасная передача данных в инфраструктуру Max SDK
                 if (window.Max && window.Max.WebApp && typeof window.Max.WebApp.sendData === 'function') {
                     window.Max.WebApp.sendData(JSON.stringify({ 
                         text: text, 
-                        context: contextService || "Общая консультация" 
+                        context: contextService || "Общая консультация по спецразделам" 
                     }));
                 }
             } catch (err) {
-                console.error("Ошибка отправки в МАКС:", err);
+                console.error("Ошибка отправки через Max SDK:", err);
             }
         }
     </script>
 </body>
-</html>
+</html> 
