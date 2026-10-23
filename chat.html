@@ -49,18 +49,12 @@
     </div>
 
     <script>
-        // Инициализация платформы Макс при загрузке страницы
-        window.addEventListener('DOMContentLoaded', () => {
-            if (window.Max && window.Max.WebApp) {
-                try {
-                    window.Max.WebApp.ready();
-                } catch (e) {
-                    console.log("Max init error:", e);
-                }
-            }
-        });
+        // Инициализация платформы Макс при загрузке
+        if (window.Max && window.Max.WebApp) {
+            window.Max.WebApp.ready();
+        }
 
-        // Подхватываем переданный контекст услуги из адресной строки specrazdel56.ru
+        // Подхватываем услугу из ссылки (например, аудит или пожарка)
         const urlParams = new URLSearchParams(window.location.search);
         const contextService = urlParams.get('context');
         if (contextService) {
@@ -74,32 +68,32 @@
 
             const messagesContainer = document.getElementById('chatMessages');
             
-            // Выводим сообщение пользователя в интерфейс чата на домене
+            // Выводим сообщение пользователя в интерфейс
             messagesContainer.innerHTML += `<div class="message user">${text}</div>`;
             input.value = '';
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
+            // Информируем, что сообщение ушло в систему Max, откуда его заберет Пётр
             const botMsgId = 'msg-' + Date.now();
-            messagesContainer.innerHTML += `<div class="message bot" id="${botMsgId}">Пётр принимает запрос...</div>`;
+            messagesContainer.innerHTML += `<div class="message bot" id="${botMsgId}">Пётр печатает ответ...</div>`;
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
             try {
-                // Передаем данные через SDK платформы Max, привязанной к specrazdel56.ru
+                // Если мини-апп открыт в Max, отправляем данные через штатный метод SDK платформы
                 if (window.Max && window.Max.WebApp && typeof window.Max.WebApp.sendData === 'function') {
                     window.Max.WebApp.sendData(JSON.stringify({ 
                         text: text, 
                         context: contextService || "Общая консультация" 
                     }));
-                    document.getElementById(botMsgId).innerText = "Сообщение отправлено в систему Max. Ожидайте ответ!";
                 } else {
-                    // Фолбек для стабильности интерфейса на домене
+                    // Если открыто просто для теста в браузере
                     setTimeout(() => {
-                        document.getElementById(botMsgId).innerText = "Запрос зафиксирован на домене specrazdel56.ru. Пётр обрабатывает информацию.";
-                    }, 600);
+                        document.getElementById(botMsgId).innerText = "Сообщение принято. (Внутри Max его заберет ваш скрипт Пётр по токену).";
+                    }, 800);
                 }
             } catch (err) {
-                console.error("Ошибка отправки:", err);
-                document.getElementById(botMsgId).innerText = "Сообщение передано в обработку.";
+                console.error("Ошибка:", err);
+                document.getElementById(botMsgId).innerText = "Сообщение отправлено в обработку.";
             }
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
