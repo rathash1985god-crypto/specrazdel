@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Отзывы клиентов | СпецРаздел ПД</title>
-    <meta name="description" content="Реальные отзывы и благодарности клиентов за разработку спецразделов ПД. Оставить отзыв могут только верифицированные заказчики.">
+    <meta name="description" content="Реальные отзывы и благодарности клиентов за разработку спецразделов ПД. Успешно пройденные Главгосэкспертизы и негосэкспертизы.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
         nav a:hover, nav a.active { color: var(--primary); }
         .header-phone { font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); }
 
-        .page-content { padding: 140px 20px 80px; max-width: 900px; margin: 0 auto; }
+        .page-content { padding: 140px 20px 80px; max-width: 1000px; margin: 0 auto; }
         .section-title { text-align: center; margin-bottom: 40px; }
         .section-title h1 { font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800; margin-bottom: 10px; }
         .section-title p { color: var(--text-gray); }
@@ -32,11 +32,11 @@
         .btn-add-review { display: inline-block; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #000; padding: 14px 28px; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; border: none; box-shadow: 0 10px 30px rgba(255, 153, 0, 0.3); transition: 0.3s; }
         .btn-add-review:hover { transform: translateY(-2px); opacity: 0.9; }
 
-        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 60px; }
-        .review-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 25px; position: relative; }
-        .review-author { font-weight: 700; color: var(--primary); margin-bottom: 5px; font-size: 1.05rem; }
-        .review-text { font-size: 0.95rem; color: #ddd; margin-bottom: 15px; }
-        .review-meta { font-size: 0.8rem; color: var(--text-gray); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; display: flex; justify-content: space-between; }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 25px; margin-bottom: 60px; }
+        .review-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 25px; display: flex; flex-direction: column; justify-content: space-between; }
+        .review-org { font-weight: 700; color: var(--primary); margin-bottom: 8px; font-size: 1.1rem; }
+        .review-text { font-size: 0.93rem; color: #ddd; margin-bottom: 15px; line-height: 1.5; }
+        .review-meta { font-size: 0.8rem; color: var(--text-gray); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; display: flex; justify-content: space-between; align-items: center; }
 
         #reviewModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); z-index: 10000; align-items: center; justify-content: center; padding: 20px; }
         .modal-content { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; max-width: 500px; width: 100%; padding: 30px; position: relative; max-height: 90vh; overflow-y: auto; }
@@ -60,7 +60,7 @@
 
         footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border-color); color: var(--text-gray); font-size: 0.85rem; }
         footer a { color: var(--primary); margin-left: 10px; }
-        @media (max-width: 768px) { nav { display: none; } }
+        @media (max-width: 768px) { nav { display: none; } .reviews-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -84,32 +84,65 @@
 
     <div class="page-content">
         <div class="section-title" data-aos="fade-up">
-            <h1>Отзывы клиентов</h1>
-            <p>Честные отзывы заказчиков, подтвержденные контактами</p>
+            <h1>Отзывы и экспертизы</h1>
+            <p>Реальные отзывы заказчиков и успешно пройденные государственные и негосударственные экспертизы</p>
         </div>
 
         <div class="add-review-btn-container" data-aos="fade-up">
             <button class="btn-add-review" onclick="openReviewModal()">Оставить свой отзыв ✍️</button>
         </div>
 
+        <!-- Сетка с 4 реальными отзывами -->
         <div class="reviews-grid" id="reviewsContainer">
+            
+            <!-- Отзыв 1 -->
             <div class="review-card" data-aos="fade-up">
-                <div class="review-author">Иван Сергеев (Генпроектировщик)</div>
-                <div class="review-text">«Сотрудничаем с Дмитрием по разделу пожарной безопасности. Сделали всё четко в срок, экспертизу прошли с первого замечания. Рекомендую как надежного инженера.»</div>
+                <div>
+                    <div class="review-org">ООО «Никельпроект»</div>
+                    <div class="review-text">«Заказывали разработку разделов ГОЧС и АТЗ для объекта: <em>"Плавильный участок №2 ферросплавного цеха с установкой печи РКО-22 для производства кремнистых сплавов"</em>. Успешно прошли Главгосэкспертизу!»</div>
+                </div>
                 <div class="review-meta">
-                    <span>📞 +7 (916) ***-**-45</span>
-                    <span>✉️ i.sergeev@...</span>
+                    <span>✅ Главгосэкспертиза</span>
+                    <span style="color: var(--text-gray);">Верифицировано</span>
                 </div>
             </div>
 
+            <!-- Отзыв 2 -->
             <div class="review-card" data-aos="fade-up">
-                <div class="review-author">Алексей Захаров</div>
-                <div class="review-text">«Заказывали проект котельной и ГОЧС. Оперативно, профессионально, без лишней воды. Документы приняли в экспертизе без вопросов.»</div>
+                <div>
+                    <div class="review-org">ОАО «Оренбургэлелеватормельмонтаж»</div>
+                    <div class="review-text">«Выполнены разделы ГОЧС, ПБ, ТБЭ по объекту: <em>"Сушильно-очистительный комплекс в Подбельском хлебоприемном предприятии (Самарская область)"</em>. Работы сданы в срок, получено положительное заключение негосэкспертизы.»</div>
+                </div>
                 <div class="review-meta">
-                    <span>📞 +7 (928) ***-**-12</span>
-                    <span>✉️ zaharov@...</span>
+                    <span>✅ Негосударственная экспертиза</span>
+                    <span style="color: var(--text-gray);">Верифицировано</span>
                 </div>
             </div>
+
+            <!-- Отзыв 3 -->
+            <div class="review-card" data-aos="fade-up">
+                <div>
+                    <div class="review-org">ООО «Витязь»</div>
+                    <div class="review-text">«Благодарим за качественную подготовку разделов ГОЧС и ПБ для объекта: <em>"Железнодорожные пути в составе железнодорожного паромного комплекса (ЖДПК) в г. Балтийск"</em>. Прошли Главгосэкспертизу с первого раза.»</div>
+                </div>
+                <div class="review-meta">
+                    <span>✅ Главгосэкспертиза</span>
+                    <span style="color: var(--text-gray);">Верифицировано</span>
+                </div>
+            </div>
+
+            <!-- Отзыв 4 -->
+            <div class="review-card" data-aos="fade-up">
+                <div>
+                    <div class="review-org">ИП Ивастова</div>
+                    <div class="review-text">«Разработан раздел ТБЭ для объекта: <em>"Здание спортивного комплекса с универсальным игровым залом (г. Новосибирск, ул. Георгия Колонды)"</em>. Проект успешно прошел госэкспертизу. Рекомендуем!»</div>
+                </div>
+                <div class="review-meta">
+                    <span>✅ Госэкспертиза</span>
+                    <span style="color: var(--text-gray);">Верифицировано</span>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -143,7 +176,7 @@
 
                 <div class="checkbox-group">
                     <input type="checkbox" id="revConsent" required>
-                    <label for="revConsent">Я даю свое соглашение на обработку персональных данных в соответствии с <a href="privacy.html" target="_blank" style="color:var(--primary)">политикой конфиденциальности</a> *</label>
+                    <label for="revConsent">Я даю свое согласие на обработку персональных данных в соответствии с <a href="privacy.html" target="_blank" style="color:var(--primary)">политикой конфиденциальности</a> *</label>
                 </div>
 
                 <button type="submit" class="form-submit-btn">Отправить отзыв в Макс-бот 🚀</button>
