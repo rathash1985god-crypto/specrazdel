@@ -85,6 +85,7 @@
         .contact-box p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; }
 
         footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border-color); color: var(--text-gray); font-size: 0.85rem; }
+        footer a { color: var(--primary); margin-left: 10px; }
 
         /* Плавающий калькулятор */
         #calc-float-btn {
@@ -130,17 +131,18 @@
         }
         .calc-select:focus, .calc-input:focus { border-color: var(--primary); }
         .calc-result-box {
+            display: none;
             background: rgba(255, 153, 0, 0.05); border: 1px solid rgba(255, 153, 0, 0.3);
             border-radius: 12px; padding: 15px; margin-top: 20px; margin-bottom: 20px;
         }
         .calc-result-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; }
         .calc-val { font-weight: 700; color: var(--primary); }
-        .calc-submit-btn {
+        .calc-action-btn {
             display: block; width: 100%; background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: #000; font-weight: 800; padding: 14px; border-radius: 12px; border: none; cursor: pointer;
             text-align: center; font-size: 0.95rem; transition: transform 0.2s, opacity 0.2s;
         }
-        .calc-submit-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        .calc-action-btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
         @media (max-width: 768px) { 
             nav { display: none; } 
@@ -157,7 +159,9 @@
                 <ul>
                     <li><a href="#main">Главная</a></li>
                     <li><a href="#services">Услуги</a></li>
+                    <li><a href="ai-agents.html">ИИ-агенты 24/7</a></li>
                     <li><a href="#portfolio">Портфолио</a></li>
+                    <li><a href="reviews.html">Отзывы</a></li>
                     <li><a href="#contacts">Контакты</a></li>
                 </ul>
             </nav>
@@ -336,7 +340,9 @@
         </div>
     </section>
 
-    <footer><p>&copy; 2026 СпецРаздел ПД. Все права защищены.</p></footer>
+    <footer>
+        <p>&copy; 2026 СпецРаздел ПД. Все права защищены. <a href="privacy.html">Политика конфиденциальности</a></p>
+    </footer>
 
     <!-- ПЛАВАЮЩИЙ КАЛЬКУЛЯТОР -->
     <button id="calc-float-btn" onclick="openCalculator()">
@@ -346,25 +352,27 @@
     <div id="calc-modal">
         <div class="calc-container">
             <button class="calc-close" onclick="closeCalculator()">&times;</button>
-            <div class="calc-title">Инженерный калькулятор спецразделов</div>
-            <div class="calc-subtitle">Динамический расчет по площади, этажности и рыночным ориентирам (+5%)</div>
+            <div class="calc-title">Калькулятор спецразделов ПД</div>
+            <div class="calc-subtitle">Введите параметры вашего объекта для точного расчета</div>
             
             <div class="calc-group">
                 <label>Площадь здания (м²):</label>
-                <input type="number" id="calcArea" class="calc-input" value="1500" min="50" step="50" oninput="runCalculation()">
+                <input type="number" id="calcArea" class="calc-input" placeholder="Например: 1500" min="10" step="10">
             </div>
 
             <div class="calc-group">
                 <label>Этажность / Высота здания (этажей или м):</label>
-                <input type="number" id="calcFloors" class="calc-input" value="5" min="1" max="50" step="1" oninput="runCalculation()">
+                <input type="number" id="calcFloors" class="calc-input" placeholder="Например: 5" min="1" max="50" step="1">
             </div>
 
             <div class="calc-group">
                 <label>Строительный объем (м³):</label>
-                <input type="number" id="calcVolume" class="calc-input" value="5000" min="100" step="100" oninput="runCalculation()">
+                <input type="number" id="calcVolume" class="calc-input" placeholder="Например: 5000" min="50" step="50">
             </div>
 
-            <div class="calc-result-box">
+            <button class="calc-action-btn" onclick="runCalculation()" style="margin-top: 10px;">Рассчитать стоимость и срок</button>
+
+            <div id="calcResultBox" class="calc-result-box">
                 <div class="calc-result-row">
                     <span>🔥 Раздел 9 «Пожарная безопасность» (ПБ):</span>
                     <span class="calc-val" id="resPB">0 ₽</span>
@@ -385,9 +393,13 @@
                     <span style="font-weight: 700; color: #fff;">Ориентировочный комплекс:</span>
                     <span class="calc-val" id="resTotal" style="font-size: 1.15rem;">0 ₽</span>
                 </div>
-            </div>
+                <div class="calc-result-row" style="margin-top: 8px;">
+                    <span style="color: var(--text-gray);">Срок выполнения:</span>
+                    <span class="calc-val" id="resDays">0 рабочих дней</span>
+                </div>
 
-            <button class="calc-submit-btn" onclick="sendCalcToMaxBot()">Передать расчет в Макс-бот к Петру 🚀</button>
+                <button class="calc-action-btn" onclick="sendCalcToMaxBot()" style="margin-top: 15px;">Передать расчет в Макс-бот к Петру 🚀</button>
+            </div>
         </div>
     </div>
 
@@ -397,7 +409,6 @@
 
         function openCalculator() {
             document.getElementById('calc-modal').style.display = 'flex';
-            runCalculation();
         }
         function closeCalculator() {
             document.getElementById('calc-modal').style.display = 'none';
@@ -408,34 +419,50 @@
         }
 
         function runCalculation() {
-            let area = parseFloat(document.getElementById('calcArea').value) || 1000;
-            let floors = parseInt(document.getElementById('calcFloors').value) || 1;
-            let volume = parseFloat(document.getElementById('calcVolume').value) || (area * 3.3);
+            let area = parseFloat(document.getElementById('calcArea').value);
+            let floors = parseInt(document.getElementById('calcFloors').value);
+            let volume = parseFloat(document.getElementById('calcVolume').value);
+
+            if (!area || isNaN(area) || area <= 0) {
+                alert('Пожалуйста, введите корректную площадь здания.');
+                return;
+            }
+            if (!floors || isNaN(floors) || floors <= 0) {
+                floors = 1;
+            }
+            if (!volume || isNaN(volume) || volume <= 0) {
+                volume = area * 3.3;
+            }
 
             // Коэффициент сложности от этажности/высоты здания
             let heightFactor = 1 + (floors > 1 ? (floors - 1) * 0.03 : 0);
 
-            // Математическая модель с учетом рыночной практики и индексации +5%
+            // Математическая модель расчета (+5%)
             let costPB = Math.max(25000, Math.round(area * 22 * heightFactor * 1.05));
             let costGOCHS = Math.max(28000, Math.round((30000 + area * 12 + volume * 0.8) * heightFactor * 1.05));
             let costTBE = Math.max(20000, Math.round(area * 16 * heightFactor * 1.05));
             let costATZ = Math.max(22000, Math.round(area * 18 * heightFactor * 1.05));
 
             let totalCost = costPB + costGOCHS + costTBE + costATZ;
+            let totalDays = Math.round(12 + (area / 800) * heightFactor * 1.05);
 
             document.getElementById('resPB').innerText = costPB.toLocaleString('ru-RU') + ' ₽';
             document.getElementById('resGOCHS').innerText = costGOCHS.toLocaleString('ru-RU') + ' ₽';
             document.getElementById('resTBE').innerText = costTBE.toLocaleString('ru-RU') + ' ₽';
             document.getElementById('resATZ').innerText = costATZ.toLocaleString('ru-RU') + ' ₽';
             document.getElementById('resTotal').innerText = totalCost.toLocaleString('ru-RU') + ' ₽';
+            document.getElementById('resDays').innerText = `от ${totalDays} рабочих дней`;
+
+            document.getElementById('calcResultBox').style.display = 'block';
         }
 
         function sendCalcToMaxBot() {
             let area = document.getElementById('calcArea').value;
             let floors = document.getElementById('calcFloors').value;
             let total = document.getElementById('resTotal').innerText;
+            let days = document.getElementById('resDays').innerText;
 
-            let userMsg = `Здравствуйте! Расчет с сайта: Площадь ${area} м², Этажность: ${floors} эт. Ориентировочная стоимость комплекса разделов: ${total}. Хочу обсудить детали проекта.`;
+            let userMsg = `Здравствуйте! Расчет с сайта: Площадь ${area} м², Этажность: ${floors} эт. Ориентировочная стоимость: ${total}, срок: ${days}. Хочу обсудить детали проекта.`;
             
             let maxBotLink = `https://max.ru/id561901317631_4_bot?start=${encodeURIComponent(userMsg)}`;
             window.open(maxBotLink, '_blank');
