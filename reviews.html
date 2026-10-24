@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Отзывы клиентов | СпецРаздел ПД</title>
+    <meta name="description" content="Реальные отзывы и благодарности клиентов за разработку спецразделов ПД. Оставить отзыв могут только верифицированные заказчики.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root { --primary: #ff9900; --primary-dark: #e08500; --dark: #0b0b0b; --card-bg: #1a1a1a; --text-gray: #a0a0a0; --border-color: #2a2a2a; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { color: #fff; background-color: var(--dark); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        
+        header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(11, 11, 11, 0.9); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-weight: 800; font-size: 1.1rem; }
+        .logo span { color: var(--primary); }
+        nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
+        nav a { font-size: 0.9rem; font-weight: 500; color: #ccc; }
+        nav a:hover, nav a.active { color: var(--primary); }
+        .header-phone { font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); }
+
+        .page-content { padding: 140px 20px 80px; max-width: 900px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 40px; }
+        .section-title h1 { font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800; margin-bottom: 10px; }
+        .section-title p { color: var(--text-gray); }
+
+        .add-review-btn-container { text-align: center; margin-bottom: 50px; }
+        .btn-add-review { display: inline-block; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #000; padding: 14px 28px; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; border: none; box-shadow: 0 10px 30px rgba(255, 153, 0, 0.3); transition: 0.3s; }
+        .btn-add-review:hover { transform: translateY(-2px); opacity: 0.9; }
+
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 60px; }
+        .review-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 25px; position: relative; }
+        .review-author { font-weight: 700; color: var(--primary); margin-bottom: 5px; font-size: 1.05rem; }
+        .review-text { font-size: 0.95rem; color: #ddd; margin-bottom: 15px; }
+        .review-meta { font-size: 0.8rem; color: var(--text-gray); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; display: flex; justify-content: space-between; }
+
+        #reviewModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); z-index: 10000; align-items: center; justify-content: center; padding: 20px; }
+        .modal-content { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; max-width: 500px; width: 100%; padding: 30px; position: relative; max-height: 90vh; overflow-y: auto; }
+        .modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--text-gray); font-size: 1.5rem; cursor: pointer; }
+        .modal-close:hover { color: var(--primary); }
+        .modal-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 8px; color: #fff; }
+        .modal-subtitle { font-size: 0.85rem; color: var(--text-gray); margin-bottom: 20px; }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #ddd; }
+        .form-input, .form-textarea { width: 100%; padding: 12px; background: #111; border: 1px solid #333; border-radius: 10px; color: #fff; font-size: 0.9rem; outline: none; }
+        .form-input:focus, .form-textarea:focus { border-color: var(--primary); }
+        .form-textarea { resize: vertical; height: 90px; }
+
+        .checkbox-group { display: flex; align-items: flex-start; gap: 10px; margin-top: 15px; }
+        .checkbox-group input[type="checkbox"] { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; }
+        .checkbox-group label { font-size: 0.8rem; color: var(--text-gray); line-height: 1.4; cursor: pointer; }
+        
+        .form-submit-btn { display: block; width: 100%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #000; font-weight: 800; padding: 14px; border-radius: 12px; border: none; cursor: pointer; text-align: center; font-size: 0.95rem; margin-top: 20px; transition: 0.3s; }
+        .form-submit-btn:hover { opacity: 0.9; }
+
+        footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border-color); color: var(--text-gray); font-size: 0.85rem; }
+        footer a { color: var(--primary); margin-left: 10px; }
+        @media (max-width: 768px) { nav { display: none; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo"><a href="index.html">СпецРаздел<span>ПД</span></a></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="index.html#services">Услуги</a></li>
+                    <li><a href="ai-agents.html">ИИ-агенты 24/7</a></li>
+                    <li><a href="index.html#portfolio">Портфолио</a></li>
+                    <li><a href="reviews.html" class="active">Отзывы</a></li>
+                    <li><a href="index.html#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+            <a href="tel:+79960789054" class="header-phone">+7 (996) 078-90-54</a>
+        </div>
+    </header>
+
+    <div class="page-content">
+        <div class="section-title" data-aos="fade-up">
+            <h1>Отзывы клиентов</h1>
+            <p>Честные отзывы заказчиков, подтвержденные контактами</p>
+        </div>
+
+        <div class="add-review-btn-container" data-aos="fade-up">
+            <button class="btn-add-review" onclick="openReviewModal()">Оставить свой отзыв ✍️</button>
+        </div>
+
+        <div class="reviews-grid" id="reviewsContainer">
+            <div class="review-card" data-aos="fade-up">
+                <div class="review-author">Иван Сергеев (Генпроектировщик)</div>
+                <div class="review-text">«Сотрудничаем с Дмитрием по разделу пожарной безопасности. Сделали всё четко в срок, экспертизу прошли с первого замечания. Рекомендую как надежного инженера.»</div>
+                <div class="review-meta">
+                    <span>📞 +7 (916) ***-**-45</span>
+                    <span>✉️ i.sergeev@...</span>
+                </div>
+            </div>
+
+            <div class="review-card" data-aos="fade-up">
+                <div class="review-author">Алексей Захаров</div>
+                <div class="review-text">«Заказывали проект котельной и ГОЧС. Оперативно, профессионально, без лишней воды. Документы приняли в экспертизе без вопросов.»</div>
+                <div class="review-meta">
+                    <span>📞 +7 (928) ***-**-12</span>
+                    <span>✉️ zaharov@...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно отзыва с чекбоксом 152-ФЗ -->
+    <div id="reviewModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeReviewModal()">&times;</button>
+            <div class="modal-title">Оставить отзыв о работе</div>
+            <div class="modal-subtitle">Для публикации укажите ваши верифицированные данные</div>
+            
+            <form id="reviewForm" onsubmit="submitReview(event)">
+                <div class="form-group">
+                    <label>Ваше Имя или Никнейм *</label>
+                    <input type="text" id="revName" class="form-input" placeholder="Например: Алексей" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Номер телефона *</label>
+                    <input type="tel" id="revPhone" class="form-input" placeholder="+7 (___) ___-__-__" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" id="revEmail" class="form-input" placeholder="mail@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Текст вашего отзыва *</label>
+                    <textarea id="revText" class="form-textarea" placeholder="Расскажите о впечатлениях от работы..." required></textarea>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="revConsent" required>
+                    <label for="revConsent">Я даю свое соглашение на обработку персональных данных в соответствии с <a href="privacy.html" target="_blank" style="color:var(--primary)">политикой конфиденциальности</a> *</label>
+                </div>
+
+                <button type="submit" class="form-submit-btn">Отправить отзыв в Макс-бот 🚀</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 СпецРаздел ПД. Все права защищены. <a href="privacy.html">Политика конфиденциальности</a></p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        function openReviewModal() {
+            document.getElementById('reviewModal').style.display = 'flex';
+        }
+        function closeReviewModal() {
+            document.getElementById('reviewModal').style.display = 'none';
+        }
+        window.onclick = function(event) {
+            let modal = document.getElementById('reviewModal');
+            if (event.target == modal) { closeReviewModal(); }
+        }
+
+        function submitReview(event) {
+            event.preventDefault();
+            
+            let name = document.getElementById('revName').value.trim();
+            let phone = document.getElementById('revPhone').value.trim();
+            let email = document.getElementById('revEmail').value.trim();
+            let text = document.getElementById('revText').value.trim();
+            let consent = document.getElementById('revConsent').checked;
+
+            if (!name || !phone || !email || !text) {
+                alert('Пожалуйста, заполните все обязательные поля!');
+                return;
+            }
+
+            if (!consent) {
+                alert('Необходимо подтвердить согласие на обработку персональных данных!');
+                return;
+            }
+
+            let message = `📝 НОВЫЙ ОТЗЫВ С САЙТА:\n\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}\n\nОтзыв:\n${text}`;
+            let maxBotLink = `https://max.ru/id561901317631_4_bot?start=${encodeURIComponent(message)}`;
+            
+            alert('Спасибо! Сейчас вы будете перенаправлены в Макс-бот для подтверждения отправки отзыва.');
+            window.open(maxBotLink, '_blank');
+            closeReviewModal();
+            document.getElementById('reviewForm').reset();
+        }
+    </script>
+</body>
+</html>
