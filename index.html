@@ -35,7 +35,7 @@
         .logo span { color: var(--primary); }
         nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
         nav a { font-size: 0.9rem; font-weight: 500; color: #ccc; }
-        nav a:hover { color: var(--primary); }
+        nav a:hover, nav a.active { color: var(--primary); }
         .header-phone { font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); white-space: nowrap; }
 
         .hero { min-height: 90vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 20px 60px; }
@@ -112,7 +112,7 @@
         }
         .calc-container {
             background: var(--card-bg); border: 1px solid var(--border-color);
-            border-radius: 20px; max-width: 540px; width: 100%; padding: 30px;
+            border-radius: 20px; max-width: 580px; width: 100%; padding: 30px;
             color: #fff; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.7);
             max-height: 90vh; overflow-y: auto;
         }
@@ -125,11 +125,21 @@
         .calc-subtitle { font-size: 0.85rem; color: var(--text-gray); margin-bottom: 20px; }
         .calc-group { margin-bottom: 15px; }
         .calc-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #ddd; }
-        .calc-select, .calc-input {
+        .calc-input {
             width: 100%; padding: 12px; background: #111; border: 1px solid #333;
             border-radius: 10px; color: #fff; font-size: 0.9rem; outline: none;
         }
-        .calc-select:focus, .calc-input:focus { border-color: var(--primary); }
+        .calc-input:focus { border-color: var(--primary); }
+
+        /* Чекбоксы разделов */
+        .sections-checkboxes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; background: #111; padding: 15px; border-radius: 12px; border: 1px solid #333; }
+        .checkbox-label { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: #ddd; cursor: pointer; }
+        .checkbox-label input { width: 16px; height: 16px; accent-color: var(--primary); cursor: pointer; }
+
+        /* Блок параметров ГОЧС */
+        #gochsParams { display: none; background: rgba(255,153,0,0.03); border: 1px solid rgba(255,153,0,0.2); padding: 15px; border-radius: 12px; margin-bottom: 15px; }
+        #gochsParams h4 { font-size: 0.9rem; color: var(--primary); margin-bottom: 10px; }
+
         .calc-result-box {
             display: none;
             background: rgba(255, 153, 0, 0.05); border: 1px solid rgba(255, 153, 0, 0.3);
@@ -147,6 +157,7 @@
         @media (max-width: 768px) { 
             nav { display: none; } 
             .hero { padding-top: 100px; }
+            .sections-checkboxes { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -352,9 +363,28 @@
     <div id="calc-modal">
         <div class="calc-container">
             <button class="calc-close" onclick="closeCalculator()">&times;</button>
-            <div class="calc-title">Калькулятор спецразделов ПД</div>
-            <div class="calc-subtitle">Введите параметры вашего объекта для точного расчета</div>
+            <div class="calc-title">Инженерный калькулятор спецразделов</div>
+            <div class="calc-subtitle">Выберите нужные разделы и введите параметры объекта</div>
             
+            <div class="calc-group">
+                <label>Требуемые разделы проектной документации:</label>
+                <div class="sections-checkboxes">
+                    <label class="checkbox-label"><input type="checkbox" id="chkPB" value="pb" checked onchange="toggleGochsParams()"> Раздел 9 (ПБ)</label>
+                    <label class="checkbox-label"><input type="checkbox" id="chkGOCHS" value="gochs" checked onchange="toggleGochsParams()"> Раздел 13 (ГОЧС)</label>
+                    <label class="checkbox-label"><input type="checkbox" id="chkTBE" value="tbe" checked onchange="toggleGochsParams()"> Раздел 10 (ТБЭ)</label>
+                    <label class="checkbox-label"><input type="checkbox" id="chkATZ" value="atz" checked onchange="toggleGochsParams()"> Антитеррор (АТЗ)</label>
+                </div>
+            </div>
+
+            <!-- Дополнительные параметры для ГОЧС (методика с учетом числа аварий) -->
+            <div id="gochsParams">
+                <h4>⚙️ Дополнительные параметры для расчета ПМ ГОЧС:</h4>
+                <div class="calc-group" style="margin-bottom: 10px;">
+                    <label style="font-size: 0.8rem;">Количество потенциальных аварий / опасных источников на объекте:</label>
+                    <input type="number" id="calcAccidents" class="calc-input" value="1" min="1" max="50" step="1" style="padding: 8px;">
+                </div>
+            </div>
+
             <div class="calc-group">
                 <label>Площадь здания (м²):</label>
                 <input type="number" id="calcArea" class="calc-input" placeholder="Например: 1500" min="10" step="10">
@@ -373,24 +403,25 @@
             <button class="calc-action-btn" onclick="runCalculation()" style="margin-top: 10px;">Рассчитать стоимость и срок</button>
 
             <div id="calcResultBox" class="calc-result-box">
-                <div class="calc-result-row">
+                <div class="calc-result-row" id="rowPB" style="display: none;">
                     <span>🔥 Раздел 9 «Пожарная безопасность» (ПБ):</span>
                     <span class="calc-val" id="resPB">0 ₽</span>
                 </div>
-                <div class="calc-result-row">
+                <div class="calc-result-row" id="rowGOCHS" style="display: none;">
                     <span>🛡️ Раздел 13 «ПМ ГОЧС»:</span>
                     <span class="calc-val" id="resGOCHS">0 ₽</span>
                 </div>
-                <div class="calc-result-row">
+                <div class="calc-result-row" id="rowTBE" style="display: none;">
                     <span>🏗️ Раздел 10 «ТБЭ» (Безопасная эксплуатация):</span>
                     <span class="calc-val" id="resTBE">0 ₽</span>
                 </div>
-                <div class="calc-result-row">
+                <div class="calc-result-row" id="rowATZ" style="display: none;">
                     <span>🚨 Раздел «Антитеррор» (АТЗ):</span>
                     <span class="calc-val" id="resATZ">0 ₽</span>
                 </div>
+                
                 <div class="calc-result-row" style="margin-top: 12px; border-top: 1px solid rgba(255,153,0,0.4); padding-top: 10px;">
-                    <span style="font-weight: 700; color: #fff;">Ориентировочный комплекс:</span>
+                    <span style="font-weight: 700; color: #fff;">Ориентировочный итог:</span>
                     <span class="calc-val" id="resTotal" style="font-size: 1.15rem;">0 ₽</span>
                 </div>
                 <div class="calc-result-row" style="margin-top: 8px;">
@@ -409,6 +440,7 @@
 
         function openCalculator() {
             document.getElementById('calc-modal').style.display = 'flex';
+            toggleGochsParams();
         }
         function closeCalculator() {
             document.getElementById('calc-modal').style.display = 'none';
@@ -418,10 +450,16 @@
             if (event.target == modal) { closeCalculator(); }
         }
 
+        function toggleGochsParams() {
+            let isGochsChecked = document.getElementById('chkGOCHS').checked;
+            document.getElementById('gochsParams').style.display = isGochsChecked ? 'block' : 'none';
+        }
+
         function runCalculation() {
             let area = parseFloat(document.getElementById('calcArea').value);
             let floors = parseInt(document.getElementById('calcFloors').value);
             let volume = parseFloat(document.getElementById('calcVolume').value);
+            let accidents = parseInt(document.getElementById('calcAccidents').value) || 1;
 
             if (!area || isNaN(area) || area <= 0) {
                 alert('Пожалуйста, введите корректную площадь здания.');
@@ -434,22 +472,67 @@
                 volume = area * 3.3;
             }
 
-            // Коэффициент сложности от этажности/высоты здания
             let heightFactor = 1 + (floors > 1 ? (floors - 1) * 0.03 : 0);
 
-            // Математическая модель расчета (+5%)
-            let costPB = Math.max(25000, Math.round(area * 22 * heightFactor * 1.05));
-            let costGOCHS = Math.max(28000, Math.round((30000 + area * 12 + volume * 0.8) * heightFactor * 1.05));
-            let costTBE = Math.max(20000, Math.round(area * 16 * heightFactor * 1.05));
-            let costATZ = Math.max(22000, Math.round(area * 18 * heightFactor * 1.05));
+            // Чекбоксы разделов
+            let needPB = document.getElementById('chkPB').checked;
+            let needGOCHS = document.getElementById('chkGOCHS').checked;
+            let needTBE = document.getElementById('chkTBE').checked;
+            let needATZ = document.getElementById('chkATZ').checked;
 
-            let totalCost = costPB + costGOCHS + costTBE + costATZ;
-            let totalDays = Math.round(12 + (area / 800) * heightFactor * 1.05);
+            if (!needPB && !needGOCHS && !needTBE && !needATZ) {
+                alert('Пожалуйста, выберите хотя бы один раздел для расчета.');
+                return;
+            }
 
-            document.getElementById('resPB').innerText = costPB.toLocaleString('ru-RU') + ' ₽';
-            document.getElementById('resGOCHS').innerText = costGOCHS.toLocaleString('ru-RU') + ' ₽';
-            document.getElementById('resTBE').innerText = costTBE.toLocaleString('ru-RU') + ' ₽';
-            document.getElementById('resATZ').innerText = costATZ.toLocaleString('ru-RU') + ' ₽';
+            let costPB = 0, costGOCHS = 0, costTBE = 0, costATZ = 0;
+            let totalCost = 0;
+            let maxDays = 10;
+
+            if (needPB) {
+                costPB = Math.max(25000, Math.round(area * 22 * heightFactor * 1.05));
+                totalCost += costPB;
+                document.getElementById('resPB').innerText = costPB.toLocaleString('ru-RU') + ' ₽';
+                document.getElementById('rowPB').style.display = 'flex';
+                maxDays = Math.max(maxDays, 12);
+            } else {
+                document.getElementById('rowPB').style.display = 'none';
+            }
+
+            if (needGOCHS) {
+                // Методика для ГОЧС с учетом числа аварий и рыночной адаптации +5% к фактическим расценкам
+                let accidentFactor = 1 + (accidents - 1) * 0.15;
+                costGOCHS = Math.max(28000, Math.round((30000 + area * 12 + volume * 0.8) * heightFactor * accidentFactor * 1.05));
+                totalCost += costGOCHS;
+                document.getElementById('resGOCHS').innerText = costGOCHS.toLocaleString('ru-RU') + ' ₽';
+                document.getElementById('rowGOCHS').style.display = 'flex';
+                maxDays = Math.max(maxDays, 15);
+            } else {
+                document.getElementById('rowGOCHS').style.display = 'none';
+            }
+
+            if (needTBE) {
+                costTBE = Math.max(20000, Math.round(area * 16 * heightFactor * 1.05));
+                totalCost += costTBE;
+                document.getElementById('resTBE').innerText = costTBE.toLocaleString('ru-RU') + ' ₽';
+                document.getElementById('rowTBE').style.display = 'flex';
+                maxDays = Math.max(maxDays, 10);
+            } else {
+                document.getElementById('rowTBE').style.display = 'none';
+            }
+
+            if (needATZ) {
+                costATZ = Math.max(22000, Math.round(area * 18 * heightFactor * 1.05));
+                totalCost += costATZ;
+                document.getElementById('resATZ').innerText = costATZ.toLocaleString('ru-RU') + ' ₽';
+                document.getElementById('rowATZ').style.display = 'flex';
+                maxDays = Math.max(maxDays, 12);
+            } else {
+                document.getElementById('rowATZ').style.display = 'none';
+            }
+
+            let totalDays = Math.round(maxDays + (area / 1000) * heightFactor * 1.05);
+
             document.getElementById('resTotal').innerText = totalCost.toLocaleString('ru-RU') + ' ₽';
             document.getElementById('resDays').innerText = `от ${totalDays} рабочих дней`;
 
@@ -462,12 +545,17 @@
             let total = document.getElementById('resTotal').innerText;
             let days = document.getElementById('resDays').innerText;
 
-            let userMsg = `Здравствуйте! Расчет с сайта: Площадь ${area} м², Этажность: ${floors} эт. Ориентировочная стоимость: ${total}, срок: ${days}. Хочу обсудить детали проекта.`;
+            let selectedSections = [];
+            if (document.getElementById('chkPB').checked) selectedSections.push('ПБ');
+            if (document.getElementById('chkGOCHS').checked) selectedSections.push('ГОЧС');
+            if (document.getElementById('chkTBE').checked) selectedSections.push('ТБЭ');
+            if (document.getElementById('chkATZ').checked) selectedSections.push('АТЗ');
+
+            let userMsg = `Здравствуйте! Расчет с сайта: Разделы: [${selectedSections.join(', ')}]. Площадь ${area} м², Этажность: ${floors} эт. Ориентировочная стоимость: ${total}, срок: ${days}. Хочу обсудить детали проекта.`;
             
             let maxBotLink = `https://max.ru/id561901317631_4_bot?start=${encodeURIComponent(userMsg)}`;
             window.open(maxBotLink, '_blank');
         }
     </script>
 </body>
-</html>
 </html>
