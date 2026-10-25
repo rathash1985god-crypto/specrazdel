@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Блог и новости | СпецРаздел ПД</title>
+    <meta name="description" content="Экспертные статьи по разработке спецразделов проектной документации (ПБ, ГОЧС, ТБЭ), прохождению экспертиз.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #ff9900; --dark: #0b0b0b; --card-bg: #1a1a1a; --text-gray: #a0a0a0; --border-color: #2a2a2a; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { color: #fff; background-color: var(--dark); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        
+        header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(11, 11, 11, 0.9); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-weight: 800; font-size: 1.1rem; }
+        .logo span { color: var(--primary); }
+        nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
+        nav a { font-size: 0.9rem; font-weight: 500; color: #ccc; }
+        nav a:hover, nav a.active { color: var(--primary); }
+        .header-phone { font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); }
+
+        .blog-container { max-width: 1000px; margin: 0 auto; padding: 140px 20px 80px; }
+        .blog-header { text-align: center; margin-bottom: 40px; }
+        .blog-header h1 { font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800; margin-bottom: 10px; }
+        .blog-header p { color: var(--text-gray); }
+
+        .news-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
+        .news-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; transition: 0.3s; }
+        .news-card:hover { border-color: rgba(255,153,0,0.4); }
+        .news-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-gray); margin-bottom: 12px; }
+        .news-category { background: rgba(255,153,0,0.1); color: var(--primary); padding: 4px 10px; border-radius: 8px; font-weight: 600; }
+        .news-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; color: #fff; line-height: 1.4; }
+        .news-card p { font-size: 0.95rem; color: #ddd; margin-bottom: 20px; line-height: 1.6; }
+        
+        footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border-color); color: var(--text-gray); font-size: 0.85rem; }
+        @media (max-width: 768px) { nav { display: none; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo"><a href="index.html">СпецРаздел<span>ПД</span></a></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="news.html" class="active">Блог и новости</a></li>
+                    <li><a href="index.html#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+            <a href="tel:+79960789054" class="header-phone">+7 (996) 078-90-54</a>
+        </div>
+    </header>
+
+    <div class="blog-container">
+        <div class="blog-header">
+            <h1>Блог и новости проектирования</h1>
+            <p>Актуальные нормативные изменения, разъяснения и статьи от инженеров</p>
+        </div>
+
+        <!-- Сюда JavaScript автоматически подгрузит новости из файла news.json -->
+        <div class="news-grid" id="newsContainer">
+            <p style="text-align: center; color: var(--text-gray);">Загрузка статей...</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 СпецРаздел ПД. Все права защищены.</p>
+    </footer>
+
+    <script>
+        async function loadNews() {
+            try {
+                let response = await fetch('news.json');
+                let newsList = await response.json();
+                let container = document.getElementById('newsContainer');
+                
+                if (newsList.length === 0) {
+                    container.innerHTML = '<p style="text-align: center; color: var(--text-gray);">Статей пока нет.</p>';
+                    return;
+                }
+
+                let html = '';
+                newsList.forEach(item => {
+                    html += `
+                        <div class="news-card">
+                            <div class="news-meta">
+                                <span class="news-category">Экспертная статья</span>
+                                <span>${item.date}</span>
+                            </div>
+                            <h3>${item.title}</h3>
+                            <p>${item.content}</p>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+            } catch (error) {
+                document.getElementById('newsContainer').innerHTML = '<p style="text-align: center; color: var(--text-gray);">Статьи пока не добавлены.</p>';
+            }
+        }
+        loadNews();
+    </script>
+</body>
+</html>
