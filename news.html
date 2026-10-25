@@ -4,13 +4,19 @@
     <meta charset="utf-8">
     <title>Блог и новости | СпецРаздел ПД</title>
     <meta name="description" content="Экспертные статьи по разработке спецразделов проектной документации (ПБ, ГОЧС, ТБЭ), прохождению экспертиз.">
+    <meta name="keywords" content="проектная документация, проектирование, пожарная безопасность, ГОЧС, ТБЭ, экспертиза проектной документации, ГИП, ТИМ, BIM">
+    <link rel="canonical" href="https://www.specrazdel56.ru/news.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Новости и статьи по проектированию | СпецРаздел ПД">
+    <meta property="og:description" content="Нормативные изменения, разъяснения и практические материалы для проектировщиков.">
+    <meta property="og:url" content="https://www.specrazdel56.ru/news.html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #ff9900; --dark: #0b0b0b; --card-bg: #1a1a1a; --text-gray: #a0a0a0; --border-color: #2a2a2a; }
+        :root { --primary: #ff9900; --primary-soft: #ffbd66; --dark: #080a0f; --card-bg: #141821; --card-deep: #10131a; --text-gray: #aeb6c4; --text: #fff; --border-color: #283142; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { color: #fff; background-color: var(--dark); line-height: 1.6; }
+        body { color: var(--text); background: radial-gradient(circle at 50% -10%, #202b3e 0, var(--dark) 45%); line-height: 1.6; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         
         header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(11, 11, 11, 0.9); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
@@ -28,17 +34,31 @@
         .blog-header p { color: var(--text-gray); }
 
         .news-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
-        .news-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; transition: 0.3s; }
-        .news-card:hover { border-color: rgba(255,153,0,0.4); }
+        .news-card { background: linear-gradient(145deg, rgba(29,35,49,.98), rgba(15,18,25,.98)); border: 1px solid var(--border-color); border-radius: 18px; padding: 32px; transition: .25s; box-shadow: 0 18px 45px rgba(0,0,0,.18); }
+        .news-card:hover { border-color: rgba(255,255,255,0.55); transform: translateY(-2px); }
+        .news-card:nth-child(4n+1) { border-top: 3px solid #ff9900; }
+        .news-card:nth-child(4n+2) { border-top: 3px solid #35b7ff; }
+        .news-card:nth-child(4n+3) { border-top: 3px solid #55d68b; }
+        .news-card:nth-child(4n+4) { border-top: 3px solid #b58cff; }
         .news-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-gray); margin-bottom: 12px; }
         .news-category { background: rgba(255,153,0,0.1); color: var(--primary); padding: 4px 10px; border-radius: 8px; font-weight: 600; }
-        .news-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; color: #fff; line-height: 1.4; }
+        .news-card h3 { font-size: clamp(1.25rem, 2vw, 1.65rem); font-weight: 800; margin-bottom: 18px; color: #fff; line-height: 1.35; letter-spacing: -.01em; }
         .news-card p { font-size: 0.95rem; color: #ddd; margin-bottom: 20px; line-height: 1.6; }
         .news-card .article-body { margin-top: 18px; color: #ddd; }
-        .article-body h2 { color: var(--primary); font-size: 1.05rem; margin: 24px 0 10px; letter-spacing: .02em; }
-        .article-body h3 { color: #fff; font-size: .98rem; margin: 16px 0 8px; }
+        .article-body h2 { color: var(--primary-soft); font-size: 1.12rem; margin: 28px 0 12px; padding-left: 12px; border-left: 3px solid var(--primary); letter-spacing: .01em; }
+        .article-body h2:nth-of-type(2) { color: #67c8ff; border-left-color: #35b7ff; }
+        .article-body h2:nth-of-type(3) { color: #67e69b; border-left-color: #55d68b; }
+        .article-body h2:nth-of-type(4) { color: #d3b5ff; border-left-color: #b58cff; }
+        .article-body h3 { color: #fff; font-size: 1rem; margin: 18px 0 8px; }
+        .article-body h3:first-of-type { color: #67e69b; }
+        .article-body h3:nth-of-type(2) { color: #ff8585; }
         .article-body p { text-indent: 1.5em; margin: 0 0 14px; line-height: 1.8; }
-        .article-body .article-point { text-indent: 0; padding-left: 18px; }
+        .article-body .article-point { text-indent: 0; padding-left: 18px; border-left: 2px solid rgba(103,200,255,.45); color: #eaf7ff; }
+        .article-body .article-point::before { content: "◆  "; color: #35b7ff; }
+        .article-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; padding-top:18px; border-top:1px solid var(--border-color); }
+        .article-tag { color: #fff; background: rgba(255,153,0,.18); border:1px solid rgba(255,153,0,.55); border-radius:999px; padding:4px 10px; font-size:.82rem; }
+        .article-tag:nth-child(3n+2) { background: rgba(53,183,255,.18); border-color: rgba(53,183,255,.55); }
+        .article-tag:nth-child(3n+3) { background: rgba(85,214,139,.18); border-color: rgba(85,214,139,.55); }
         
         footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border-color); color: var(--text-gray); font-size: 0.85rem; }
         @media (max-width: 768px) { nav { display: none; } }
@@ -90,6 +110,10 @@
 
                 let html = '';
                 newsList.forEach(item => {
+                    const full = item.full_content || item.content || '';
+                    const tagMatch = full.match(/((?:#[-а-яёa-z0-9_]+(?:[ ,]+|$))+)/i);
+                    const tags = tagMatch ? tagMatch[1].match(/#[-а-яёa-z0-9_]+/gi) || [] : [];
+                    const articleHtml = tags.length ? full.replace(tagMatch[1], '') : full;
                     html += `
                         <div class="news-card">
                             <div class="news-meta">
@@ -97,7 +121,8 @@
                                 <span>${item.date}</span>
                             </div>
                             <h3>${item.title}</h3>
-                            <div class="article-body">${item.full_content || item.content || ''}</div>
+                            <div class="article-body">${articleHtml}</div>
+                            ${tags.length ? `<div class="article-tags" aria-label="Ключевые слова">${tags.map(tag => `<span class="article-tag">${tag}</span>`).join('')}</div>` : ''}
                         </div>
                     `;
                 });
@@ -108,8 +133,5 @@
         }
         loadNews();
     </script>
-</body>
-</html>
-
 </body>
 </html>
