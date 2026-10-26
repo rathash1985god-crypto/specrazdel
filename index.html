@@ -163,6 +163,16 @@
 </head>
 <body>
 
+    <!-- Вписанный код верификации -->
+    <div style="display:none;">
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            </head>
+            <body>Verification: aa7bd7f5e093e683</body>
+        </html>
+    </div>
+
     <header>
         <div class="header-container">
             <div class="logo">СпецРаздел<span>ПД</span></div>
@@ -173,7 +183,7 @@
                     <li><a href="ai-agents.html">ИИ-агенты 24/7</a></li>
                     <li><a href="#portfolio">Портфолио</a></li>
                     <li><a href="reviews.html">Отзывы</a></li>
-                    <li><a href="news.html" class="active">Блог и новости</a></li> <!-- Добавлена ссылка на новости -->
+                    <li><a href="news.html" class="active">Блог и новости</a></li>
                     <li><a href="#contacts">Контакты</a></li>
                 </ul>
             </nav>
@@ -475,7 +485,6 @@
 
             let heightFactor = 1 + (floors > 1 ? (floors - 1) * 0.03 : 0);
 
-            // Чекбоксы разделов
             let needPB = document.getElementById('chkPB').checked;
             let needGOCHS = document.getElementById('chkGOCHS').checked;
             let needTBE = document.getElementById('chkTBE').checked;
@@ -501,7 +510,6 @@
             }
 
             if (needGOCHS) {
-                // Методика для ГОЧС с учетом числа аварий и рыночной адаптации +5% к фактическим расценкам
                 let accidentFactor = 1 + (accidents - 1) * 0.15;
                 costGOCHS = Math.max(28000, Math.round((30000 + area * 12 + volume * 0.8) * heightFactor * accidentFactor * 1.05));
                 totalCost += costGOCHS;
