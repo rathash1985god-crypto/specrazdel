@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <title>Разработка спецразделов проектной документации | ПБ, ГОЧС, ТБЭ</title>
-    <meta name="description" content="Разработка разделов ПБ, ГОЧС, ТБЭ, аудит планировочных решений, антитеррористическая защищенность и расчет категорий. Опыт с 2008 года. Оренбург.">
+    <meta name="description" content="Разработка разделов ПБ, ГОЧС, ТБЭ, антитеррористическая защищенность и расчет категорий. Опыт с 2008 года. Оренбург.">
     <link rel="canonical" href="https://www.specrazdel56.ru/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="СпецРазделПД">
     <meta property="og:title" content="Спецразделы проектной документации — ПБ, ГОЧС, ТБЭ">
-    <meta property="og:description" content="Разработка специальных разделов проектной документации и инженерный аудит для объектов строительства.">
+    <meta property="og:description" content="Разработка специальных разделов проектной документации для объектов строительства.">
     <meta property="og:url" content="https://www.specrazdel56.ru/">
     <meta name="twitter:card" content="summary">
     <script type="application/ld+json">
@@ -17,7 +17,7 @@
       "@type":"ProfessionalService",
       "name":"СпецРазделПД",
       "url":"https://www.specrazdel56.ru/",
-      "description":"Разработка специальных разделов проектной документации: пожарная безопасность, ГОЧС, ТБЭ, антитеррористическая защищённость и аудит планировочных решений.",
+      "description":"Разработка специальных разделов проектной документации: пожарная безопасность, ГОЧС, ТБЭ и антитеррористическая защищённость.",
       "areaServed":"Россия",
       "telephone":"+7-996-078-90-54",
       "foundingDate":"2008",
@@ -28,7 +28,6 @@
           {"@type":"Offer","itemOffered":{"@type":"Service","name":"Раздел 9 «Пожарная безопасность»"}},
           {"@type":"Offer","itemOffered":{"@type":"Service","name":"Раздел 13 «ПМ ГОЧС»"}},
           {"@type":"Offer","itemOffered":{"@type":"Service","name":"Раздел 10 «Безопасная эксплуатация»"}},
-          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Аудит планировочных решений"}},
           {"@type":"Offer","itemOffered":{"@type":"Service","name":"ИИ-агенты для бизнес-процессов","url":"https://www.specrazdel56.ru/ai-agents.html"}}
         ]
       }
@@ -123,7 +122,165 @@
         .ai-agents-link { color: #8ec5ff; font-weight: 700; }
         .ai-agents-link:hover { color: #fff; }
 
-        /* Плавающий калькулятор */
+
+
+        /* Плавающий рекламный лид-магнит: диагональное движение по экрану */
+        #fire-lead-widget {
+            --lead-edge: 20px;
+            position: fixed;
+            left: var(--lead-edge);
+            bottom: var(--lead-edge);
+            width: min(292px, calc(100vw - 40px));
+            padding: 17px;
+            color: #fff;
+            background: linear-gradient(145deg, #222 0%, #111 100%);
+            border: 2px solid var(--primary);
+            border-radius: 18px;
+            box-shadow: 0 16px 42px rgba(0,0,0,.58), 0 0 24px rgba(255,153,0,.18);
+            z-index: 9998;
+            animation: fireLeadDiagonal 22s ease-in-out infinite;
+            will-change: transform;
+        }
+        #fire-lead-widget .lead-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 11px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            color: #fff;
+            background: #c62828;
+            font-size: .72rem;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: .6px;
+            text-transform: uppercase;
+        }
+        #fire-lead-widget .lead-title {
+            margin: 0 0 10px;
+            color: #fff;
+            font-size: 1.03rem;
+            line-height: 1.28;
+            font-weight: 800;
+        }
+        #fire-lead-widget .lead-price-line {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 4px;
+        }
+        #fire-lead-widget .lead-price {
+            color: var(--primary);
+            font-size: 2rem;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: -.7px;
+        }
+        #fire-lead-widget .lead-price-note {
+            color: #fff;
+            font-size: .82rem;
+            font-weight: 700;
+        }
+        #fire-lead-widget .lead-description {
+            margin: 7px 0 13px;
+            color: #bdbdbd;
+            font-size: .78rem;
+            line-height: 1.4;
+        }
+        #fire-lead-widget .lead-button {
+            display: block;
+            width: 100%;
+            padding: 12px 14px;
+            border: 0;
+            border-radius: 11px;
+            color: #111;
+            background: linear-gradient(135deg, var(--primary), #ffb52e);
+            text-align: center;
+            font-size: .9rem;
+            line-height: 1.2;
+            font-weight: 900;
+            box-shadow: 0 7px 18px rgba(255,153,0,.22);
+            transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+        }
+        #fire-lead-widget .lead-button:hover {
+            color: #111;
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+            box-shadow: 0 10px 24px rgba(255,153,0,.32);
+        }
+        @keyframes fireLeadDiagonal {
+            0%, 9% {
+                transform: translate3d(0, 0, 0);
+            }
+            48%, 58% {
+                transform: translate3d(
+                    calc(100vw - 100% - 40px),
+                    calc(-100vh + 100% + 40px),
+                    0
+                );
+            }
+            100% {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            #fire-lead-widget {
+                --lead-edge: 12px;
+                width: min(238px, calc(100vw - 24px));
+                padding: 13px;
+                border-radius: 15px;
+                animation-name: fireLeadDiagonalMobile;
+                animation-duration: 24s;
+            }
+            #fire-lead-widget .lead-badge {
+                margin-bottom: 8px;
+                font-size: .66rem;
+            }
+            #fire-lead-widget .lead-title {
+                font-size: .9rem;
+                margin-bottom: 8px;
+            }
+            #fire-lead-widget .lead-price {
+                font-size: 1.75rem;
+            }
+            #fire-lead-widget .lead-price-note {
+                font-size: .75rem;
+            }
+            #fire-lead-widget .lead-description {
+                font-size: .72rem;
+                margin: 6px 0 10px;
+            }
+            #fire-lead-widget .lead-button {
+                padding: 10px 12px;
+                font-size: .82rem;
+            }
+            @keyframes fireLeadDiagonalMobile {
+                0%, 9% {
+                    transform: translate3d(0, 0, 0);
+                }
+                48%, 58% {
+                    transform: translate3d(
+                        calc(100vw - 100% - 24px),
+                        calc(-100vh + 100% + 24px),
+                        0
+                    );
+                }
+                100% {
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+        }
+
+        /* Учитываем системную настройку уменьшения анимации. */
+        @media (prefers-reduced-motion: reduce) {
+            #fire-lead-widget {
+                animation: none;
+            }
+        }
+
+                /* Плавающий калькулятор */
         #calc-float-btn {
             position: fixed; bottom: 30px; right: 30px;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
@@ -199,15 +356,8 @@
 </head>
 <body>
 
-    <!-- Вписанный код верификации -->
-    <div style="display:none;">
-        <html>
-            <head>
-                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            </head>
-            <body>Verification: aa7bd7f5e093e683</body>
-        </html>
-    </div>
+    <!-- Служебный код верификации сохранён из исходного файла -->
+    <div hidden>Verification: aa7bd7f5e093e683</div>
 
     <header>
         <div class="header-container">
@@ -238,7 +388,7 @@
 
     <section class="services" id="services">
         <div class="section-title" data-aos="fade-up">
-            <h2>Наши услуги</h2>
+            <h2>Услуги</h2>
             <p>Основные инженерные разделы и специализированные направления</p>
         </div>
         <div class="services-grid">
@@ -269,17 +419,7 @@
                     <a href="https://max.ru/id561901317631_4_bot" target="_blank" class="service-btn">Обсудить задачу</a>
                 </div>
             </div>
-
-            <div class="service-card" data-aos="fade-up">
-                <div class="service-body">
-                    <div class="service-price">5 000 – 45 000 ₽</div>
-                    <h3>Аудит по пожарным нормам планировочных решений</h3>
-                    <p>Сначала аудит, потом экспертиза — надежная страховка от дорогостоящих доработок архитектурных решений.</p>
-                    <a href="https://max.ru/id561901317631_4_bot" target="_blank" class="service-btn">Обсудить задачу</a>
-                </div>
-            </div>
-
-            <div class="service-card" data-aos="fade-up">
+<div class="service-card" data-aos="fade-up">
                 <div class="service-body">
                     <div class="service-price">25 000 – 37 000 ₽</div>
                     <h3>Раздел «Антитеррористическая защищенность»</h3>
@@ -401,6 +541,18 @@
     <footer>
         <p>&copy; 2026 СпецРаздел ПД. Все права защищены. <a href="privacy.html">Политика конфиденциальности</a></p>
     </footer>
+
+    <!-- ПЛАВАЮЩИЙ ЛИД-МАГНИТ: движется по диагонали, калькулятор остаётся справа внизу -->
+    <aside id="fire-lead-widget" aria-label="Специальное предложение: пожарная проверка одноэтажного здания за 700 рублей">
+        <div class="lead-badge">Только сегодня</div>
+        <h2 class="lead-title">Пожарная проверка одноэтажного здания целиком</h2>
+        <div class="lead-price-line">
+            <span class="lead-price">700 ₽</span>
+            <span class="lead-price-note">за всё здание</span>
+        </div>
+        <p class="lead-description">Специальная цена действует только сегодня. Успейте оставить заявку.</p>
+        <a class="lead-button" href="pozharnaya-proverka.html">Получить за 700 ₽</a>
+    </aside>
 
     <!-- ПЛАВАЮЩИЙ КАЛЬКУЛЯТОР -->
     <button id="calc-float-btn" onclick="openCalculator()">
@@ -603,7 +755,4 @@
         }
     </script>
 </body>
-</html>
-</html>
-
 </html>
