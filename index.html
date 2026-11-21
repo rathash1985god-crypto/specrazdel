@@ -122,8 +122,6 @@
         .ai-agents-link { color: #8ec5ff; font-weight: 700; }
         .ai-agents-link:hover { color: #fff; }
 
-
-
         /* Плавающий рекламный лид-магнит: диагональное движение по экрану */
         #fire-lead-widget {
             --lead-edge: 20px;
@@ -280,7 +278,7 @@
             }
         }
 
-                /* Плавающий калькулятор */
+        /* Плавающий калькулятор */
         #calc-float-btn {
             position: fixed; bottom: 30px; right: 30px;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
@@ -419,7 +417,8 @@
                     <a href="https://max.ru/id561901317631_4_bot" target="_blank" class="service-btn">Обсудить задачу</a>
                 </div>
             </div>
-<div class="service-card" data-aos="fade-up">
+
+            <div class="service-card" data-aos="fade-up">
                 <div class="service-body">
                     <div class="service-price">25 000 – 37 000 ₽</div>
                     <h3>Раздел «Антитеррористическая защищенность»</h3>
@@ -754,6 +753,12 @@
             window.open(maxBotLink, '_blank');
         }
     </script>
+
+    <!-- Vercel Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
 
