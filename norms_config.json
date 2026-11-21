@@ -5,10 +5,10 @@
     {
       "id": "FZ-123",
       "code": "ФЗ-123",
-      "edition": "изм. на 01.01.2026",
+      "edition": "действующая редакция",
       "area": "Базовый закон (ст. 6, 27, 37, 53, 83, 87, 88, 89)",
       "status": "ACTIVE",
-      "monitor_url": "",
+      "monitor_url": "https://sudact.ru/law/federalnyi-zakon-ot-22072008-n-123-fz-tekhnicheskii/",
       "last_status_hash": ""
     },
     {
@@ -17,12 +17,8 @@
       "edition": "ред. 16.06.2025",
       "area": "Эвакуация, пути, лестницы",
       "status": "ACTIVE",
-      "monitor_url": "",
-      "last_status_hash": "b3bb6bc9b7bfca2c",
-      "detected_status": "СТАТУС УТОЧНЯЕТСЯ",
-      "detected_edition_date": "",
-      "detected_effective_date": "",
-      "in_force": null
+      "monitor_url": "https://sudact.ru/law/prikaz-mchs-rossii-ot-19032020-n-194/",
+      "last_status_hash": ""
     },
     {
       "id": "SP-2",
@@ -30,20 +26,16 @@
       "edition": "ред. 01.12.2023",
       "area": "Огнестойкость, отсеки, преграды, проходки",
       "status": "ACTIVE",
-      "monitor_url": "",
-      "last_status_hash": "71786f248ed1b987",
-      "detected_status": "СТАТУС УТОЧНЯЕТСЯ",
-      "detected_edition_date": "",
-      "detected_effective_date": "",
-      "in_force": null
+      "monitor_url": "https://sudact.ru/law/prikaz-mchs-rossii-ot-12032020-n-151/",
+      "last_status_hash": ""
     },
     {
       "id": "SP-3",
-      "code": "СП 3.13130.2009",
-      "edition": "ред. 01.01.2025",
+      "code": "СП 3.13130.2026",
+      "edition": "утв. Приказом МЧС от 26.02.2026 № 133",
       "area": "СОУЭ (типы, требования)",
       "status": "ACTIVE",
-      "monitor_url": "",
+      "monitor_url": "https://sudact.ru/law/prikaz-mchs-rossii-ot-26022026-n-133/",
       "last_status_hash": ""
     },
     {
@@ -52,12 +44,8 @@
       "edition": "изм. № 4 от 27.06.2023",
       "area": "Противопожарные расстояния, проезды",
       "status": "ACTIVE",
-      "monitor_url": "",
-      "last_status_hash": "3351c4ad06d8bcce",
-      "detected_status": "СТАТУС УТОЧНЯЕТСЯ",
-      "detected_edition_date": "",
-      "detected_effective_date": "",
-      "in_force": null
+      "monitor_url": "https://sudact.ru/law/prikaz-mchs-rossii-ot-24042013-n-288/",
+      "last_status_hash": ""
     },
     {
       "id": "SP-6",
@@ -75,11 +63,7 @@
       "area": "Противодымная защита (ПДВ)",
       "status": "ACTIVE",
       "monitor_url": "",
-      "last_status_hash": "9eca5edcd8947628",
-      "detected_status": "СТАТУС УТОЧНЯЕТСЯ",
-      "detected_edition_date": "",
-      "detected_effective_date": "",
-      "in_force": null
+      "last_status_hash": ""
     },
     {
       "id": "SP-8",
@@ -87,12 +71,8 @@
       "edition": "ред. 01.01.2025",
       "area": "Наружное противопожарное водоснабжение",
       "status": "ACTIVE",
-      "monitor_url": "",
-      "last_status_hash": "472c1c209e69dadc",
-      "detected_status": "СТАТУС УТОЧНЯЕТСЯ",
-      "detected_edition_date": "",
-      "detected_effective_date": "",
-      "in_force": null
+      "monitor_url": "https://sudact.ru/law/prikaz-mchs-rossii-ot-30032020-n-225/",
+      "last_status_hash": ""
     },
     {
       "id": "SP-10",
@@ -100,12 +80,8 @@
       "edition": "ред. 01.01.2025",
       "area": "Внутренний противопожарный водопровод",
       "status": "ACTIVE",
-      "monitor_url": "",
-      "last_status_hash": "affa12d396847916",
-      "detected_status": "СТАТУС УТОЧНЯЕТСЯ",
-      "detected_edition_date": "",
-      "detected_effective_date": "",
-      "in_force": null
+      "monitor_url": "https://sudact.ru/law/prikaz-mchs-rossii-ot-27072020-n-559/",
+      "last_status_hash": ""
     },
     {
       "id": "SP-12",
@@ -114,11 +90,7 @@
       "area": "Категории помещений и зданий",
       "status": "ACTIVE",
       "monitor_url": "",
-      "last_status_hash": "7b1981d2910a2799",
-      "detected_status": "СТАТУС УТОЧНЯЕТСЯ",
-      "detected_edition_date": "",
-      "detected_effective_date": "",
-      "in_force": null
+      "last_status_hash": ""
     },
     {
       "id": "SP-484",
@@ -127,11 +99,7 @@
       "area": "Системы пожарной сигнализации (общие)",
       "status": "ACTIVE",
       "monitor_url": "",
-      "last_status_hash": "bd10dddaa76f69bb",
-      "detected_status": "СТАТУС УТОЧНЯЕТСЯ",
-      "detected_edition_date": "",
-      "detected_effective_date": "",
-      "in_force": null
+      "last_status_hash": ""
     },
     {
       "id": "SP-485",
@@ -140,11 +108,7 @@
       "area": "АПС (автоматическая пожарная сигнализация)",
       "status": "ACTIVE",
       "monitor_url": "",
-      "last_status_hash": "40e61d2389241b18",
-      "detected_status": "СТАТУС УТОЧНЯЕТСЯ",
-      "detected_edition_date": "",
-      "detected_effective_date": "",
-      "in_force": null
+      "last_status_hash": ""
     },
     {
       "id": "SP-486",
@@ -152,7 +116,7 @@
       "edition": "ред. 01.09.2025",
       "area": "АУПТ (автоматические установки пожаротушения)",
       "status": "ACTIVE",
-      "monitor_url": "",
+      "monitor_url": "https://sudact.ru/law/prikaz-mchs-rossii-ot-20072020-n-539/",
       "last_status_hash": ""
     }
   ],
@@ -165,6 +129,11 @@
     {
       "code": "СНиП 21-01-97*",
       "replaced_by": "СП 2.13130, ФЗ-123",
+      "severity": "CRITICAL"
+    },
+    {
+      "code": "СП 3.13130.2009",
+      "replaced_by": "СП 3.13130.2026 (Приказ МЧС от 26.02.2026 № 133)",
       "severity": "CRITICAL"
     }
   ]
