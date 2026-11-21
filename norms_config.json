@@ -9,11 +9,11 @@
       "area": "Базовый закон (ст. 6, 27, 37, 53, 83, 87, 88, 89)",
       "status": "ACTIVE",
       "monitor_url": "https://sudact.ru/law/federalnyi-zakon-ot-22072008-n-123-fz-tekhnicheskii/",
-      "last_status_hash": "a87588ad9c367909",
-      "detected_status": "СТАТУС УТОЧНЯЕТСЯ",
+      "last_status_hash": "06859b2d58167ce3",
+      "detected_status": "ДЕЙСТВУЕТ",
       "detected_edition_date": "04.08.2026",
       "detected_effective_date": "",
-      "in_force": null
+      "in_force": true
     },
     {
       "id": "SP-1",
@@ -22,11 +22,11 @@
       "area": "Эвакуация, пути, лестницы",
       "status": "ACTIVE",
       "monitor_url": "https://sudact.ru/law/prikaz-mchs-rossii-ot-19032020-n-194/",
-      "last_status_hash": "a32fcfecfa3445a5",
-      "detected_status": "УТРАТИЛ СИЛУ / ОТМЕНЁН",
+      "last_status_hash": "12add9969c920ef5",
+      "detected_status": "ДЕЙСТВУЕТ",
       "detected_edition_date": "16.06.2025",
       "detected_effective_date": "",
-      "in_force": false
+      "in_force": true
     },
     {
       "id": "SP-2",
@@ -35,11 +35,11 @@
       "area": "Огнестойкость, отсеки, преграды, проходки",
       "status": "ACTIVE",
       "monitor_url": "https://sudact.ru/law/prikaz-mchs-rossii-ot-12032020-n-151/",
-      "last_status_hash": "d4c2b2146651cd8f",
-      "detected_status": "СТАТУС УТОЧНЯЕТСЯ",
+      "last_status_hash": "9d7f37cd87506726",
+      "detected_status": "ДЕЙСТВУЕТ",
       "detected_edition_date": "06.11.2025",
       "detected_effective_date": "",
-      "in_force": null
+      "in_force": true
     },
     {
       "id": "SP-3",
@@ -48,8 +48,8 @@
       "area": "СОУЭ (типы, требования)",
       "status": "ACTIVE",
       "monitor_url": "https://sudact.ru/law/prikaz-mchs-rossii-ot-26022026-n-133/",
-      "last_status_hash": "dd669b5205b16f60",
-      "detected_status": "ДЕЙСТВУЕТ (вступил в силу)",
+      "last_status_hash": "ba075db2cee63871",
+      "detected_status": "ДЕЙСТВУЕТ",
       "detected_edition_date": "",
       "detected_effective_date": "",
       "in_force": true
@@ -61,11 +61,11 @@
       "area": "Противопожарные расстояния, проезды",
       "status": "ACTIVE",
       "monitor_url": "https://sudact.ru/law/prikaz-mchs-rossii-ot-24042013-n-288/",
-      "last_status_hash": "d3bad38a7309c053",
-      "detected_status": "УТРАТИЛ СИЛУ / ОТМЕНЁН",
+      "last_status_hash": "ddd0e243dfffcc8a",
+      "detected_status": "ДЕЙСТВУЕТ",
       "detected_edition_date": "27.06.2023",
       "detected_effective_date": "",
-      "in_force": false
+      "in_force": true
     },
     {
       "id": "SP-6",
@@ -96,11 +96,11 @@
       "area": "Наружное противопожарное водоснабжение",
       "status": "ACTIVE",
       "monitor_url": "https://sudact.ru/law/prikaz-mchs-rossii-ot-30032020-n-225/",
-      "last_status_hash": "e64d2153a53bd48c",
-      "detected_status": "СТАТУС УТОЧНЯЕТСЯ",
+      "last_status_hash": "8f251bde7094ffc0",
+      "detected_status": "ДЕЙСТВУЕТ",
       "detected_edition_date": "25.12.2023",
       "detected_effective_date": "",
-      "in_force": null
+      "in_force": true
     },
     {
       "id": "SP-10",
@@ -109,11 +109,11 @@
       "area": "Внутренний противопожарный водопровод",
       "status": "ACTIVE",
       "monitor_url": "https://sudact.ru/law/prikaz-mchs-rossii-ot-27072020-n-559/",
-      "last_status_hash": "5e40790325180cc8",
-      "detected_status": "СТАТУС УТОЧНЯЕТСЯ",
+      "last_status_hash": "27059cf93f358201",
+      "detected_status": "ДЕЙСТВУЕТ",
       "detected_edition_date": "18.05.2026",
       "detected_effective_date": "",
-      "in_force": null
+      "in_force": true
     },
     {
       "id": "SP-12",
@@ -161,7 +161,11 @@
       "area": "АУПТ (автоматические установки пожаротушения)",
       "status": "ACTIVE",
       "monitor_url": "https://sudact.ru/law/prikaz-mchs-rossii-ot-20072020-n-539/",
-      "last_status_hash": ""
+      "last_status_hash": "e36d31858527de1f",
+      "detected_status": "ДЕЙСТВУЕТ",
+      "detected_edition_date": "16.05.2025",
+      "detected_effective_date": "",
+      "in_force": true
     }
   ],
   "cancelled_norms": [
