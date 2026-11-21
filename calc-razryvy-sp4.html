@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Калькулятор противопожарных разрывов по Приложению А СП 4.13130.2013 | СпецРаздел ПД</title>
+    <meta name="description" content="Бесплатный онлайн-калькулятор сокращения противопожарных расстояний между зданиями по Приложению А СП 4.13130.2013: двусторонний расчёт q_пад и q_доп по формулам А.1–А.3, подбор r_min, выгрузка отчёта в Word.">
+    <meta name="keywords" content="калькулятор противопожарных разрывов, Приложение А СП 4.13130.2013, расчёт теплового потока, сокращение противопожарных расстояний, формула А.3 СП 4, СпецРаздел ПД">
+    <link rel="canonical" href="https://www.specrazdel56.ru/calc-razryvy-sp4.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Калькулятор противопожарных разрывов по Приложению А СП 4.13130.2013">
+    <meta property="og:description" content="Двусторонний расчёт падающего теплового потока q_пад < q_доп, проверка применимости и подбор минимального безопасного разрыва с выгрузкой в Word.">
+    <meta property="og:url" content="https://www.specrazdel56.ru/calc-razryvy-sp4.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Калькулятор противопожарных разрывов по Приложению А СП 4.13130.2013",
+      "applicationCategory": "EngineeringApplication",
+      "operatingSystem": "All",
+      "url": "https://www.specrazdel56.ru/calc-razryvy-sp4.html",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RUB" },
+      "publisher": { "@type": "Organization", "name": "СпецРаздел ПД", "url": "https://www.specrazdel56.ru/" }
+    }
+    </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114435285', 'ym');
+        ym(114435285, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/114435285" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+    <style>
+        :root {
+            --primary: #ff9900; --primary-soft: #ffbd66; --dark: #080a0f;
+            --card-bg: #141821; --card-deep: #0f131b; --text-gray: #aeb6c4;
+            --text: #fff; --border-color: #283142;
+            --ok: #3ad27d; --warn: #ffb84d; --err: #ff5d5d;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { color: var(--text); background: radial-gradient(circle at 50% -10%, #202b3e 0, var(--dark) 45%); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.25s; }
+
+        header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(11, 11, 11, 0.92); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-weight: 800; font-size: 1.1rem; }
+        .logo span { color: var(--primary); }
+        nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
+        nav a { font-size: 0.9rem; font-weight: 500; color: #ccc; }
+        nav a:hover, nav a.active { color: var(--primary); }
+        .header-phone { font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); }
+
+        .wrap { max-width: 1120px; margin: 0 auto; padding: 115px 20px 80px; }
+        .hero { margin-bottom: 28px; }
+        .badge { display: inline-block; background: rgba(255,153,0,0.14); color: var(--primary); border: 1px solid rgba(255,153,0,0.4); padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; margin-bottom: 12px; }
+        .hero h1 { font-size: clamp(1.65rem, 3vw, 2.35rem); font-weight: 800; line-height: 1.25; margin-bottom: 10px; }
+        .hero p { color: var(--text-gray); max-width: 820px; font-size: 0.96rem; }
+
+        .card { background: linear-gradient(145deg, rgba(24,30,43,0.96), rgba(14,17,24,0.98)); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; margin-bottom: 22px; }
+        .card h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 16px; color: var(--primary-soft); display: flex; align-items: center; gap: 8px; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+
+        .field { margin-bottom: 13px; }
+        .field label { display: block; font-size: 0.83rem; font-weight: 600; color: #d5dce6; margin-bottom: 5px; }
+        .field small { display: block; font-size: 0.76rem; color: var(--text-gray); margin-top: 3px; }
+        input[type="text"], input[type="number"], select {
+            width: 100%; background: #0c1017; border: 1px solid var(--border-color);
+            color: #fff; padding: 9px 12px; border-radius: 9px; font-size: 0.9rem; outline: none;
+        }
+        input:focus, select:focus { border-color: var(--primary); }
+
+        .check-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+        .check-item {
+            display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-color); padding: 10px 12px; border-radius: 10px; cursor: pointer; font-size: 0.84rem; color: #d8dee9;
+        }
+        .check-item input { margin-top: 3px; accent-color: var(--primary); width: 16px; height: 16px; flex-shrink: 0; }
+
+        .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+        .btn {
+            border: none; border-radius: 10px; padding: 12px 22px; font-size: 0.94rem;
+            font-weight: 700; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-primary { background: var(--primary); color: #080a0f; }
+        .btn-primary:hover { background: var(--primary-soft); }
+        .btn-secondary { background: rgba(255,255,255,0.06); color: #fff; border: 1px solid var(--border-color); }
+        .btn-secondary:hover { border-color: var(--primary); }
+
+        .result-box { display: none; }
+        .verdict { padding: 18px 20px; border-radius: 12px; margin-bottom: 18px; border: 1px solid; }
+        .verdict.ok { background: rgba(58, 210, 125, 0.1); border-color: rgba(58, 210, 125, 0.5); }
+        .verdict.err { background: rgba(255, 93, 93, 0.1); border-color: rgba(255, 93, 93, 0.5); }
+        .verdict.warn { background: rgba(255, 184, 77, 0.1); border-color: rgba(255, 184, 77, 0.5); }
+        .verdict h3 { font-size: 1.1rem; margin-bottom: 6px; }
+        .verdict p { font-size: 0.92rem; color: #e6ebf2; }
+
+        .table-wrap { overflow-x: auto; margin: 14px 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        th, td { padding: 10px 10px; border: 1px solid var(--border-color); text-align: left; }
+        th { background: rgba(255,255,255,0.05); color: var(--primary-soft); font-weight: 700; }
+        .tag-ok { color: var(--ok); font-weight: 700; }
+        .tag-err { color: var(--err); font-weight: 700; }
+
+        .kpi-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 18px; }
+        .kpi { background: #0c1017; border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
+        .kpi span { display: block; font-size: 0.76rem; color: var(--text-gray); margin-bottom: 4px; }
+        .kpi strong { font-size: 1.25rem; color: #fff; }
+
+        .cta-box { margin-top: 24px; padding: 24px; border-radius: 14px; background: rgba(255,153,0,0.08); border: 1px solid rgba(255,153,0,0.45); }
+        .cta-box h3 { font-size: 1.12rem; margin-bottom: 8px; }
+        .cta-box p { font-size: 0.92rem; color: #ddd; margin-bottom: 14px; }
+
+        footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border-color); color: var(--text-gray); font-size: 0.85rem; }
+        @media (max-width: 860px) {
+            nav { display: none; }
+            .grid-2, .grid-3, .check-grid, .kpi-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo"><a href="index.html">СпецРаздел<span>ПД</span></a></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="news.html">Блог и новости</a></li>
+                <li><a href="calc-razryvy-sp4.html" class="active">Калькулятор СП 4</a></li>
+                <li><a href="index.html#contacts">Контакты</a></li>
+            </ul>
+        </nav>
+        <a href="tel:+79960789054" class="header-phone">+7 (996) 078-90-54</a>
+    </div>
+</header>
+
+<main class="wrap">
+    <section class="hero">
+        <span class="badge">СП 4.13130.2013 • Приложение А • Формулы А.1–А.3</span>
+        <h1>Калькулятор безопасных противопожарных разрывов между зданиями</h1>
+        <p>Инженерная проверка возможности сокращения противопожарного расстояния в обе стороны (Здание 1 → Здание 2 и Здание 2 → Здание 1) с проверкой применимости методики, подбором минимального безопасного разрыва и выгрузкой отчёта в Word.</p>
+    </section>
+
+    <!-- Блок 1: Условия применимости и расстояние -->
+    <section class="card">
+        <h2>1. Проверка применимости Приложения А и расстояние</h2>
+        <div class="grid-3">
+            <div class="field">
+                <label for="r_fact">Требуемое (фактическое) расстояние r_тр, м</label>
+                <input type="number" id="r_fact" step="0.1" min="0.5" value="7.5">
+                <small>Минимальное расстояние в свету между наружными стенами / облучаемыми конструкциями</small>
+            </div>
+            <div class="field">
+                <label for="water_curtain">Противопожарная водяная завеса (СП 485)</label>
+                <select id="water_curtain">
+                    <option value="none" selected>Нет / не подтверждена расчётом</option>
+                    <option value="both">Есть с параметрами по СП 485 (-25% к q_пад)</option>
+                </select>
+                <small>Снижение q_пад на 25% допускается только при защите по СП 485.1311500</small>
+            </div>
+            <div class="field">
+                <label for="obj_name">Шифр / наименование объекта (для отчёта)</label>
+                <input type="text" id="obj_name" placeholder="Например: Жилой дом и ТЦ, г. Оренбург">
+            </div>
+        </div>
+
+        <div class="check-grid" style="margin-top: 8px;">
+            <label class="check-item"><input type="checkbox" id="chk_res_pub" checked> Оба объекта являются жилыми или общественными зданиями/сооружениями</label>
+            <label class="check-item"><input type="checkbox" id="chk_no_f11" checked> Объекты НЕ относятся к классу Ф1.1 (больницы, детсады, дома престарелых)</label>
+            <label class="check-item"><input type="checkbox" id="chk_no_f41" checked> Объекты НЕ относятся к классу Ф4.1 (школы, учреждения доп. образования)</label>
+            <label class="check-item"><input type="checkbox" id="chk_no_danger_trade" checked> Нет специализированной торговли опасными веществами (п. 5.1.3 СП 4)</label>
+            <label class="check-item"><input type="checkbox" id="chk_no_gas" checked> Со стороны разрыва НЕТ пристроенных котельных, ТП, наружного газового оборудования</label>
+            <label class="check-item"><input type="checkbox" id="chk_no_terrace" checked> Нет открытых террас и эксплуатируемых кровель с пожарной нагрузкой</label>
+            <label class="check-item"><input type="checkbox" id="chk_fire_road" checked> Соблюдаются требования к проездам и подъездам пожарной техники</label>
+        </div>
+    </section>
+
+    <!-- Блок 2: Здание 1 и Здание 2 -->
+    <div class="grid-2">
+        <!-- Здание 1 -->
+        <section class="card">
+            <h2>2. Здание 1</h2>
+            <div class="field">
+                <label for="b1_name">Наименование / назначение</label>
+                <input type="text" id="b1_name" value="Здание 1 (административное, Ф4.3)">
+            </div>
+            <div class="grid-2">
+                <div class="field">
+                    <label for="b1_fire">Степень огнестойкости и КПО</label>
+                    <select id="b1_fire">
+                        <option value="A">I, II, III — C0</option>
+                        <option value="B" selected>II, III — C1</option>
+                        <option value="C">IV — C0, C1</option>
+                        <option value="D">IV — C2, C3 или V</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="b1_height">Высота до верха покрытия/конька, м</label>
+                    <input type="number" id="b1_height" step="0.1" min="2" value="9.0">
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="field">
+                    <label for="b1_facade">Длина обращённого фасада, м</label>
+                    <input type="number" id="b1_facade" step="0.1" min="1" value="18.0">
+                </div>
+                <div class="field">
+                    <label for="b1_win_w">Суммарная длина окон этажа (w), м</label>
+                    <input type="number" id="b1_win_w" step="0.1" min="0" value="6.0">
+                    <small>Сумма ширин окон (простенки не считаются)</small>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="field">
+                    <label for="b1_win_h">Высота оконных проёмов, м</label>
+                    <input type="number" id="b1_win_h" step="0.1" min="0" value="1.5">
+                </div>
+                <div class="field">
+                    <label for="b1_belt">Междуэтажные пояса и отделка</label>
+                    <select id="b1_belt">
+                        <option value="ok" selected>Пояса ≥ 1,2 м, отделка НГ/Г1</option>
+                        <option value="bad">Отделка Г2–Г4 или пояса &lt; 1,2 м / отсутствуют</option>
+                    </select>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="field">
+                    <label for="b1_mat_preset">Облучаемый материал Здания 1</label>
+                    <select id="b1_mat_preset" onchange="syncQkrit(1)">
+                        <option value="15">Горючие материалы за остеклением (15 кВт/м²)</option>
+                        <option value="8" selected>Неизвестный горючий материал — консервативно (8 кВт/м²)</option>
+                        <option value="custom">Своё значение q_крит (по табл. А.1 / испытаниям)</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="b1_qkrit">q_крит Здания 1, кВт/м²</label>
+                    <input type="number" id="b1_qkrit" step="0.1" min="1" value="8.0">
+                </div>
+            </div>
+        </section>
+
+        <!-- Здание 2 -->
+        <section class="card">
+            <h2>3. Здание 2</h2>
+            <div class="field">
+                <label for="b2_name">Наименование / назначение</label>
+                <input type="text" id="b2_name" value="Здание 2 (торговое, Ф3.1)">
+            </div>
+            <div class="grid-2">
+                <div class="field">
+                    <label for="b2_fire">Степень огнестойкости и КПО</label>
+                    <select id="b2_fire">
+                        <option value="A">I, II, III — C0</option>
+                        <option value="B">II, III — C1</option>
+                        <option value="C" selected>IV — C0, C1</option>
+                        <option value="D">IV — C2, C3 или V</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="b2_height">Высота до верха покрытия/конька, м</label>
+                    <input type="number" id="b2_height" step="0.1" min="2" value="7.2">
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="field">
+                    <label for="b2_facade">Длина обращённого фасада, м</label>
+                    <input type="number" id="b2_facade" step="0.1" min="1" value="14.0">
+                </div>
+                <div class="field">
+                    <label for="b2_win_w">Суммарная длина окон этажа (w), м</label>
+                    <input type="number" id="b2_win_w" step="0.1" min="0" value="4.5">
+                    <small>Сумма ширин окон (простенки не считаются)</small>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="field">
+                    <label for="b2_win_h">Высота оконных проёмов, м</label>
+                    <input type="number" id="b2_win_h" step="0.1" min="0" value="1.8">
+                </div>
+                <div class="field">
+                    <label for="b2_belt">Междуэтажные пояса и отделка</label>
+                    <select id="b2_belt">
+                        <option value="ok" selected>Пояса ≥ 1,2 м, отделка НГ/Г1</option>
+                        <option value="bad">Отделка Г2–Г4 или пояса &lt; 1,2 м / отсутствуют</option>
+                    </select>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="field">
+                    <label for="b2_mat_preset">Облучаемый материал Здания 2</label>
+                    <select id="b2_mat_preset" onchange="syncQkrit(2)">
+                        <option value="15" selected>Горючие материалы за остеклением (15 кВт/м²)</option>
+                        <option value="8">Неизвестный горючий материал — консервативно (8 кВт/м²)</option>
+                        <option value="custom">Своё значение q_крит (по табл. А.1 / испытаниям)</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="b2_qkrit">q_крит Здания 2, кВт/м²</label>
+                    <input type="number" id="b2_qkrit" step="0.1" min="1" value="15.0">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="actions" style="margin-bottom: 24px;">
+        <button type="button" class="btn btn-primary" onclick="runCalculation()">Выполнить двусторонний расчёт</button>
+        <button type="button" class="btn btn-secondary" id="btnExportWord" style="display:none;" onclick="exportToWord()">Скачать отчёт для ПЗ (.doc)</button>
+        <button type="button" class="btn btn-secondary" id="btnPrint" style="display:none;" onclick="window.print()">Печать / PDF</button>
+    </div>
+
+    <!-- Результаты -->
+    <section class="card result-box" id="resultSection">
+        <h2>Результаты расчётной проверки</h2>
+        <div id="verdictBox"></div>
+
+        <div class="kpi-row" id="kpiRow"></div>
+
+        <div class="table-wrap" id="summaryTableWrap"></div>
+
+        <div id="detailsBlock" style="margin-top: 16px; font-size: 0.9rem; color: #d5dce6;"></div>
+
+        <div class="cta-box">
+            <h3>Нужно официальное расчётное обоснование для экспертизы или разрыв не проходит?</h3>
+            <p>Выполню полный расчёт противопожарных расстояний, расчёт пожарного риска или разработку раздела 9 «Мероприятия по обеспечению пожарной безопасности» по ПП РФ № 87 с сопровождением до положительного заключения экспертизы.</p>
+            <div class="actions" style="margin-top: 10px;">
+                <a href="index.html#contacts" class="btn btn-primary">Отправить генплан и ТЗ на оценку</a>
+                <a href="tel:+79960789054" class="btn btn-secondary">+7 (996) 078-90-54</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 СпецРаздел ПД. Справочно-инженерный калькулятор по Приложению А СП 4.13130.2013.</p>
+</footer>
+
+<script>
+const TABLE_1_SP4 = {
+    A: { A: 6, B: 8, C: 8, D: 10 },
+    B: { A: 8, B: 8, C: 10, D: 12 },
+    C: { A: 8, B: 10, C: 10, D: 12 },
+    D: { A: 10, B: 12, C: 12, D: 15 }
+};
+
+let lastReportHtml = "";
+
+function syncQkrit(num) {
+    const preset = document.getElementById(`b${num}_mat_preset`).value;
+    const inp = document.getElementById(`b${num}_qkrit`);
+    if (preset !== "custom") {
+        inp.value = parseFloat(preset).toFixed(1);
+    }
+}
+
+function calcFq(w, h, r) {
+    if (w <= 0 || h <= 0 || r <= 0) return 0;
+    const dW = Math.sqrt(w * w + r * r);
+    const dH = Math.sqrt(h * h + r * r);
+    const term1 = (w / dW) * Math.atan(h / dW);
+    const term2 = (h / dH) * Math.atan(w / dH);
+    return (1 / (2 * Math.PI)) * (term1 + term2);
+}
+
+function getFlameParams(b) {
+    if (b.fire === "D") {
+        return {
+            w: b.facade,
+            h: Math.min(b.height, 10),
+            note: "IV C2–C3 / V: охват всего фасада, w = L_фасада, h = min(H_зд, 10 м)"
+        };
+    }
+    if (b.belt === "bad") {
+        return {
+            w: b.winW,
+            h: Math.min(b.height, 10),
+            note: "I–IV C0/C1 с отделкой Г2–Г4 или поясами < 1,2 м: w = Σw_окон, h = min(H_зд, 10 м)"
+        };
+    }
+    return {
+        w: b.winW,
+        h: 2 * b.winH,
+        note: "I–IV C0/C1: пожар через проёмы, w = Σw_окон, h = 2 × h_окон"
+    };
+}
+
+function evaluatePair(r, f1, f2, b1, b2, curtainFactor) {
+    const fq12 = calcFq(f1.w, f1.h, r);
+    const qPad12 = 94 * fq12 * curtainFactor;
+    const qDop2 = 0.8 * b2.qkrit;
+    const pass12 = qPad12 < qDop2;
+
+    const fq21 = calcFq(f2.w, f2.h, r);
+    const qPad21 = 94 * fq21 * curtainFactor;
+    const qDop1 = 0.8 * b1.qkrit;
+    const pass21 = qPad21 < qDop1;
+
+    return {
+        d12: { fq: fq12, qPad: qPad12, qKrit: b2.qkrit, qDop: qDop2, pass: pass12 },
+        d21: { fq: fq21, qPad: qPad21, qKrit: b1.qkrit, qDop: qDop1, pass: pass21 },
+        bothPass: pass12 && pass21
+    };
+}
+
+function findMinSafeDistance(minFloor, f1, f2, b1, b2, curtainFactor) {
+    let r = minFloor;
+    while (r <= 50) {
+        if (evaluatePair(r, f1, f2, b1, b2, curtainFactor).bothPass) {
+            if (r === minFloor) return minFloor;
+            let refine = Math.max(minFloor, r - 0.5);
+            while (refine <= r + 0.01) {
+                if (evaluatePair(refine, f1, f2, b1, b2, curtainFactor).bothPass) {
+                    return Math.ceil(refine * 10) / 10;
+                }
+                refine = Math.round((refine + 0.1) * 10) / 10;
+            }
+            return Math.ceil(r * 10) / 10;
+        }
+        r = Math.round((r + 0.5) * 10) / 10;
+    }
+    return null;
+}
+
+function runCalculation() {
+    const rTr = parseFloat(document.getElementById("r_fact").value);
+    const curtainFactor = document.getElementById("water_curtain").value === "both" ? 0.75 : 1.0;
+    const objName = document.getElementById("obj_name").value.trim() || "Объект проектирования";
+
+    const b1 = {
+        name: document.getElementById("b1_name").value.trim() || "Здание 1",
+        fire: document.getElementById("b1_fire").value,
+        height: parseFloat(document.getElementById("b1_height").value) || 0,
+        facade: parseFloat(document.getElementById("b1_facade").value) || 0,
+        winW: parseFloat(document.getElementById("b1_win_w").value) || 0,
+        winH: parseFloat(document.getElementById("b1_win_h").value) || 0,
+        belt: document.getElementById("b1_belt").value,
+        qkrit: parseFloat(document.getElementById("b1_qkrit").value) || 8.0
+    };
+    const b2 = {
+        name: document.getElementById("b2_name").value.trim() || "Здание 2",
+        fire: document.getElementById("b2_fire").value,
+        height: parseFloat(document.getElementById("b2_height").value) || 0,
+        facade: parseFloat(document.getElementById("b2_facade").value) || 0,
+        winW: parseFloat(document.getElementById("b2_win_w").value) || 0,
+        winH: parseFloat(document.getElementById("b2_win_h").value) || 0,
+        belt: document.getElementById("b2_belt").value,
+        qkrit: parseFloat(document.getElementById("b2_qkrit").value) || 8.0
+    };
+
+    const rNorm = TABLE_1_SP4[b1.fire][b2.fire];
+    const minFloor = (b1.fire === "D" || b2.fire === "D") ? 10.0 : 6.0;
+
+    // Проверка применимости Приложения А
+    const appErrors = [];
+    if (!document.getElementById("chk_res_pub").checked) appErrors.push("Оба объекта должны быть жилыми или общественными (п. А.1 СП 4.13130.2013).");
+    if (!document.getElementById("chk_no_f11").checked) appErrors.push("Приложение А не применяется для зданий класса Ф1.1.");
+    if (!document.getElementById("chk_no_f41").checked) appErrors.push("Приложение А не применяется для зданий класса Ф4.1.");
+    if (!document.getElementById("chk_no_danger_trade").checked) appErrors.push("Приложение А не применяется для торговли опасными веществами по п. 5.1.3 СП 4.");
+    if (!document.getElementById("chk_no_gas").checked) appErrors.push("Расчёт не выполняется со стороны пристроенных котельных, ТП и наружного газового оборудования.");
+    if (!document.getElementById("chk_no_terrace").checked) appErrors.push("Приложение А не применяется при наличии открытых террас или эксплуатируемых кровель с пожарной нагрузкой.");
+    if (!document.getElementById("chk_fire_road").checked) appErrors.push("Сокращение расстояния не должно нарушать требования к проездам пожарной техники.");
+    if (isNaN(rTr) || rTr < minFloor) appErrors.push(`Требуемое расстояние r_тр (${isNaN(rTr) ? '—' : rTr} м) ниже минимально допустимого предела по Приложению А (${minFloor} м).`);
+
+    const resSec = document.getElementById("resultSection");
+    resSec.style.display = "block";
+    document.getElementById("btnExportWord").style.display = "inline-flex";
+    document.getElementById("btnPrint").style.display = "inline-flex";
+
+    const f1 = getFlameParams(b1);
+    const f2 = getFlameParams(b2);
+
+    if (rTr >= rNorm) {
+        document.getElementById("verdictBox").innerHTML = `
+            <div class="verdict ok">
+                <h3>Нормативное расстояние соблюдено — расчёт сокращения не требуется</h3>
+                <p>Фактическое расстояние r_тр = <strong>${rTr.toFixed(1)} м</strong> больше или равно нормативному по таблице 1 СП 4.13130.2013 (r_норм = <strong>${rNorm} м</strong>). Расчёт по Приложению А не требуется.</p>
+            </div>`;
+        document.getElementById("kpiRow").innerHTML = `
+            <div class="kpi"><span>По табл. 1 СП 4</span><strong>${rNorm} м</strong></div>
+            <div class="kpi"><span>Заданное r_тр</span><strong>${rTr.toFixed(1)} м</strong></div>
+            <div class="kpi"><span>Нижний предел Прил. А</span><strong>${minFloor} м</strong></div>
+            <div class="kpi"><span>Статус</span><strong style="color:var(--ok)">Соблюдено</strong></div>`;
+        document.getElementById("summaryTableWrap").innerHTML = "";
+        document.getElementById("detailsBlock").innerHTML = "";
+        lastReportHtml = document.getElementById("resultSection").innerHTML;
+        resSec.scrollIntoView({ behavior: "smooth" });
+        return;
+    }
+
+    if (appErrors.length > 0) {
+        document.getElementById("verdictBox").innerHTML = `
+            <div class="verdict err">
+                <h3>Приложение А СП 4.13130.2013 неприменимо</h3>
+                <p>Сокращение противопожарного расстояния по данной методике недопустимо по следующим причинам:</p>
+                <ul style="margin: 10px 0 0 20px; font-size: 0.9rem;">
+                    ${appErrors.map(e => `<li>${e}</li>`).join("")}
+                </ul>
+            </div>`;
+        document.getElementById("kpiRow").innerHTML = `
+            <div class="kpi"><span>По табл. 1 СП 4</span><strong>${rNorm} м</strong></div>
+            <div class="kpi"><span>Заданное r_тр</span><strong>${isNaN(rTr) ? "—" : rTr.toFixed(1) + " м"}</strong></div>
+            <div class="kpi"><span>Нижний предел Прил. А</span><strong>${minFloor} м</strong></div>
+            <div class="kpi"><span>Статус</span><strong style="color:var(--err)">Неприменимо</strong></div>`;
+        document.getElementById("summaryTableWrap").innerHTML = "";
+        document.getElementById("detailsBlock").innerHTML = "<p>Для нестандартных объектов или расстояний меньше минимального порога требуется индивидуальное обоснование (СТУ, расчёт пожарного риска или конструктивные противопожарные преграды).</p>";
+        lastReportHtml = `<h2>Отчёт по Приложению А СП 4.13130.2013 (${objName})</h2>` + document.getElementById("verdictBox").innerHTML;
+        resSec.scrollIntoView({ behavior: "smooth" });
+        return;
+    }
+
+    const res = evaluatePair(rTr, f1, f2, b1, b2, curtainFactor);
+    const rMin = findMinSafeDistance(minFloor, f1, f2, b1, b2, curtainFactor);
+
+    let verdictHtml = "";
+    if (res.bothPass) {
+        verdictHtml = `
+            <div class="verdict ok">
+                <h3>Условие q_пад &lt; q_доп выполняется в обе стороны</h3>
+                <p>По результатам расчётной проверки по Приложению А СП 4.13130.2013 условие q_пад &lt; q_доп выполняется для обоих объектов. Сокращение противопожарного расстояния до <strong>r_тр = ${rTr.toFixed(1)} м</strong> (при норме ${rNorm} м) может быть принято как расчётно обоснованное при соблюдении требований к проездам пожарной техники, строительных и санитарных норм.</p>
+            </div>`;
+    } else {
+        const failList = [];
+        if (!res.d12.pass) failList.push(`Здание 1 → Здание 2 (q_пад = ${res.d12.qPad.toFixed(2)} ≥ q_доп = ${res.d12.qDop.toFixed(2)} кВт/м²)`);
+        if (!res.d21.pass) failList.push(`Здание 2 → Здание 1 (q_пад = ${res.d21.qPad.toFixed(2)} ≥ q_доп = ${res.d21.qDop.toFixed(2)} кВт/м²)`);
+        verdictHtml = `
+            <div class="verdict err">
+                <h3>Сокращение до r_тр = ${rTr.toFixed(1)} м расчётно НЕ подтверждается</h3>
+                <p>Условие q_пад &lt; q_доп не выполняется для сценария: <strong>${failList.join("; ")}</strong>. Сокращение не может быть принято без изменения проектных решений (уменьшение площади остекления, применение противопожарных окон/завес, негорючая отделка) или увеличения расстояния${rMin ? ` минимум до <strong>${rMin.toFixed(1)} м</strong>` : ""}.</p>
+            </div>`;
+    }
+    document.getElementById("verdictBox").innerHTML = verdictHtml;
+
+    document.getElementById("kpiRow").innerHTML = `
+        <div class="kpi"><span>По табл. 1 СП 4</span><strong>${rNorm} м</strong></div>
+        <div class="kpi"><span>Проверяемое r_тр</span><strong>${rTr.toFixed(1)} м</strong></div>
+        <div class="kpi"><span>Минимальное расчётное r_min</span><strong>${rMin ? rMin.toFixed(1) + " м" : "> 50 м"}</strong></div>
+        <div class="kpi"><span>Итог (худший сценарий)</span><strong style="color:${res.bothPass ? 'var(--ok)' : 'var(--err)'}">${res.bothPass ? 'ПРОХОДИТ' : 'НЕ ПРОХОДИТ'}</strong></div>`;
+
+    const tableHtml = `
+        <table>
+            <thead>
+                <tr>
+                    <th>Направление</th>
+                    <th>w, м</th>
+                    <th>h, м</th>
+                    <th>r, м</th>
+                    <th>Fq</th>
+                    <th>q_пад, кВт/м²</th>
+                    <th>q_крит, кВт/м²</th>
+                    <th>q_доп = 0,8·q_крит</th>
+                    <th>Вывод</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Здание 1 → Здание 2</strong><br><small>${b1.name} → ${b2.name}</small></td>
+                    <td>${f1.w.toFixed(2)}</td>
+                    <td>${f1.h.toFixed(2)}</td>
+                    <td>${rTr.toFixed(1)}</td>
+                    <td>${res.d12.fq.toFixed(4)}</td>
+                    <td>${res.d12.qPad.toFixed(2)}</td>
+                    <td>${res.d12.qKrit.toFixed(1)}</td>
+                    <td>${res.d12.qDop.toFixed(2)}</td>
+                    <td class="${res.d12.pass ? 'tag-ok' : 'tag-err'}">${res.d12.pass ? 'q_пад < q_доп (Да)' : 'Не проходит'}</td>
+                </tr>
+                <tr>
+                    <td><strong>Здание 2 → Здание 1</strong><br><small>${b2.name} → ${b1.name}</small></td>
+                    <td>${f2.w.toFixed(2)}</td>
+                    <td>${f2.h.toFixed(2)}</td>
+                    <td>${rTr.toFixed(1)}</td>
+                    <td>${res.d21.fq.toFixed(4)}</td>
+                    <td>${res.d21.qPad.toFixed(2)}</td>
+                    <td>${res.d21.qKrit.toFixed(1)}</td>
+                    <td>${res.d21.qDop.toFixed(2)}</td>
+                    <td class="${res.d21.pass ? 'tag-ok' : 'tag-err'}">${res.d21.pass ? 'q_пад < q_доп (Да)' : 'Не проходит'}</td>
+                </tr>
+            </tbody>
+        </table>`;
+    document.getElementById("summaryTableWrap").innerHTML = tableHtml;
+
+    const detailsHtml = `
+        <p><strong>Принятые расчётные сценарии:</strong></p>
+        <ul style="margin: 6px 0 10px 20px;">
+            <li><strong>Пожар в Здании 1:</strong> ${f1.note}.</li>
+            <li><strong>Пожар в Здании 2:</strong> ${f2.note}.</li>
+            <li><strong>Формулы расчёта:</strong> Приложение А СП 4.13130.2013 — формула А.1 (q_доп = 0,8 · q_крит), формула А.2 (q_пад = 94 · Fq${curtainFactor < 1 ? ' · 0,75 с учётом водяной завесы по СП 485' : ''}), формула А.3 (arctg в радианах).</li>
+        </ul>`;
+    document.getElementById("detailsBlock").innerHTML = detailsHtml;
+
+    lastReportHtml = `
+        <h1>Расчёт безопасного противопожарного расстояния по Приложению А СП 4.13130.2013</h1>
+        <p><strong>Объект:</strong> ${objName}<br><strong>Дата расчёта:</strong> ${new Date().toLocaleDateString('ru-RU')}<br><strong>Выполнено на:</strong> https://www.specrazdel56.ru/calc-razryvy-sp4.html</p>
+        ${verdictHtml}
+        <h3>Сводная таблица результатов</h3>
+        ${tableHtml}
+        ${detailsHtml}
+        <p style="margin-top:20px; font-size:11px; color:#555;">СпецРаздел ПД — разработка разделов ПБ, ГОЧС, ТБЭ по ПП РФ № 87 | Тел.: +7 (996) 078-90-54 | www.specrazdel56.ru</p>
+    `;
+
+    resSec.scrollIntoView({ behavior: "smooth" });
+}
+
+function exportToWord() {
+    if (!lastReportHtml) return;
+    const doc = `
+        <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+        <head><meta charset="utf-8"><style>
+            body { font-family: Arial, sans-serif; font-size: 11pt; color: #111; }
+            table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+            th, td { border: 1px solid #444; padding: 6px; font-size: 9.5pt; }
+            th { background: #eee; }
+            h1 { font-size: 14pt; } h3 { font-size: 12pt; }
+        </style></head>
+        <body>${lastReportHtml}</body></html>`;
+    const blob = new Blob(['\ufeff', doc], { type: 'application/msword' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "raschet-razryvov-SP4-specrazdel56.doc";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+</script>
+
+<!-- Vercel Analytics -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
