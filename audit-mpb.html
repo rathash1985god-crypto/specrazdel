@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Автоматизированная экспертиза раздела 9 МПБ (v3.1) | СпецРаздел ПД</title>
+    <meta name="description" content="Полная онлайн-проверка раздела 9 МПБ по логике Главгосэкспертизы: загрузка PDF, верификация НД, классификатор из 16 параметров, шаблоны EVA/FIRE/SMOKE/ALARM/WATER/CATEGORY, сводки FAIL/DATA_GAP/CONTRADICTION и отчёт Word.">
+    <meta name="keywords" content="экспертиза раздела МПБ, аудит раздела 9 ПБ, проверка PDF МПБ, ПП РФ 87 п 26, шаблоны ГГЭ пожарная безопасность, СпецРаздел ПД">
+    <link rel="canonical" href="https://www.specrazdel56.ru/audit-mpb.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Автоматизированная экспертиза раздела 9 МПБ | СпецРаздел ПД">
+    <meta property="og:description" content="Проверка раздела 9 ПБ по всем 6 направлениям (эвакуация, огнестойкость, ПДВ, АПС/СОУЭ/АУПТ, водоснабжение, категории) с загрузкой PDF и выгрузкой заключения в Word.">
+    <meta property="og:url" content="https://www.specrazdel56.ru/audit-mpb.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Автоматизированная экспертиза раздела 9 МПБ",
+      "applicationCategory": "EngineeringApplication",
+      "operatingSystem": "All",
+      "url": "https://www.specrazdel56.ru/audit-mpb.html",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RUB" },
+      "publisher": { "@type": "Organization", "name": "СпецРаздел ПД", "url": "https://www.specrazdel56.ru/" }
+    }
+    </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114435285', 'ym');
+        ym(114435285, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/114435285" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+    <style>
+        :root {
+            --primary: #ff9900; --primary-soft: #ffbd66; --dark: #080a0f;
+            --text-gray: #aeb6c4; --text: #fff; --border-color: #283142;
+            --ok: #3ad27d; --warn: #ffb84d; --err: #ff5d5d; --info: #4ec3ff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { color: var(--text); background: radial-gradient(circle at 50% -10%, #202b3e 0, var(--dark) 45%); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.25s; }
+
+        header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(11, 11, 11, 0.92); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-weight: 800; font-size: 1.1rem; }
+        .logo span { color: var(--primary); }
+        nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
+        nav a { font-size: 0.9rem; font-weight: 500; color: #ccc; }
+        nav a:hover, nav a.active { color: var(--primary); }
+        .header-phone { font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); }
+
+        .wrap { max-width: 1160px; margin: 0 auto; padding: 112px 20px 80px; }
+        .hero { margin-bottom: 24px; }
+        .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+        .badge { display: inline-block; background: rgba(255,153,0,0.14); color: var(--primary); border: 1px solid rgba(255,153,0,0.4); padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; }
+        .badge-ok { background: rgba(58,210,125,0.12); color: var(--ok); border-color: rgba(58,210,125,0.45); }
+        .hero h1 { font-size: clamp(1.65rem, 3vw, 2.3rem); font-weight: 800; line-height: 1.25; margin-bottom: 10px; }
+        .hero p { color: var(--text-gray); max-width: 900px; font-size: 0.95rem; }
+
+        .card { background: linear-gradient(145deg, rgba(24,30,43,0.96), rgba(14,17,24,0.98)); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+        .card h2 { font-size: 1.12rem; font-weight: 700; margin-bottom: 14px; color: var(--primary-soft); }
+        .sub-title { font-size: 0.94rem; font-weight: 700; color: #fff; margin: 16px 0 10px; padding-left: 10px; border-left: 3px solid var(--primary); }
+
+        .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+
+        .field { margin-bottom: 11px; }
+        .field label { display: block; font-size: 0.81rem; font-weight: 600; color: #d5dce6; margin-bottom: 5px; }
+        .field small { display: block; font-size: 0.74rem; color: var(--text-gray); margin-top: 3px; }
+        .dot-r { color: var(--err); } .dot-o { color: var(--primary); } .dot-y { color: #ffe066; } .dot-g { color: var(--ok); }
+
+        input[type="text"], input[type="number"], select, textarea {
+            width: 100%; background: #0c1017; border: 1px solid var(--border-color);
+            color: #fff; padding: 9px 11px; border-radius: 9px; font-size: 0.89rem; outline: none;
+        }
+        textarea { min-height: 110px; resize: vertical; line-height: 1.5; }
+        input:focus, select:focus, textarea:focus { border-color: var(--primary); }
+
+        .dropzone {
+            border: 1.5px dashed rgba(255,153,0,0.55); border-radius: 12px; padding: 18px;
+            text-align: center; background: rgba(255,153,0,0.04); margin-bottom: 14px; cursor: pointer;
+        }
+        .dropzone:hover { background: rgba(255,153,0,0.09); }
+        .dropzone p { font-size: 0.88rem; color: #ddd; }
+        .dropzone small { color: var(--text-gray); font-size: 0.78rem; }
+
+        .check-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+        .check-item {
+            display: flex; align-items: flex-start; gap: 8px; background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-color); padding: 9px 11px; border-radius: 9px; cursor: pointer; font-size: 0.82rem; color: #d8dee9;
+        }
+        .check-item input { margin-top: 2px; accent-color: var(--primary); width: 15px; height: 15px; flex-shrink: 0; }
+
+        .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+        .btn {
+            border: none; border-radius: 10px; padding: 12px 22px; font-size: 0.93rem;
+            font-weight: 700; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-primary { background: var(--primary); color: #080a0f; }
+        .btn-primary:hover { background: var(--primary-soft); }
+        .btn-secondary { background: rgba(255,255,255,0.06); color: #fff; border: 1px solid var(--border-color); }
+        .btn-secondary:hover { border-color: var(--primary); }
+
+        .result-box { display: none; }
+        .verdict { padding: 18px 20px; border-radius: 12px; margin-bottom: 16px; border: 1px solid; }
+        .verdict.ok { background: rgba(58, 210, 125, 0.1); border-color: rgba(58, 210, 125, 0.5); }
+        .verdict.warn { background: rgba(255, 184, 77, 0.1); border-color: rgba(255, 184, 77, 0.5); }
+        .verdict.err { background: rgba(255, 93, 93, 0.1); border-color: rgba(255, 93, 93, 0.5); }
+        .verdict h3 { font-size: 1.08rem; margin-bottom: 6px; }
+        .verdict p { font-size: 0.91rem; color: #e6ebf2; }
+
+        .kpi-row { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-bottom: 18px; }
+        .kpi { background: #0c1017; border: 1px solid var(--border-color); border-radius: 12px; padding: 12px; }
+        .kpi span { display: block; font-size: 0.74rem; color: var(--text-gray); margin-bottom: 4px; }
+        .kpi strong { font-size: 1.2rem; color: #fff; }
+
+        .table-wrap { overflow-x: auto; margin: 12px 0 18px; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+        th, td { padding: 8px 10px; border: 1px solid var(--border-color); text-align: left; vertical-align: top; }
+        th { background: rgba(255,255,255,0.05); color: var(--primary-soft); font-weight: 700; }
+
+        .pill { display: inline-block; padding: 2px 7px; border-radius: 6px; font-size: 0.74rem; font-weight: 700; white-space: nowrap; }
+        .pill-crit { background: rgba(255,93,93,0.2); color: #ff8c8c; border: 1px solid rgba(255,93,93,0.5); }
+        .pill-maj { background: rgba(255,153,0,0.18); color: #ffbd66; border: 1px solid rgba(255,153,0,0.45); }
+        .pill-gap { background: rgba(78,195,255,0.15); color: #7cd4ff; border: 1px solid rgba(78,195,255,0.45); }
+        .pill-ok { background: rgba(58,210,125,0.14); color: #6ee8a3; border: 1px solid rgba(58,210,125,0.4); }
+        .pill-na { background: rgba(255,255,255,0.08); color: #aeb6c4; border: 1px solid var(--border-color); }
+
+        .cond-card { background: #0c1017; border: 1px solid var(--border-color); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; font-size: 0.85rem; }
+        .cond-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+        .cond-card p { margin-bottom: 4px; color: #d5dce6; }
+
+        .cta-box { margin-top: 24px; padding: 24px; border-radius: 14px; background: rgba(255,153,0,0.08); border: 1px solid rgba(255,153,0,0.45); }
+        .cta-box h3 { font-size: 1.12rem; margin-bottom: 8px; }
+        .cta-box p { font-size: 0.92rem; color: #ddd; margin-bottom: 14px; }
+
+        footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border-color); color: var(--text-gray); font-size: 0.85rem; }
+        @media (max-width: 900px) {
+            nav { display: none; }
+            .grid-2, .grid-3, .grid-4, .check-grid, .kpi-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo"><a href="index.html">СпецРаздел<span>ПД</span></a></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="news.html">Блог и новости</a></li>
+                <li><a href="calc-razryvy-sp4.html">Разрывы СП 4</a></li>
+                <li><a href="calc-sp486.html">Автоматика СП 486</a></li>
+                <li><a href="audit-mpb.html" class="active">Экспертиза МПБ</a></li>
+                <li><a href="index.html#contacts">Контакты</a></li>
+            </ul>
+        </nav>
+        <a href="tel:+79960789054" class="header-phone">+7 (996) 078-90-54</a>
+    </div>
+</header>
+
+<main class="wrap">
+    <section class="hero">
+        <div class="badges">
+            <span class="badge">Раздел 9 ПД (ПП РФ № 87) • Методика ACE v3.1</span>
+            <span class="badge badge-ok" id="normsStatusBadge">Загрузка базы актуальности НД...</span>
+        </div>
+        <h1>Автоматизированная экспертиза раздела 9 МПБ перед госэкспертизой</h1>
+        <p>Полная проверка по 6 группам шаблонов (EVA, FIRE, SMOKE, ALARM, WATER, CATEGORY), классификатор из 16 параметров, загрузка PDF-файла МПБ прямо в браузере, проверка полноты по ПП РФ № 87 п. 26 и выявление внутренних противоречий (CONTRADICTION).</p>
+    </section>
+
+    <!-- ЭТАП 0.1: Режим и Паспорт -->
+    <section class="card">
+        <h2>Этап 0. Режим экспертизы и паспорт объекта</h2>
+        <div class="grid-3">
+            <div class="field">
+                <label for="audit_mode">Режим работы</label>
+                <select id="audit_mode" onchange="toggleTargetSelect()">
+                    <option value="FULL" selected>FULL AUDIT — полная проверка (все 6 шаблонов + ПП № 87)</option>
+                    <option value="EXPRESS">EXPRESS — быстрая проверка (классификатор + EVA + FIRE)</option>
+                    <option value="TARGETED">TARGETED — проверка одного направления</option>
+                </select>
+            </div>
+            <div class="field" id="targetGroupWrap" style="display:none;">
+                <label for="target_group">Выбор направления (TARGETED)</label>
+                <select id="target_group">
+                    <option value="EVA">EVA — Эвакуация (СП 1.13130.2020)</option>
+                    <option value="FIRE">FIRE — Огнестойкость и преграды (СП 2.13130.2020)</option>
+                    <option value="SMOKE">SMOKE — Противодымная защита (СП 7.13130.2013)</option>
+                    <option value="ALARM">ALARM — АПС, СОУЭ, АУПТ, ППКУП</option>
+                    <option value="WATER">WATER — НПВ и ВПВ (СП 8, СП 10)</option>
+                    <option value="CATEGORY">CATEGORY — Категории помещений и здания (СП 12)</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="stage">Стадия проектирования</label>
+                <select id="stage">
+                    <option value="П" selected>П (Проектная документация)</option>
+                    <option value="РД">РД (Рабочая документация)</option>
+                </select>
+            </div>
+        </div>
+        <div class="grid-4">
+            <div class="field"><label for="obj_name">Наименование объекта</label><input type="text" id="obj_name" value="Административно-офисное здание"></div>
+            <div class="field"><label for="obj_addr">Адрес / площадка</label><input type="text" id="obj_addr" placeholder="г. Оренбург, ..."></div>
+            <div class="field"><label for="customer">Заказчик</label><input type="text" id="customer" placeholder="ООО «Заказчик»"></div>
+            <div class="field"><label for="designer">Проектировщик</label><input type="text" id="designer" placeholder="ООО «Проект»"></div>
+        </div>
+    </section>
+
+    <!-- ЭТАП 0.2: PDF / Текст МПБ -->
+    <section class="card">
+        <h2>Этап 0.2. Загрузка PDF-файла раздела МПБ (или вставка текста)</h2>
+        <div class="dropzone" onclick="document.getElementById('pdfInput').click()">
+            <input type="file" id="pdfInput" accept=".pdf,.txt" style="display:none;" onchange="handlePdfUpload(event)">
+            <p id="pdfStatusText">Нажмите, чтобы выбрать PDF-файл раздела 9 МПБ (обработка локально в браузере, файл никуда не отправляется)</p>
+            <small>Скрипт автоматически извлечёт текст, проверит ссылки на отменённые НД и найдёт противоречия по огнестойкости/КПО/ФПО.</small>
+        </div>
+        <div class="field">
+            <label for="mpb_text">Извлечённый текст / перечень НД из раздела МПБ</label>
+            <textarea id="mpb_text" placeholder="Загрузите PDF выше или вставьте сюда текст/список НД из пояснительной записки МПБ...">ФЗ-123, СП 1.13130.2020, СП 2.13130.2020, СП 4.13130.2013, СП 5.13130.2009</textarea>
+        </div>
+    </section>
+
+    <!-- ЭТАП 0.3: Полный классификатор из 16 параметров -->
+    <section class="card">
+        <h2>Этап 0.3. Классификатор входных параметров (16 параметров)</h2>
+        <p style="font-size:0.82rem; color:var(--text-gray); margin-bottom:12px;">
+            <span class="dot-r">●</span> Критический (блокирует аудит) &nbsp;|&nbsp;
+            <span class="dot-o">●</span> Обязательный &nbsp;|&nbsp;
+            <span class="dot-y">●</span> Рекомендуемый (DATA_GAP) &nbsp;|&nbsp;
+            <span class="dot-g">●</span> Опциональный
+        </p>
+
+        <div class="grid-4">
+            <div class="field">
+                <label for="fpo"><span class="dot-r">●</span> 1. Класс ФПО</label>
+                <select id="fpo">
+                    <option value="">— Не указан (СТОП) —</option>
+                    <option value="Ф1.1">Ф1.1 (больницы, детсады)</option>
+                    <option value="Ф1.2">Ф1.2 (гостиницы, общежития)</option>
+                    <option value="Ф1.3">Ф1.3 (МКД)</option>
+                    <option value="Ф1.4">Ф1.4 (одноквартирные)</option>
+                    <option value="Ф2">Ф2 (зрелищные)</option>
+                    <option value="Ф3">Ф3 (торговля, общепит)</option>
+                    <option value="Ф4.1">Ф4.1 (школы)</option>
+                    <option value="Ф4.3" selected>Ф4.3 (офисы, управление)</option>
+                    <option value="Ф5">Ф5 (производство, склады)</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="floors"><span class="dot-r">●</span> 2. Этажность (надземных)</label>
+                <input type="number" id="floors" min="1" step="1" value="5">
+            </div>
+            <div class="field">
+                <label for="height"><span class="dot-r">●</span> 3. Высота здания, м</label>
+                <input type="number" id="height" min="1" step="0.5" value="18.0">
+            </div>
+            <div class="field">
+                <label for="fire_deg"><span class="dot-r">●</span> 4. Степень огнестойкости</label>
+                <select id="fire_deg">
+                    <option value="">— Не указана (СТОП) —</option>
+                    <option value="I">I</option>
+                    <option value="II" selected>II</option>
+                    <option value="III">III</option>
+                    <option value="IV">IV</option>
+                    <option value="V">V</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid-4">
+            <div class="field">
+                <label for="kpo"><span class="dot-o">●</span> 5. Класс КПО</label>
+                <select id="kpo">
+                    <option value="">Не указан</option>
+                    <option value="С0" selected>С0</option>
+                    <option value="С1">С1</option>
+                    <option value="С2">С2</option>
+                    <option value="С3">С3</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="comp_area"><span class="dot-o">●</span> 6. Площадь пож. отсека, м²</label>
+                <input type="number" id="comp_area" min="0" step="10" value="4200">
+            </div>
+            <div class="field">
+                <label for="people"><span class="dot-o">●</span> 7. Численность людей, чел.</label>
+                <input type="number" id="people" min="0" step="1" value="65">
+            </div>
+            <div class="field">
+                <label for="aupt"><span class="dot-o">●</span> 8. Наличие АУПТ (100%)</label>
+                <select id="aupt">
+                    <option value="no" selected>Нет</option>
+                    <option value="yes">Да (100% площади отсека)</option>
+                    <option value="partial">Частично (отдельные помещения)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid-4">
+            <div class="field">
+                <label for="stair_type"><span class="dot-o">●</span> 9. Тип лестничных клеток</label>
+                <select id="stair_type">
+                    <option value="">Не указан</option>
+                    <option value="Л1" selected>Л1 (обычная)</option>
+                    <option value="Л2">Л2 (верхний свет)</option>
+                    <option value="Н1">Н1 (воздушная зона)</option>
+                    <option value="Н2">Н2 (подпор воздуха)</option>
+                    <option value="Н3">Н3 (тамбур-шлюз)</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="b_cat"><span class="dot-y">●</span> 10. Категория здания (Ф5)</label>
+                <select id="b_cat">
+                    <option value="N/A" selected>N/A (для Ф1–Ф4)</option>
+                    <option value="А">А</option>
+                    <option value="Б">Б</option>
+                    <option value="В">В</option>
+                    <option value="Г">Г</option>
+                    <option value="Д">Д</option>
+                    <option value="missing">Не определена</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="cat_calc"><span class="dot-y">●</span> 11. Категории помещений</label>
+                <select id="cat_calc">
+                    <option value="yes">Приложен расчёт по СП 12</option>
+                    <option value="no" selected>Указаны без расчёта</option>
+                    <option value="na">N/A (нет пр-ва/складов/тех. пом.)</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="mgn"><span class="dot-y">●</span> 12. Наличие МГН</label>
+                <select id="mgn">
+                    <option value="no" selected>Нет / не предусмотрено</option>
+                    <option value="yes">Да (присутствуют МГН)</option>
+                    <option value="missing">Не указано в МПБ</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid-4">
+            <div class="field">
+                <label for="pdv"><span class="dot-y">●</span> 13. ПДВ (дымоудаление)</label>
+                <select id="pdv">
+                    <option value="mech_comp">Механическое + компенсация</option>
+                    <option value="mech_nocomp" selected>Механическое (компенсация не указана)</option>
+                    <option value="nat">Естественное проветривание</option>
+                    <option value="none">Не предусмотрено</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="soue"><span class="dot-g">●</span> 14. Тип СОУЭ</label>
+                <select id="soue">
+                    <option value="">Не указан</option>
+                    <option value="1">1 тип (звук)</option>
+                    <option value="2" selected>2 тип (звук + «Выход»)</option>
+                    <option value="3">3 тип (речевое + указатели)</option>
+                    <option value="4">4 тип (зоны + связь)</option>
+                    <option value="5">5 тип (полная автоматизация)</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="water_sys"><span class="dot-g">●</span> 15. НПВ / ВПВ (СП 8, СП 10)</label>
+                <select id="water_sys">
+                    <option value="both" selected>НПВ и ВПВ обоснованы расходом</option>
+                    <option value="only_npv">Только НПВ (ВПВ не обосновано)</option>
+                    <option value="missing">Расходы воды не указаны</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="aps_sys"><span class="dot-g">●</span> 16. АПС / ППКУП</label>
+                <select id="aps_sys">
+                    <option value="ok" selected>АПС есть, ППКУП на круглосуточном посту</option>
+                    <option value="bad_post">ППКУП вне круглосуточного поста</option>
+                    <option value="missing">Размещение ППКУП / АПС не указано</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- ЭТАП 2 и 3: Детали шаблонов + ПП РФ № 87 п. 26 -->
+    <section class="card">
+        <h2>Этап 2 и 3. Параметры шаблонов и полнота раздела (ПП РФ № 87, п. 26)</h2>
+
+        <div class="sub-title">Эвакуация (EVA), Огнестойкость (FIRE) и Дымоудаление (SMOKE)</div>
+        <div class="grid-4">
+            <div class="field"><label for="exits_cnt">Кол-во эвак. выходов (этаж/пом.)</label><input type="number" id="exits_cnt" min="1" value="1"></div>
+            <div class="field"><label for="exit_w">Ширина эвак. выходов, м</label><input type="number" id="exit_w" step="0.05" value="0.9"></div>
+            <div class="field"><label for="corr_w">Ширина коридоров, м</label><input type="number" id="corr_w" step="0.05" value="1.3"></div>
+            <div class="field"><label for="dead_end">Длина тупикового коридора, м</label><input type="number" id="dead_end" step="1" value="22"></div>
+        </div>
+        <div class="grid-4">
+            <div class="field"><label for="corr_len_dark">Коридор без ест. освещения, м</label><input type="number" id="corr_len_dark" step="1" value="18"><small>Для SMOKE_001 (порог 15 м)</small></div>
+            <div class="field"><label for="marsh_w">Ширина марша ЛК, м</label><input type="number" id="marsh_w" step="0.05" value="1.2"></div>
+            <div class="field">
+                <label for="fire_barriers">Преграды и проходки (FIRE_004/005)</label>
+                <select id="fire_barriers">
+                    <option value="ok">Указаны REI/EI преград и проходок</option>
+                    <option value="no_pass" selected>Проходки инженерных сетей не описаны</option>
+                    <option value="missing">Преграды не указаны</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="metal_prot">Огнезащита конструкций (FIRE_001)</label>
+                <select id="metal_prot">
+                    <option value="ok" selected>Пределы по табл. 21 ФЗ-123 обоснованы</option>
+                    <option value="no_cert">Незащ. металлоконструкции без обоснования</option>
+                    <option value="missing">Нет таблицы пределов огнестойкости</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="sub-title">Полнота обязательных подразделов МПБ (ПП РФ № 87, п. 26)</div>
+        <div class="check-grid">
+            <label class="check-item"><input type="checkbox" class="pp87" data-name="Характеристика объекта защиты и описание системы ПБ" checked> Характеристика объекта защиты</label>
+            <label class="check-item"><input type="checkbox" class="pp87" data-name="Обоснование противопожарных расстояний (СП 4)" checked> Противопожарные расстояния</label>
+            <label class="check-item"><input type="checkbox" class="pp87" data-name="Описание и обоснование конструктивных и объёмно-планировочных решений" checked> Конструктивные решения и отсеки</label>
+            <label class="check-item"><input type="checkbox" class="pp87" data-name="Обеспечение безопасности людей при пожаре (эвакуация)" checked> Пути эвакуации и выходы</label>
+            <label class="check-item"><input type="checkbox" class="pp87" data-name="Перечень мероприятий по обеспечению безопасности подразделений ПО" checked> Проезды и доступ пожарных</label>
+            <label class="check-item"><input type="checkbox" class="pp87" data-name="Сведения о категории зданий и помещений по взрывопожарной опасности"> Сведения о категориях (СП 12)</label>
+            <label class="check-item"><input type="checkbox" class="pp87" data-name="Сведения о системах противопожарной защиты (АПС, СОУЭ, АУПТ, ПДВ)" checked> Системы ППЗ (АПС/СОУЭ/ПДВ)</label>
+            <label class="check-item"><input type="checkbox" class="pp87" data-name="Сведения о наружном и внутреннем противопожарном водоснабжении" checked> Водоснабжение (НПВ / ВПВ)</label>
+            <label class="check-item"><input type="checkbox" class="pp87" data-name="Графическая часть (ситуационный план, схемы эвакуации, планы ППЗ)"> Графическая часть МПБ</label>
+        </div>
+    </section>
+
+    <div class="actions" style="margin-bottom: 24px;">
+        <button type="button" class="btn btn-primary" onclick="runAudit()">Запустить экспертизу МПБ</button>
+        <button type="button" class="btn btn-secondary" id="btnWord" style="display:none;" onclick="exportWord()">Скачать полное заключение (.doc)</button>
+        <button type="button" class="btn btn-secondary" id="btnPrint" style="display:none;" onclick="window.print()">Печать / PDF</button>
+    </div>
+
+    <!-- Результаты -->
+    <section class="card result-box" id="resultSection">
+        <h2>Итоговое заключение автоматизированной экспертизы МПБ</h2>
+        <div id="passportBox" style="font-size:0.86rem; color:#d5dce6; margin-bottom:14px;"></div>
+        <div id="verdictBox"></div>
+        <div class="kpi-row" id="kpiRow"></div>
+
+        <div class="sub-title">1. Сводка несоответствий (FAIL)</div>
+        <div class="table-wrap" id="failTableWrap"></div>
+
+        <div class="sub-title">2. Сводка недостающих данных (DATA_GAP)</div>
+        <div class="table-wrap" id="gapTableWrap"></div>
+
+        <div class="sub-title">3. Внутренние противоречия в тексте МПБ (CONTRADICTION)</div>
+        <div class="table-wrap" id="contraTableWrap"></div>
+
+        <div class="sub-title">4. Проверки по шаблонам (режим «Покажи условия применимости»)</div>
+        <div id="conditionsWrap"></div>
+
+        <div class="sub-title">5. Полнота раздела по ПП РФ № 87, п. 26</div>
+        <div class="table-wrap" id="pp87TableWrap"></div>
+
+        <div class="sub-title">6. Классификатор входных параметров (16 параметров)</div>
+        <div class="table-wrap" id="classifierTableWrap"></div>
+
+        <div class="sub-title">7. Верификация нормативной базы (из norms_config.json)</div>
+        <div class="table-wrap" id="normsTableWrap"></div>
+
+        <div class="cta-box">
+            <h3>Нужно устранить замечания или разработать раздел 9 МПБ под ключ?</h3>
+            <p>Проведу полноценный аудит проектной документации (текст + поэтажные планы АР/ПЗУ) по нормам пожарной безопасности и доведу раздел 9 МПБ до положительного заключения экспертизы.</p>
+            <div class="actions" style="margin-top: 10px;">
+                <a href="index.html#contacts" class="btn btn-primary">Прислать проект и ТЗ на оценку</a>
+                <a href="tel:+79960789054" class="btn btn-secondary">+7 (996) 078-90-54</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 СпецРаздел ПД. Автоматизированная экспертиза раздела 9 МПБ (методика v3.1).</p>
+</footer>
+
+<script>
+if (window.pdfjsLib) {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+}
+
+const FALLBACK_NORMS = {
+    last_checked: "2026-11-21",
+    baseline: "Перечень НД по Приказу Росстандарта от 28.11.2025 № 2594 (ред. от 21.01.2026)",
+    active_norms: [
+        { code: "ФЗ-123", edition: "действующая редакция", detected_edition_date: "04.08.2026", detected_status: "ДЕЙСТВУЕТ" },
+        { code: "СП 1.13130.2020", edition: "ред. 16.06.2025", detected_edition_date: "16.06.2025", detected_status: "ДЕЙСТВУЕТ" },
+        { code: "СП 2.13130.2020", edition: "ред. 06.11.2025", detected_edition_date: "06.11.2025", detected_status: "ДЕЙСТВУЕТ" },
+        { code: "СП 3.13130.2026", edition: "утв. Приказом МЧС от 26.02.2026 № 133", detected_edition_date: "", detected_status: "ДЕЙСТВУЕТ" },
+        { code: "СП 4.13130.2013", edition: "изм. № 4 от 27.06.2023", detected_edition_date: "27.06.2023", detected_status: "ДЕЙСТВУЕТ" },
+        { code: "СП 7.13130.2013", edition: "ред. 01.12.2023", detected_edition_date: "", detected_status: "ДЕЙСТВУЕТ" },
+        { code: "СП 8.13130.2020", edition: "ред. 25.12.2023", detected_edition_date: "25.12.2023", detected_status: "ДЕЙСТВУЕТ" },
+        { code: "СП 10.13130.2020", edition: "ред. 18.05.2026", detected_edition_date: "18.05.2026", detected_status: "ДЕЙСТВУЕТ" },
+        { code: "СП 12.13130.2009", edition: "ред. 01.01.2023", detected_edition_date: "", detected_status: "ДЕЙСТВУЕТ" },
+        { code: "СП 484.1311500.2020", edition: "ред. 01.09.2025", detected_edition_date: "", detected_status: "ДЕЙСТВУЕТ" },
+        { code: "СП 485.1311500.2020", edition: "ред. 01.09.2025", detected_edition_date: "", detected_status: "ДЕЙСТВУЕТ" },
+        { code: "СП 486.1311500.2020", edition: "ред. 16.05.2025", detected_edition_date: "16.05.2025", detected_status: "ДЕЙСТВУЕТ" }
+    ],
+    cancelled_norms: [
+        { code: "СП 5.13130.2009", replaced_by: "СП 484 / СП 485 / СП 486", severity: "CRITICAL" },
+        { code: "СНиП 21-01-97*", replaced_by: "СП 2.13130, ФЗ-123", severity: "CRITICAL" },
+        { code: "СП 3.13130.2009", replaced_by: "СП 3.13130.2026", severity: "CRITICAL" }
+    ]
+};
+
+let normsConfig = FALLBACK_NORMS;
+let lastWordHtml = "";
+
+async function loadNormsConfig() {
+    const badge = document.getElementById("normsStatusBadge");
+    try {
+        const resp = await fetch("./norms_config.json?t=" + Date.now());
+        if (resp.ok) normsConfig = await resp.json();
+    } catch (e) {}
+    const dt = normsConfig.last_checked || "2026-11-21";
+    badge.textContent = `База НД проверена: ${dt.split("-").reverse().join(".")}`;
+}
+loadNormsConfig();
+
+function toggleTargetSelect() {
+    const mode = document.getElementById("audit_mode").value;
+    document.getElementById("targetGroupWrap").style.display = (mode === "TARGETED") ? "block" : "none";
+}
+
+async function handlePdfUpload(ev) {
+    const file = ev.target.files[0];
+    if (!file) return;
+    const st = document.getElementById("pdfStatusText");
+    if (file.name.toLowerCase().endsWith(".txt")) {
+        const txt = await file.text();
+        document.getElementById("mpb_text").value = txt;
+        st.textContent = `Загружен TXT: ${file.name} (${txt.length} симв.)`;
+        return;
+    }
+    st.textContent = `Извлекаю текст из PDF: ${file.name}...`;
+    try {
+        const buf = await file.arrayBuffer();
+        const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+        let fullText = "";
+        const maxPages = Math.min(pdf.numPages, 120);
+        for (let i = 1; i <= maxPages; i++) {
+            const page = await pdf.getPage(i);
+            const content = await page.getTextContent();
+            fullText += content.items.map(it => it.str).join(" ") + "\n";
+        }
+        document.getElementById("mpb_text").value = fullText.trim();
+        st.textContent = `PDF загружен: ${file.name} (${pdf.numPages} стр., ${fullText.length} симв.)`;
+    } catch (err) {
+        st.textContent = `Не удалось прочитать PDF (${err.message}). Вставьте текст вручную.`;
+    }
+}
+
+function detectContradictions(text) {
+    const list = [];
+    if (!text || text.length < 30) return list;
+
+    const degMatches = [...new Set((text.match(/степен[ьи]\s+огнестойкости\s*[-—:]?\s*(I{1,3}|IV|V)\b/gi) || [])
+        .map(s => s.match(/(I{1,3}|IV|V)\b/i)[1].toUpperCase()))];
+    if (degMatches.length > 1) {
+        list.push({ param: "Степень огнестойкости", detail: `В тексте МПБ встречаются разные значения: ${degMatches.join(" и ")}.`, rec: "Привести степень огнестойкости к единому значению по всему разделу." });
+    }
+
+    const kpoMatches = [...new Set((text.match(/класс\w*\s+конструктивной\s+пожарной\s+опасности\s*[-—:]?\s*([СC][0-3])/gi) || [])
+        .map(s => s.match(/([СC][0-3])/i)[1].toUpperCase().replace("C", "С")))];
+    if (kpoMatches.length > 1) {
+        list.push({ param: "Класс КПО", detail: `В тексте МПБ указаны разные классы КПО: ${kpoMatches.join(" и ")}.`, rec: "Устранить расхождение класса КПО между пунктами МПБ." });
+    }
+
+    const fpoMatches = [...new Set((text.match(/Ф[1-5]\.[1-5]/g) || []))];
+    if (fpoMatches.length > 3) {
+        list.push({ param: "Классы ФПО", detail: `В тексте упомянуто много классов ФПО (${fpoMatches.join(", ")}) — проверьте чёткость разделения пожарных отсеков/встроенных частей.`, rec: "Чётко закрепить основной класс ФПО здания и классы встроенных помещений." });
+    }
+    return list;
+}
+
+function runAudit() {
+    const mode = document.getElementById("audit_mode").value;
+    const targetGroup = document.getElementById("target_group").value;
+    const stage = document.getElementById("stage").value;
+    const objName = document.getElementById("obj_name").value.trim() || "Объект проектирования";
+    const objAddr = document.getElementById("obj_addr").value.trim() || "не указан";
+    const customer = document.getElementById("customer").value.trim() || "не указан";
+    const designer = document.getElementById("designer").value.trim() || "не указан";
+    const mpbText = document.getElementById("mpb_text").value || "";
+
+    const fpo = document.getElementById("fpo").value;
+    const floors = parseInt(document.getElementById("floors").value, 10);
+    const height = parseFloat(document.getElementById("height").value);
+    const fireDeg = document.getElementById("fire_deg").value;
+    const kpo = document.getElementById("kpo").value;
+    const compArea = parseFloat(document.getElementById("comp_area").value);
+    const people = parseInt(document.getElementById("people").value, 10);
+    const aupt = document.getElementById("aupt").value;
+    const stairType = document.getElementById("stair_type").value;
+    const bCat = document.getElementById("b_cat").value;
+    const catCalc = document.getElementById("cat_calc").value;
+    const mgn = document.getElementById("mgn").value;
+    const pdv = document.getElementById("pdv").value;
+    const soue = document.getElementById("soue").value;
+    const waterSys = document.getElementById("water_sys").value;
+    const apsSys = document.getElementById("aps_sys").value;
+
+    const exitsCnt = parseInt(document.getElementById("exits_cnt").value, 10);
+    const exitW = parseFloat(document.getElementById("exit_w").value);
+    const corrW = parseFloat(document.getElementById("corr_w").value);
+    const deadEnd = parseFloat(document.getElementById("dead_end").value);
+    const corrDark = parseFloat(document.getElementById("corr_len_dark").value);
+    const marshW = parseFloat(document.getElementById("marsh_w").value);
+    const fireBarriers = document.getElementById("fire_barriers").value;
+    const metalProt = document.getElementById("metal_prot").value;
+
+    const sec = document.getElementById("resultSection");
+    sec.style.display = "block";
+    document.getElementById("btnWord").style.display = "inline-flex";
+    document.getElementById("btnPrint").style.display = "inline-flex";
+
+    const todayRu = new Date().toLocaleDateString("ru-RU");
+    const passportHtml = `
+        <strong>ЗАКЛЮЧЕНИЕ № ${todayRu.replace(/\./g, "")}-МПБ</strong> | Режим: <strong>${mode}${mode === "TARGETED" ? " (" + targetGroup + ")" : ""}</strong> | Стадия: <strong>${stage}</strong><br>
+        Объект: <strong>${objName}</strong> | Адрес: ${objAddr} | Заказчик: ${customer} | Проектировщик: ${designer}<br>
+        Нормативная база: ${normsConfig.baseline || "Приказ Росстандарта № 2594"} (проверено: ${normsConfig.last_checked || ""})
+    `;
+    document.getElementById("passportBox").innerHTML = passportHtml;
+
+    // СТОП-ФАКТОР по 4 критическим параметрам
+    const missingCrit = [];
+    if (!fpo) missingCrit.push("Класс ФПО");
+    if (isNaN(floors) || floors < 1) missingCrit.push("Этажность");
+    if (isNaN(height) || height <= 0) missingCrit.push("Высота здания");
+    if (!fireDeg) missingCrit.push("Степень огнестойкости");
+
+    if (missingCrit.length > 0) {
+        const haltHtml = `<div class="verdict err"><h3>ЭКСПЕРТИЗА БЛОКИРОВАНА (СТОП-ФАКТОР)</h3><p>Отсутствуют критические параметры классификатора: <strong>${missingCrit.join(", ")}</strong>. Без заполнения критических параметров применение шаблонов проверок невозможно.</p></div>`;
+        document.getElementById("verdictBox").innerHTML = haltHtml;
+        ["kpiRow","failTableWrap","gapTableWrap","contraTableWrap","conditionsWrap","pp87TableWrap","classifierTableWrap","normsTableWrap"].forEach(id => document.getElementById(id).innerHTML = "");
+        lastWordHtml = `<h1>Заключение экспертизы МПБ</h1><p>${passportHtml}</p>${haltHtml}`;
+        sec.scrollIntoView({ behavior: "smooth" });
+        return;
+    }
+
+    const activeGroups = mode === "FULL"
+        ? ["EVA","FIRE","SMOKE","ALARM","WATER","CATEGORY"]
+        : mode === "EXPRESS"
+            ? ["EVA","FIRE"]
+            : [targetGroup];
+
+    const checks = [];
+    const addCheck = (group, id, name, status, sev, norm, depends, fact, conclusion, rec = "") => {
+        checks.push({ group, id, name, status, sev, norm, depends, fact, conclusion, rec });
+    };
+
+    // Верификация отменённых НД (всегда)
+    let cancelledFound = 0;
+    (normsConfig.cancelled_norms || []).forEach(cn => {
+        const esc = cn.code.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\\ \*/g, "\\*?");
+        if (new RegExp(esc.replace(/\s+/g, "\\s*"), "i").test(mpbText)) {
+            cancelledFound++;
+            addCheck("ND", "ND_CANCELLED", `Ссылка на отменённый документ ${cn.code}`, "FAIL", "CRITICAL",
+                "Приказ Росстандарта № 2594", "Актуальность перечня НД",
+                `В тексте МПБ найдена ссылка на ${cn.code}.`,
+                `Документ утратил силу. Требуется замена на ${cn.replaced_by}.`, `Исключить ссылку на ${cn.code}, применить ${cn.replaced_by}.`);
+        }
+    });
+    if (cancelledFound === 0) {
+        addCheck("ND", "ND_VERIFY", "Верификация ссылок на НД", "PASS", "OK",
+            "Приказ Росстандарта № 2594", "Отсутствие отменённых СП/СНиП",
+            "Запрещённые отменённые НД (СП 5.13130.2009, СНиП 21-01-97*, СП 3.13130.2009) не обнаружены.",
+            "Ссылки соответствуют актуальному реестру.");
+    }
+
+    // --- 1. EVA ---
+    if (activeGroups.includes("EVA")) {
+        // EVA_001
+        const needTwo = (!isNaN(people) && people > 50) || (!isNaN(compArea) && compArea > 300);
+        if (isNaN(exitsCnt) || exitsCnt < 1) {
+            addCheck("EVA", "EVA_001", "Количество эвакуационных выходов", "DATA_GAP", "DATA_GAP",
+                "СП 1.13130.2020, п. 4.2.1–4.2.8", "Класс ФПО, численность (> 50 чел.), площадь (> 300 м²)",
+                "Количество эвакуационных выходов не указано.", "Недостаточно данных для проверки.", "Указать количество выходов с этажа/помещения.");
+        } else if (needTwo && exitsCnt < 2) {
+            addCheck("EVA", "EVA_001", "Количество эвакуационных выходов", "FAIL", "CRITICAL",
+                "СП 1.13130.2020, п. 4.2.1", "Численность > 50 чел. или площадь > 300 м² -> не менее 2 выходов",
+                `Факт: ${exitsCnt} выход при численности ${people} чел. и площади ${compArea} м².`,
+                "Не соответствует: требуется не менее 2 эвакуационных выходов.", "Предусмотреть не менее 2 рассредоточенных эвакуационных выходов.");
+        } else {
+            addCheck("EVA", "EVA_001", "Количество эвакуационных выходов", "PASS", "OK",
+                "СП 1.13130.2020, п. 4.2.1", "Класс ФПО, численность, площадь",
+                `Факт: выходов — ${exitsCnt}, численность — ${people} чел.`, "Соответствует базовым требованиям п. 4.2.1.");
+        }
+
+        // EVA_002 (выходы + МГН)
+        if (!isNaN(exitW) && exitW > 0 && !isNaN(people)) {
+            let reqW = 0.8, cond = "численность ≤ 50 чел.";
+            if (mgn === "yes") { reqW = 1.2; cond = "наличие МГН (≥ 1,2 м без порогов)"; }
+            else if (fpo === "Ф1.1" && people > 15) { reqW = 1.2; cond = "класс Ф1.1, численность > 15 чел."; }
+            else if (people > 50) { reqW = 1.2; cond = "численность > 50 чел."; }
+            const ok = exitW >= reqW;
+            addCheck("EVA", "EVA_002", "Ширина эвакуационных выходов", ok ? "PASS" : "FAIL", ok ? "OK" : "MAJOR",
+                "СП 1.13130.2020, п. 4.2.5", "Численность, класс ФПО, наличие МГН",
+                `Факт: ${exitW.toFixed(2)} м (${cond}).`,
+                ok ? `Соответствует (≥ ${reqW.toFixed(1)} м).` : `Не соответствует: требуется ≥ ${reqW.toFixed(1)} м.`,
+                ok ? "" : `Увеличить ширину эвакуационных выходов минимум до ${reqW.toFixed(1)} м.`);
+        } else {
+            addCheck("EVA", "EVA_002", "Ширина эвакуационных выходов", "DATA_GAP", "DATA_GAP",
+                "СП 1.13130.2020, п. 4.2.5", "Численность, класс ФПО, МГН", "Не указана ширина выхода или численность.", "Недостаточно данных.", "Указать ширину выходов и численность.");
+        }
+
+        // EVA_002C (коридоры и марши)
+        let reqCorr = 1.2;
+        if (fpo === "Ф1.3" || fpo === "Ф1.4") reqCorr = 1.4;
+        else if (fpo === "Ф5") reqCorr = (people > 50) ? 1.2 : 1.0;
+        const okCorr = !isNaN(corrW) && corrW >= reqCorr;
+        addCheck("EVA", "EVA_002C", "Ширина эвакуационных коридоров", okCorr ? "PASS" : "FAIL", okCorr ? "OK" : "MAJOR",
+            "СП 1.13130.2020, п. 4.3.4", `Класс ${fpo}, численность людей -> ≥ ${reqCorr.toFixed(1)} м`,
+            `Факт: ширина коридора ${isNaN(corrW) ? "не указана" : corrW.toFixed(2) + " м"}.`,
+            okCorr ? "Соответствует." : `Не соответствует: для ${fpo} требуется ≥ ${reqCorr.toFixed(1)} м.`,
+            okCorr ? "" : `Расширить коридоры минимум до ${reqCorr.toFixed(1)} м.`);
+
+        // EVA_003 (тупики)
+        let maxDead = 30;
+        if (fpo === "Ф1.3" || fpo === "Ф1.4") maxDead = 15;
+        else if (fpo === "Ф5") maxDead = (bCat === "А" || bCat === "Б") ? 10 : 25;
+        if (!isNaN(deadEnd) && deadEnd > 0) {
+            const okD = deadEnd <= maxDead;
+            addCheck("EVA", "EVA_003", "Длина тупикового участка коридора", okD ? "PASS" : "FAIL", okD ? "OK" : "MAJOR",
+                "СП 1.13130.2020, п. 4.3.2, табл. 6", `Класс ${fpo}${fpo === "Ф5" ? ", кат. " + bCat : ""} -> ≤ ${maxDead} м`,
+                `Факт: ${deadEnd} м.`, okD ? "Соответствует." : `Превышена допустимая длина тупика (${maxDead} м).`,
+                okD ? "" : "Сократить длину тупикового участка или устроить дополнительный выход.");
+        }
+
+        // EVA_004 (лестничные клетки)
+        if (floors >= 2) {
+            const reqMarsh = (fpo === "Ф5") ? 1.05 : 1.2;
+            if (!stairType) {
+                addCheck("EVA", "EVA_004", "Тип лестничных клеток", "DATA_GAP", "DATA_GAP",
+                    "СП 1.13130.2020, п. 4.4", "Этажность ≥ 2, высота здания, класс ФПО", "Тип ЛК не указан.", "Недостаточно данных.", "Указать тип ЛК (Л1/Л2/Н1/Н2/Н3).");
+            } else if (fpo === "Ф5" && (bCat === "А" || bCat === "Б") && !(stairType === "Н2" || stairType === "Н3")) {
+                addCheck("EVA", "EVA_004", "Тип лестничных клеток (Ф5 кат. А, Б)", "FAIL", "CRITICAL",
+                    "СП 1.13130.2020, п. 4.4", "Для Ф5 категорий А, Б независимо от высоты — Н2 или Н3",
+                    `Факт: ЛК типа ${stairType}.`, "Не соответствует: требуются незадымляемые ЛК типа Н2 или Н3.", "Заменить тип ЛК на Н2 или Н3.");
+            } else if (height > 28 && (stairType === "Л1" || stairType === "Л2")) {
+                addCheck("EVA", "EVA_004", "Тип лестничных клеток (высота > 28 м)", "FAIL", "CRITICAL",
+                    "СП 1.13130.2020, п. 4.4.1–4.4.23", "Высота > 28 м -> незадымляемые ЛК (для Ф1.1, Ф1.2, Ф2–Ф4 — Н2/Н3)",
+                    `Факт: высота ${height} м, ЛК ${stairType}.`, "Не соответствует: обычные ЛК не допускаются при высоте > 28 м.", "Предусмотреть незадымляемые ЛК (Н1/Н2/Н3).");
+            } else if (!isNaN(marshW) && marshW < reqMarsh) {
+                addCheck("EVA", "EVA_004", "Ширина марша лестничной клетки", "FAIL", "MAJOR",
+                    "СП 1.13130.2020, п. 4.4", `Для ${fpo} ширина марша ≥ ${reqMarsh} м`,
+                    `Факт: марш ${marshW} м, ЛК ${stairType}.`, `Не соответствует (требуется ≥ ${reqMarsh} м).`, `Увеличить ширину марша до ${reqMarsh} м.`);
+            } else {
+                addCheck("EVA", "EVA_004", "Лестничные клетки (тип и марш)", "PASS", "OK",
+                    "СП 1.13130.2020, п. 4.4", "Высота, этажность, класс ФПО",
+                    `Факт: высота ${height} м, ЛК ${stairType}, марш ${marshW} м.`, "Соответствует.");
+            }
+        }
+    }
+
+    // --- 2. FIRE ---
+    if (activeGroups.includes("FIRE")) {
+        // FIRE_001
+        if (metalProt === "no_cert") {
+            addCheck("FIRE", "FIRE_001", "Пределы огнестойкости конструкций и огнезащита", "FAIL", "CRITICAL",
+                "ФЗ-123, табл. 21; СП 2.13130.2020, табл. 4", `Степень огнестойкости ${fireDeg}, тип конструкций`,
+                "Применены незащищённые металлоконструкции без обоснования огнезащиты.", "Не соответствует табл. 21 ФЗ-123.", "Указать способ огнезащиты и требуемые пределы REI/R.");
+        } else if (metalProt === "missing") {
+            addCheck("FIRE", "FIRE_001", "Пределы огнестойкости конструкций", "DATA_GAP", "DATA_GAP",
+                "ФЗ-123, табл. 21; СП 2.13130.2020", `Степень огнестойкости ${fireDeg}`, "Отсутствует таблица пределов огнестойкости конструкций.", "Недостаточно данных.", "Включить в МПБ таблицу фактических и требуемых пределов огнестойкости.");
+        } else {
+            addCheck("FIRE", "FIRE_001", "Пределы огнестойкости конструкций", "PASS", "OK",
+                "ФЗ-123, табл. 21; СП 2.13130.2020", `Степень огнестойкости ${fireDeg}`, "Пределы огнестойкости обоснованы по табл. 21 ФЗ-123.", "Соответствует.");
+        }
+
+        // FIRE_002
+        if (!kpo) {
+            addCheck("FIRE", "FIRE_002", "Класс конструктивной пожарной опасности (КПО)", "DATA_GAP", "DATA_GAP",
+                "ФЗ-123, табл. 22; СП 2.13130.2020, табл. 3", "Степень огнестойкости, класс ФПО", "Класс КПО не указан.", "Недостаточно данных.", "Указать класс КПО (С0–С3) в разделе МПБ.");
+        } else if ((fireDeg === "I" || fireDeg === "II") && (kpo === "С2" || kpo === "С3")) {
+            addCheck("FIRE", "FIRE_002", "Сочетание степени огнестойкости и класса КПО", "FAIL", "MAJOR",
+                "ФЗ-123, табл. 22; СП 2.13130.2020", `Степень ${fireDeg} требует, как правило, С0 (допускается С1 при обосновании)`,
+                `Факт: ${fireDeg} / ${kpo}.`, "Несоответствующее сочетание степени огнестойкости и КПО.", "Уточнить класс КПО и пожарную опасность конструкций.");
+        } else {
+            addCheck("FIRE", "FIRE_002", "Класс конструктивной пожарной опасности (КПО)", "PASS", "OK",
+                "ФЗ-123, табл. 22; СП 2.13130.2020", "Степень огнестойкости, КПО", `Факт: ${fireDeg} / ${kpo}.`, "Соответствует.");
+        }
+
+        // FIRE_003
+        if (!kpo || isNaN(compArea) || compArea <= 0) {
+            addCheck("FIRE", "FIRE_003", "Площадь пожарного отсека", "DATA_GAP", "DATA_GAP",
+                "СП 2.13130.2020, табл. 6.1–6.16", "Класс ФПО, степень огнестойкости, КПО, АУПТ", "Не указана площадь пожарного отсека или КПО.", "Недостаточно данных.", "Указать площадь каждого пожарного отсека.");
+        } else if (fpo === "Ф4.3") {
+            const lim = { "I_С0": 10000, "II_С0": 5000, "II_С1": 3000, "III_С0": 3000, "III_С1": 2000 }[`${fireDeg}_${kpo}`];
+            if (lim) {
+                const eff = (aupt === "yes") ? lim * 2 : lim;
+                const ok = compArea <= eff;
+                addCheck("FIRE", "FIRE_003", "Площадь пожарного отсека (Ф4.3)", ok ? "PASS" : "FAIL", ok ? "OK" : "CRITICAL",
+                    "СП 2.13130.2020, табл. 6.8", `Степень ${fireDeg}, КПО ${kpo}, АУПТ=${aupt === "yes" ? "Да" : "Нет"} -> ≤ ${eff} м²`,
+                    `Факт: ${compArea} м².`, ok ? "Соответствует табл. 6.8." : `Превышена допустимая площадь отсека (${eff} м²).`,
+                    ok ? "" : "Разделить здание противопожарной стеной 1-го типа (REI 150) или предусмотреть 100% АУПТ.");
+            } else {
+                addCheck("FIRE", "FIRE_003", "Площадь пожарного отсека (Ф4.3)", "DATA_GAP", "DATA_GAP",
+                    "СП 2.13130.2020, табл. 6.8", `Сочетание ${fireDeg}/${kpo}`, `Площадь ${compArea} м².`, "Требуется индивидуальная проверка примечаний табл. 6.8.", "Проверить допустимость по примечаниям СП 2.");
+            }
+        } else {
+            addCheck("FIRE", "FIRE_003", "Площадь пожарного отсека", "DATA_GAP", "DATA_GAP",
+                "СП 2.13130.2020, табл. 6.1–6.16", `Класс ${fpo}, ${fireDeg}/${kpo}, АУПТ`,
+                `Факт: ${compArea} м².`, `Для класса ${fpo} требуется сверка по профильной таблице СП 2.13130.2020.`, "Сверить площадь отсека по табл. 6.1–6.16 СП 2.");
+        }
+
+        // FIRE_004 / 005
+        if (fireBarriers === "no_pass") {
+            addCheck("FIRE", "FIRE_005", "Проходки инженерных систем через преграды", "FAIL", "MAJOR",
+                "СП 2.13130.2020, п. 5.4.3–5.4.6", "Предел огнестойкости узла прохода ≥ предела пересекаемой преграды",
+                "Узлы прохода коммуникаций через противопожарные преграды не описаны.", "Не соответствует п. 5.4.3–5.4.6 СП 2.", "Указать сертифицированные противопожарные муфты/проходки с пределом не ниже преграды.");
+        } else if (fireBarriers === "missing") {
+            addCheck("FIRE", "FIRE_004", "Противопожарные преграды", "DATA_GAP", "DATA_GAP",
+                "ФЗ-123, табл. 23–24; СП 2.13130.2020, п. 5.2–5.4", "Разделение отсеков и помещений разных категорий",
+                "Противопожарные преграды не указаны.", "Недостаточно данных.", "Описать типы преград (REI 150 / EI 45 и т.д.) и заполнение проёмов.");
+        } else {
+            addCheck("FIRE", "FIRE_004/005", "Противопожарные преграды и проходки", "PASS", "OK",
+                "СП 2.13130.2020, п. 5.2–5.4", "Преграды и узлы пересечений", "Типы преград и пределы огнестойкости проходок указаны.", "Соответствует.");
+        }
+    }
+
+    // --- 3. SMOKE ---
+    if (activeGroups.includes("SMOKE")) {
+        const needCorrPdv = (floors >= 2) && (fpo !== "Ф5") && (!isNaN(corrDark) && corrDark > 15);
+        if (needCorrPdv && pdv === "none") {
+            addCheck("SMOKE", "SMOKE_001", "Удаление дыма из коридоров", "FAIL", "CRITICAL",
+                "СП 7.13130.2013, п. 7.2", `Этажность ≥ 2, класс ${fpo}, коридор без ест. освещения > 15 м`,
+                `Факт: длина коридора ${corrDark} м, ПДВ не предусмотрено.`, "Не соответствует п. 7.2 СП 7.", "Предусмотреть вытяжную противодымную вентиляцию коридоров.");
+        } else {
+            addCheck("SMOKE", "SMOKE_001", "Удаление дыма из коридоров", "PASS", "OK",
+                "СП 7.13130.2013, п. 7.2", "Этажность, класс ФПО, длина коридора без естественного освещения",
+                `Факт: коридор ${corrDark} м, статус ПДВ: ${pdv}.`, "Базовое условие соблюдено.");
+        }
+
+        if (stairType === "Н2") {
+            addCheck("SMOKE", "SMOKE_003", "Подпор воздуха в ЛК типа Н2", "PASS", "OK",
+                "СП 7.13130.2013, п. 7.3", "Обязательный расчёт подпора воздуха для ЛК типа Н2",
+                "Предусмотрена ЛК типа Н2.", "Необходимо проверить наличие расчёта расхода воздуха на подпор в смежном разделе ОВ.");
+        }
+
+        if (pdv === "mech_nocomp") {
+            addCheck("SMOKE", "SMOKE_004", "Приточная компенсация удаляемого дыма", "FAIL", "MAJOR",
+                "СП 7.13130.2013, п. 7.14", "При наличии механической вытяжной ПДВ обязательна приточная компенсация",
+                "Предусмотрена механическая ПДВ, но компенсация не указана.", "Не соответствует п. 7.14 СП 7.", "Предусмотреть механическую или естественную приточную компенсацию удаляемого дыма.");
+        }
+    }
+
+    // --- 4. ALARM ---
+    if (activeGroups.includes("ALARM")) {
+        if (!soue) {
+            addCheck("ALARM", "ALARM_003", "Тип СОУЭ", "DATA_GAP", "DATA_GAP",
+                "СП 3.13130.2026 (Приказ МЧС № 133)", "Класс ФПО, этажность, численность, площадь отсека",
+                "Тип СОУЭ не указан в МПБ.", "Недостаточно данных.", "Обосновать и указать тип СОУЭ (1–5).");
+        } else {
+            addCheck("ALARM", "ALARM_003", "Тип СОУЭ", "PASS", "OK",
+                "СП 3.13130.2026", "Класс ФПО, этажность, численность", `Факт: СОУЭ ${soue} типа.`, "Тип указан (сверить таблицу применимости для МГН и этажности).");
+        }
+
+        if (apsSys === "bad_post") {
+            addCheck("ALARM", "ALARM_004", "Размещение прибора ППКУП", "FAIL", "MAJOR",
+                "ФЗ-123, ст. 83", "Круглосуточное пребывание дежурного персонала",
+                "ППКУП размещён вне помещения с круглосуточным постом.", "Не соответствует ст. 83 ФЗ-123.", "Перенести ППКУП в помещение с круглосуточным дежурством или обеспечить дублирование сигналов.");
+        } else if (apsSys === "missing") {
+            addCheck("ALARM", "ALARM_004", "Размещение прибора ППКУП", "DATA_GAP", "DATA_GAP",
+                "ФЗ-123, ст. 83", "Помещение размещения ППКУП", "Не указано помещение размещения ППКУП.", "Недостаточно данных.", "Указать конкретное помещение размещения ППКУП.");
+        } else {
+            addCheck("ALARM", "ALARM_004", "Размещение прибора ППКУП", "PASS", "OK",
+                "ФЗ-123, ст. 83", "Круглосуточное дежурство", "ППКУП размещён на круглосуточном посту.", "Соответствует.");
+        }
+    }
+
+    // --- 5. WATER ---
+    if (activeGroups.includes("WATER")) {
+        if (waterSys === "missing") {
+            addCheck("WATER", "WATER_001/002", "Наружное и внутреннее пожаротушение (НПВ/ВПВ)", "DATA_GAP", "DATA_GAP",
+                "СП 8.13130.2020; СП 10.13130.2020", "Объём здания, этажность, степень огнестойкости, категория",
+                "Расходы воды на НПВ и ВПВ не указаны.", "Недостаточно данных.", "Привести расчётные расходы воды (л/с), количество струй и диаметр ПК.");
+        } else if (waterSys === "only_npv") {
+            addCheck("WATER", "WATER_002", "Внутренний противопожарный водопровод (ВПВ)", "DATA_GAP", "DATA_GAP",
+                "СП 10.13130.2020, табл. 1, 2", "Объём, этажность, класс ФПО, наличие АУПТ",
+                "Указано только НПВ, необходимость ВПВ не обоснована.", "Требуется обоснование наличия или отсутствия ВПВ.", "Проверить необходимость ВПВ по табл. 1 СП 10.");
+        } else {
+            addCheck("WATER", "WATER_001/002", "Противопожарное водоснабжение (НПВ/ВПВ)", "PASS", "OK",
+                "СП 8.13130.2020; СП 10.13130.2020", "Расходы воды, количество струй", "НПВ и ВПВ обоснованы расходами.", "Соответствует.");
+        }
+    }
+
+    // --- 6. CATEGORY ---
+    if (activeGroups.includes("CATEGORY")) {
+        if (catCalc === "no") {
+            addCheck("CATEGORY", "CATEGORY_001", "Категории помещений по взрывопожарной опасности", "FAIL", "CRITICAL",
+                "СП 12.13130.2009, п. 5.1", "Производственные, складские, серверные, электрощитовые, кладовые -> ТОЛЬКО расчётом",
+                "Категории указаны без расчёта (или ссылка на расчёт отсутствует).", "Не соответствует п. 5.1 СП 12.", "Приложить расчёт категорий помещений по методике СП 12.13130.2009.");
+        } else if (catCalc === "yes") {
+            addCheck("CATEGORY", "CATEGORY_001", "Категории помещений", "PASS", "OK",
+                "СП 12.13130.2009, п. 5.1", "Расчётный метод", "Расчёт категорий приложен.", "Соответствует.");
+        } else {
+            addCheck("CATEGORY", "CATEGORY_001", "Категории помещений", "N/A", "N/A",
+                "СП 12.13130.2009", "Для Ф1–Ф4 без встроенных складов/тех. помещений не требуется", "Помещения Ф5 отсутствуют.", "Не применимо.");
+        }
+
+        if (fpo === "Ф5" && (bCat === "N/A" || bCat === "missing")) {
+            addCheck("CATEGORY", "CATEGORY_002", "Категория здания Ф5 по взрывопожарной опасности", "DATA_GAP", "DATA_GAP",
+                "ФЗ-123, ст. 27; СП 12.13130.2009", "Суммарная доля площадей помещений А/Б/В (пороги 5% или 200 м²)",
+                "Для здания класса Ф5 категория здания не определена.", "Недостаточно данных.", "Определить категорию здания по ст. 27 ФЗ-123 и СП 12.");
+        }
+    }
+
+    // Проверка полноты ПП РФ № 87 п. 26
+    const pp87Rows = [];
+    document.querySelectorAll(".pp87").forEach(cb => {
+        const ok = cb.checked;
+        pp87Rows.push({ name: cb.dataset.name, ok });
+        if (mode === "FULL" && !ok) {
+            addCheck("PP87", "PP87_26", `Отсутствует подраздел: ${cb.dataset.name}`, "FAIL", "MAJOR",
+                "ПП РФ № 87, п. 26", "Обязательный состав раздела 9 МПБ",
+                "Подраздел не отмечен как присутствующий в МПБ.", "Нарушение состава раздела по ПП РФ № 87.", `Дополнить раздел 9 подразделом «${cb.dataset.name}».`);
+        }
+    });
+
+    const contradictions = detectContradictions(mpbText);
+
+    // Сводки
+    const fails = checks.filter(c => c.status === "FAIL");
+    const gaps = checks.filter(c => c.status === "DATA_GAP");
+    const critCount = fails.filter(c => c.sev === "CRITICAL").length;
+    const majCount = fails.filter(c => c.sev === "MAJOR").length;
+    const passCount = checks.filter(c => c.status === "PASS").length;
+
+    let vClass = "ok", vTitle = "СООТВЕТСТВУЕТ", vDesc = "Критических и существенных несоответствий не выявлено.";
+    if (critCount > 0 || majCount > 0 || contradictions.length > 0) {
+        vClass = "err";
+        vTitle = "НЕ СООТВЕТСТВУЕТ (риск отрицательного заключения экспертизы)";
+        vDesc = `Выявлено несоответствий (FAIL): ${fails.length} (CRITICAL: ${critCount}, MAJOR: ${majCount}), пробелов данных (DATA_GAP): ${gaps.length}, противоречий (CONTRADICTION): ${contradictions.length}.`;
+    } else if (gaps.length > 0) {
+        vClass = "warn";
+        vTitle = "СООТВЕТСТВУЕТ ЧАСТИЧНО (есть DATA_GAP)";
+        vDesc = `Критических нарушений нет, но зафиксировано ${gaps.length} пробелов в исходных данных — экспертиза запросит недостающие обоснования.`;
+    }
+
+    const verdictHtml = `<div class="verdict ${vClass}"><h3>ИТОГОВАЯ ОЦЕНКА: ${vTitle}</h3><p>${vDesc}</p></div>`;
+    document.getElementById("verdictBox").innerHTML = verdictHtml;
+
+    document.getElementById("kpiRow").innerHTML = `
+        <div class="kpi"><span>CRITICAL</span><strong style="color:${critCount ? 'var(--err)' : 'var(--ok)'}">${critCount}</strong></div>
+        <div class="kpi"><span>MAJOR</span><strong style="color:${majCount ? 'var(--warn)' : 'var(--ok)'}">${majCount}</strong></div>
+        <div class="kpi"><span>DATA_GAP</span><strong style="color:var(--info)">${gaps.length}</strong></div>
+        <div class="kpi"><span>CONTRADICTION</span><strong style="color:${contradictions.length ? 'var(--err)' : 'var(--ok)'}">${contradictions.length}</strong></div>
+        <div class="kpi"><span>PASS</span><strong style="color:var(--ok)">${passCount}</strong></div>`;
+
+    const pill = s => s === "CRITICAL" ? "pill-crit" : s === "MAJOR" ? "pill-maj" : s === "DATA_GAP" ? "pill-gap" : s === "N/A" ? "pill-na" : "pill-ok";
+
+    const failTableHtml = fails.length ? `<table><thead><tr><th>№</th><th>Шаблон</th><th>НД</th><th>Суть нарушения</th><th>Серьёзность</th><th>Рекомендация</th></tr></thead><tbody>${
+        fails.map((f, i) => `<tr><td>${i+1}</td><td><strong>${f.id}</strong></td><td>${f.norm}</td><td>${f.conclusion}</td><td><span class="pill ${pill(f.sev)}">${f.sev}</span></td><td>${f.rec}</td></tr>`).join("")
+    }</tbody></table>` : `<p style="color:var(--ok); font-size:0.88rem;">Несоответствий (FAIL) не выявлено.</p>`;
+    document.getElementById("failTableWrap").innerHTML = failTableHtml;
+
+    const gapTableHtml = gaps.length ? `<table><thead><tr><th>№</th><th>Шаблон</th><th>Недостающий параметр / документ</th><th>Запрос проектировщику</th></tr></thead><tbody>${
+        gaps.map((g, i) => `<tr><td>${i+1}</td><td><strong>${g.id}</strong></td><td>${g.name}: ${g.fact}</td><td>${g.rec}</td></tr>`).join("")
+    }</tbody></table>` : `<p style="color:var(--ok); font-size:0.88rem;">Пробелов исходных данных (DATA_GAP) не выявлено.</p>`;
+    document.getElementById("gapTableWrap").innerHTML = gapTableHtml;
+
+    const contraTableHtml = contradictions.length ? `<table><thead><tr><th>№</th><th>Параметр</th><th>Суть противоречия в тексте МПБ</th><th>Рекомендация</th></tr></thead><tbody>${
+        contradictions.map((c, i) => `<tr><td>${i+1}</td><td><strong>${c.param}</strong></td><td>${c.detail}</td><td>${c.rec}</td></tr>`).join("")
+    }</tbody></table>` : `<p style="color:var(--ok); font-size:0.88rem;">Внутренних противоречий в загруженном тексте МПБ не обнаружено.</p>`;
+    document.getElementById("contraTableWrap").innerHTML = contraTableHtml;
+
+    const condHtml = checks.map(c => `
+        <div class="cond-card">
+            <div class="cond-head">
+                <strong>[${c.id}] ${c.name}</strong>
+                <span class="pill ${pill(c.sev)}">${c.status}${c.status === "FAIL" ? " (" + c.sev + ")" : ""}</span>
+            </div>
+            <p><strong>Зависит от / условие:</strong> ${c.depends}</p>
+            <p><strong>Нормативная база:</strong> ${c.norm}</p>
+            <p><strong>Факт из МПБ:</strong> ${c.fact}</p>
+            <p><strong>Вывод:</strong> ${c.conclusion}</p>
+        </div>
+    `).join("");
+    document.getElementById("conditionsWrap").innerHTML = condHtml;
+
+    const pp87Html = `<table><thead><tr><th>Подраздел по ПП РФ № 87, п. 26</th><th>Наличие в МПБ</th></tr></thead><tbody>${
+        pp87Rows.map(r => `<tr><td>${r.name}</td><td><span class="pill ${r.ok ? 'pill-ok' : 'pill-maj'}">${r.ok ? 'Присутствует' : 'Отсутствует'}</span></td></tr>`).join("")
+    }</tbody></table>`;
+    document.getElementById("pp87TableWrap").innerHTML = pp87Html;
+
+    const clsRows = [
+        ["1", "Класс ФПО", fpo, "🔴 Критический"], ["2", "Этажность", floors, "🔴 Критический"],
+        ["3", "Высота здания, м", height, "🔴 Критический"], ["4", "Степень огнестойкости", fireDeg, "🔴 Критический"],
+        ["5", "Класс КПО", kpo || "—", "🟠 Обязательный"], ["6", "Площадь пож. отсека, м²", isNaN(compArea) ? "—" : compArea, "🟠 Обязательный"],
+        ["7", "Численность людей", isNaN(people) ? "—" : people, "🟠 Обязательный"], ["8", "Наличие АУПТ", aupt, "🟠 Обязательный"],
+        ["9", "Тип ЛК", stairType || "—", "🟠 Обязательный"], ["10", "Категория здания", bCat, "🟡 Рекомендуемый"],
+        ["11", "Категории помещений", catCalc, "🟡 Рекомендуемый"], ["12", "Наличие МГН", mgn, "🟡 Рекомендуемый"],
+        ["13", "ПДВ", pdv, "🟡 Рекомендуемый"], ["14", "Тип СОУЭ", soue || "—", "🟢 Опциональный"],
+        ["15", "НПВ / ВПВ", waterSys, "🟢 Опциональный"], ["16", "АПС / ППКУП", apsSys, "🟢 Опциональный"]
+    ];
+    const clsHtml = `<table><thead><tr><th>№</th><th>Параметр</th><th>Значение</th><th>Критичность</th></tr></thead><tbody>${
+        clsRows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td><strong>${r[2]}</strong></td><td>${r[3]}</td></tr>`).join("")
+    }</tbody></table>`;
+    document.getElementById("classifierTableWrap").innerHTML = clsHtml;
+
+    const normsHtml = `<table><thead><tr><th>Документ</th><th>Актуальная редакция</th><th>Статус (${normsConfig.last_checked || ""})</th></tr></thead><tbody>${
+        (normsConfig.active_norms || []).map(n => `<tr><td><strong>${n.code}</strong></td><td>${n.detected_edition_date ? "ред. от " + n.detected_edition_date : (n.edition || "действующая")}</td><td>${n.detected_status || "ДЕЙСТВУЕТ"}</td></tr>`).join("")
+    }</tbody></table>`;
+    document.getElementById("normsTableWrap").innerHTML = normsHtml;
+
+    lastWordHtml = `
+        <h1>Заключение автоматизированной экспертизы раздела 9 МПБ</h1>
+        <p>${passportHtml}</p>
+        ${verdictHtml}
+        <h3>1. Сводка несоответствий (FAIL)</h3>${failTableHtml}
+        <h3>2. Сводка недостающих данных (DATA_GAP)</h3>${gapTableHtml}
+        <h3>3. Внутренние противоречия (CONTRADICTION)</h3>${contraTableHtml}
+        <h3>4. Классификатор входных параметров</h3>${clsHtml}
+        <h3>5. Полнота раздела (ПП РФ № 87, п. 26)</h3>${pp87Html}
+        <p style="margin-top:18px; font-size:10pt; color:#555;">СпецРаздел ПД — разработка и аудит разделов ПБ, ГОЧС, ТБЭ по ПП РФ № 87 | Тел.: +7 (996) 078-90-54 | www.specrazdel56.ru</p>
+    `;
+
+    sec.scrollIntoView({ behavior: "smooth" });
+}
+
+function exportWord() {
+    if (!lastWordHtml) return;
+    const doc = `
+        <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+        <head><meta charset="utf-8"><style>
+            body { font-family: Arial, sans-serif; font-size: 10.5pt; color: #111; }
+            table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+            th, td { border: 1px solid #444; padding: 5px; font-size: 9pt; }
+            th { background: #eee; }
+        </style></head>
+        <body>${lastWordHtml}</body></html>`;
+    const blob = new Blob(['\ufeff', doc], { type: 'application/msword' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "ekspertiza-MPB-v3.1-specrazdel56.doc";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+</script>
+
+<!-- Vercel Analytics -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
