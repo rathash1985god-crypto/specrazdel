@@ -14,6 +14,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- Базовая микроразметка Schema.org для страницы блога -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Блог и новости проектирования | СпецРаздел ПД",
+      "description": "Актуальные нормативные изменения, разъяснения и статьи по разработке спецразделов проектной документации (ПБ, ГОЧС, ТБЭ).",
+      "url": "https://www.specrazdel56.ru/news.html",
+      "publisher": {
+        "@type": "Organization",
+        "name": "СпецРаздел ПД",
+        "url": "https://www.specrazdel56.ru/"
+      }
+    }
+    </script>
+
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
@@ -35,32 +51,89 @@
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         
         header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(11, 11, 11, 0.9); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
-        .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; position: relative; gap: 10px; }
-        .logo { font-weight: 800; font-size: 1.1rem; white-space: nowrap; }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-weight: 800; font-size: 1.1rem; }
         .logo span { color: var(--primary); }
         nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
         nav a { font-size: 0.9rem; font-weight: 500; color: #ccc; }
         nav a:hover, nav a.active { color: var(--primary); }
-        .header-right { display: flex; align-items: center; gap: 10px; }
-        .header-phone { font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); white-space: nowrap; }
-        .menu-toggle { display: none; background: rgba(255,255,255,0.06); border: 1px solid var(--border-color); color: #fff; font-size: 1.35rem; line-height: 1; padding: 6px 11px; border-radius: 10px; cursor: pointer; }
-        .menu-toggle:hover { border-color: var(--primary); color: var(--primary); }
+        .header-phone { font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); }
 
-        .blog-container { max-width: 1000px; margin: 0 auto; padding: 140px 20px 80px; }
-        .blog-header { text-align: center; margin-bottom: 40px; }
+        .blog-container { max-width: 1040px; margin: 0 auto; padding: 130px 20px 80px; }
+        .blog-header { text-align: center; margin-bottom: 28px; }
         .blog-header h1 { font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800; margin-bottom: 10px; }
         .blog-header p { color: var(--text-gray); }
 
+        /* Подменю-фильтр по 11 направлениям */
+        .directions-nav {
+            background: rgba(20, 24, 33, 0.92);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 30px;
+        }
+        .directions-group-title {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-gray);
+            margin: 10px 0 8px;
+            font-weight: 700;
+        }
+        .directions-group-title:first-child { margin-top: 0; }
+        .directions-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .dir-btn {
+            background: rgba(255, 255, 255, 0.04);
+            color: #d8dee9;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 7px 12px;
+            font-size: 0.84rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-align: left;
+        }
+        .dir-btn:hover {
+            border-color: var(--primary-soft);
+            color: #fff;
+            background: rgba(255, 153, 0, 0.1);
+        }
+        .dir-btn.active {
+            background: var(--primary);
+            color: #080a0f;
+            border-color: var(--primary);
+            font-weight: 700;
+        }
+        .dir-count {
+            font-size: 0.75rem;
+            padding: 1px 6px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            color: inherit;
+        }
+        .dir-btn.active .dir-count {
+            background: rgba(8, 10, 15, 0.2);
+        }
+
         .news-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
-        .news-card { background: linear-gradient(145deg, rgba(29,35,49,.98), rgba(15,18,25,.98)); border: 1px solid var(--border-color); border-radius: 18px; padding: 32px; transition: .25s; box-shadow: 0 18px 45px rgba(0,0,0,.18); }
+        .news-card { background: linear-gradient(145deg, rgba(29,35,49,.98), rgba(15,18,25,.98)); border: 1px solid var(--border-color); border-radius: 18px; padding: 32px; transition: .25s; box-shadow: 0 18px 45px rgba(0,0,0,.18); scroll-margin-top: 90px; }
         .news-card:hover { border-color: rgba(255,255,255,0.55); transform: translateY(-2px); }
         .news-card:nth-child(4n+1) { border-top: 3px solid #ff9900; }
         .news-card:nth-child(4n+2) { border-top: 3px solid #35b7ff; }
         .news-card:nth-child(4n+3) { border-top: 3px solid #55d68b; }
         .news-card:nth-child(4n+4) { border-top: 3px solid #b58cff; }
-        .news-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-gray); margin-bottom: 12px; }
+        .news-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-gray); margin-bottom: 12px; gap: 10px; flex-wrap: wrap; }
         .news-category { background: rgba(255,153,0,0.1); color: var(--primary); padding: 4px 10px; border-radius: 8px; font-weight: 600; }
         .news-card h3 { font-size: clamp(1.25rem, 2vw, 1.65rem); font-weight: 800; margin-bottom: 18px; color: #fff; line-height: 1.35; letter-spacing: -.01em; }
+        .news-card h3 a:hover { color: var(--primary); }
         .news-card p { font-size: 0.95rem; color: #ddd; margin-bottom: 20px; line-height: 1.6; }
         .news-card .article-body { margin-top: 18px; color: #ddd; }
         .article-body h2 { color: var(--primary-soft); font-size: 1.12rem; margin: 28px 0 12px; padding-left: 12px; border-left: 3px solid var(--primary); letter-spacing: .01em; }
@@ -77,27 +150,16 @@
         .article-tag { color: #fff; background: rgba(255,153,0,.18); border:1px solid rgba(255,153,0,.55); border-radius:999px; padding:4px 10px; font-size:.82rem; }
         .article-tag:nth-child(3n+2) { background: rgba(53,183,255,.18); border-color: rgba(53,183,255,.55); }
         .article-tag:nth-child(3n+3) { background: rgba(85,214,139,.18); border-color: rgba(85,214,139,.55); }
+        .article-permalink { margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border-color); }
+        .article-permalink a { color: var(--primary-soft); font-size: 0.9rem; font-weight: 600; }
+        .article-permalink a:hover { color: var(--primary); text-decoration: underline; }
+        .empty-state { text-align: center; padding: 40px 20px; color: var(--text-gray); background: rgba(20,24,33,0.6); border: 1px dashed var(--border-color); border-radius: 16px; }
         
         footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border-color); color: var(--text-gray); font-size: 0.85rem; }
-
         @media (max-width: 768px) {
-            .header-container { padding: 12px 15px; }
-            .header-phone { font-size: 0.8rem; padding: 5px 10px; }
-            .menu-toggle { display: block; }
-            nav {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(11, 11, 11, 0.98);
-                border-bottom: 1px solid var(--border-color);
-                padding: 18px 20px;
-                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
-            }
-            nav.open { display: block; }
-            nav ul { flex-direction: column; align-items: flex-start; gap: 14px; }
-            nav a { display: block; width: 100%; font-size: 1.05rem; padding: 4px 0; }
+            nav { display: none; }
+            .news-card { padding: 22px; }
+            .dir-btn { font-size: 0.8rem; padding: 6px 10px; }
         }
     </style>
 </head>
@@ -106,21 +168,14 @@
     <header>
         <div class="header-container">
             <div class="logo"><a href="index.html">СпецРаздел<span>ПД</span></a></div>
-            <nav id="mainNav">
+            <nav>
                 <ul>
                     <li><a href="index.html">Главная</a></li>
-                    <li><a href="index.html#services">Услуги</a></li>
-                    <li><a href="ai-agents.html">ИИ-агенты 24/7</a></li>
-                    <li><a href="index.html#portfolio">Портфолио</a></li>
-                    <li><a href="reviews.html">Отзывы</a></li>
                     <li><a href="news.html" class="active">Блог и новости</a></li>
                     <li><a href="index.html#contacts">Контакты</a></li>
                 </ul>
             </nav>
-            <div class="header-right">
-                <a href="tel:+79960789054" class="header-phone">+7 (996) 078-90-54</a>
-                <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню">☰</button>
-            </div>
+            <a href="tel:+79960789054" class="header-phone">+7 (996) 078-90-54</a>
         </div>
     </header>
 
@@ -129,6 +184,15 @@
             <h1>Блог и новости проектирования</h1>
             <p>Актуальные нормативные изменения, разъяснения и статьи от инженеров</p>
         </div>
+
+        <!-- Подменю по 11 направлениям -->
+        <section class="directions-nav" id="directionsNav" aria-label="Фильтр новостей по направлениям">
+            <div class="directions-list" id="dirAllWrap"></div>
+            <div class="directions-group-title">Нормативы, экспертиза, ПБ и ПО</div>
+            <div class="directions-list" id="dirRuWrap"></div>
+            <div class="directions-group-title">Искусственный интеллект и автоматизация</div>
+            <div class="directions-list" id="dirAiWrap"></div>
+        </section>
 
         <!-- Сюда JavaScript автоматически подгрузит новости из файла news.json -->
         <div class="news-grid" id="newsContainer">
@@ -141,52 +205,194 @@
     </footer>
 
     <script>
-        // Мобильное меню
-        const menuToggle = document.getElementById('menuToggle');
-        const mainNav = document.getElementById('mainNav');
-        if (menuToggle && mainNav) {
-            menuToggle.addEventListener('click', () => {
-                const isOpen = mainNav.classList.toggle('open');
-                menuToggle.textContent = isOpen ? '✕' : '☰';
+        const EDITORIAL_DIRECTIONS = [
+            { id: "1", lane: "RU", short: "Нормативы и законы", name: "Изменения нормативов и законодательства, влияющие на проектирование" },
+            { id: "2", lane: "RU", short: "Состав ПД", name: "Требования к составу и подготовке проектной документации" },
+            { id: "3", lane: "RU", short: "Госэкспертиза", name: "Государственная экспертиза проектной документации" },
+            { id: "4", lane: "RU", short: "Судебные споры", name: "Судебные споры, связанные с проектированием" },
+            { id: "5", lane: "RU", short: "Пожарные требования", name: "Пожарные требования на стадии проектирования" },
+            { id: "6", lane: "RU", short: "ПО и ТИМ/BIM", name: "Технологии и программное обеспечение для проектировщиков" },
+            { id: "7", lane: "AI", short: "ИИ в проектировании", name: "Искусственный интеллект в проектировании" },
+            { id: "8", lane: "AI", short: "Автоматизация с ИИ", name: "Автоматизация проектных процессов с помощью ИИ" },
+            { id: "9", lane: "AI", short: "Нейросети в компаниях", name: "Внедрение нейросетей в проектных организациях" },
+            { id: "10", lane: "AI", short: "Кейсы и экономия", name: "Практические кейсы ИИ: экономия времени и затрат в проектировании" },
+            { id: "11", lane: "AI", short: "Окупаемость ИИ", name: "Стоимость, окупаемость и эффективность ИИ для проектных организаций" }
+        ];
+
+        let allNewsItems = [];
+        let activeDirectionId = "all";
+
+        function resolveDirection(item) {
+            if (item.direction) {
+                const exact = EDITORIAL_DIRECTIONS.find(d => d.name === item.direction);
+                if (exact) return exact;
+            }
+            const text = `${item.title || ""} ${item.content || ""} ${item.category || ""}`.toLowerCase();
+            if (/пожар|мчс|123-фз|эвакуац|пожаротуш/.test(text)) return EDITORIAL_DIRECTIONS[4];
+            if (/суд|арбитраж|иск|штраф|спор/.test(text)) return EDITORIAL_DIRECTIONS[3];
+            if (/госэкспертиз|ггэ|главгосэкспертиз/.test(text)) return EDITORIAL_DIRECTIONS[2];
+            if (/состав проектной|постановление 87|пп рф 87/.test(text)) return EDITORIAL_DIRECTIONS[1];
+            if (/окупаемост|стоимост.*ии|бюджет.*ии/.test(text)) return EDITORIAL_DIRECTIONS[10];
+            if (/кейс|экономия времени/.test(text)) return EDITORIAL_DIRECTIONS[9];
+            if (/нейросет|claude|openai|llm|ассистент|искусственный интеллект|ии\b/.test(text)) return EDITORIAL_DIRECTIONS[6];
+            if (/nanocad|renga|bim|тим|сапр|аскон|t-flex|цифровизац/.test(text)) return EDITORIAL_DIRECTIONS[5];
+            return EDITORIAL_DIRECTIONS[0];
+        }
+
+        function normalizeIsoDate(item) {
+            if (item.published_at) return item.published_at;
+            if (item.published_at_iso) return item.published_at_iso;
+            if (item.date && /^\d{2}\.\d{2}\.\d{4}$/.test(item.date)) {
+                const [d, m, y] = item.date.split('.');
+                return `${y}-${m}-${d}`;
+            }
+            return item.date || '';
+        }
+
+        function getArticleUrl(item) {
+            if (!item.url) return '';
+            return String(item.url).replace(
+                /^https?:\/\/rathash1985god-crypto\.github\.io\/specrazdel/i,
+                'https://www.specrazdel56.ru'
+            );
+        }
+
+        function injectNewsSchema(newsList) {
+            const schemaData = {
+                "@context": "https://schema.org",
+                "@type": "ItemList",
+                "itemListElement": newsList.map((item, index) => ({
+                    "@type": "ListItem",
+                    "position": index + 1,
+                    "item": {
+                        "@type": "NewsArticle",
+                        "headline": item.title || "",
+                        "datePublished": normalizeIsoDate(item),
+                        "description": item.summary || (item.content ? item.content.slice(0, 220) : ""),
+                        "url": getArticleUrl(item) || `https://www.specrazdel56.ru/news.html#${item.id}`,
+                        "author": { "@type": "Organization", "name": "СпецРаздел ПД" },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "СпецРаздел ПД",
+                            "url": "https://www.specrazdel56.ru/"
+                        }
+                    }
+                }))
+            };
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.textContent = JSON.stringify(schemaData);
+            document.head.appendChild(script);
+        }
+
+        function renderDirectionsMenu() {
+            const counts = {};
+            allNewsItems.forEach(item => {
+                const id = item._dir.id;
+                counts[id] = (counts[id] || 0) + 1;
             });
-            mainNav.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mainNav.classList.remove('open');
-                    menuToggle.textContent = '☰';
+
+            const makeBtn = (id, label, count, titleAttr) => {
+                const activeClass = activeDirectionId === id ? ' active' : '';
+                return `<button type="button" class="dir-btn${activeClass}" data-dir="${id}" title="${titleAttr || label}">
+                    <span>${label}</span>
+                    <span class="dir-count">${count}</span>
+                </button>`;
+            };
+
+            document.getElementById('dirAllWrap').innerHTML = makeBtn('all', 'Все новости', allNewsItems.length, 'Показать все направления');
+            document.getElementById('dirRuWrap').innerHTML = EDITORIAL_DIRECTIONS
+                .filter(d => d.lane === 'RU')
+                .map(d => makeBtn(d.id, d.short, counts[d.id] || 0, d.name))
+                .join('');
+            document.getElementById('dirAiWrap').innerHTML = EDITORIAL_DIRECTIONS
+                .filter(d => d.lane === 'AI')
+                .map(d => makeBtn(d.id, d.short, counts[d.id] || 0, d.name))
+                .join('');
+
+            document.querySelectorAll('.dir-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    activeDirectionId = btn.dataset.dir;
+                    const url = new URL(window.location);
+                    if (activeDirectionId === 'all') {
+                        url.searchParams.delete('dir');
+                    } else {
+                        url.searchParams.set('dir', activeDirectionId);
+                    }
+                    window.history.replaceState({}, '', url);
+                    renderDirectionsMenu();
+                    renderNewsCards();
                 });
             });
         }
 
+        function renderNewsCards() {
+            const container = document.getElementById('newsContainer');
+            const filtered = activeDirectionId === 'all'
+                ? allNewsItems
+                : allNewsItems.filter(item => item._dir.id === activeDirectionId);
+
+            if (filtered.length === 0) {
+                const dirObj = EDITORIAL_DIRECTIONS.find(d => d.id === activeDirectionId);
+                container.innerHTML = `<div class="empty-state">В направлении «${dirObj ? dirObj.name : ''}» пока нет опубликованных новостей.</div>`;
+                return;
+            }
+
+            let html = '';
+            filtered.forEach(item => {
+                const full = item.full_content || item.content || '';
+                const tagMatch = full.match(/((?:#[-а-яёa-z0-9_]+(?:[ ,]+|$))+)/i);
+                const tags = tagMatch ? tagMatch[1].match(/#[-а-яёa-z0-9_]+/gi) || [] : [];
+                const articleHtml = tags.length ? full.replace(tagMatch[1], '') : full;
+                const articleUrl = getArticleUrl(item);
+                const titleHtml = articleUrl
+                    ? `<a href="${articleUrl}">${item.title}</a>`
+                    : item.title;
+
+                html += `
+                    <article class="news-card" id="${item.id}">
+                        <div class="news-meta">
+                            <span class="news-category">${item._dir.name}</span>
+                            <span>${item.date}</span>
+                        </div>
+                        <h3>${titleHtml}</h3>
+                        <div class="article-body">${articleHtml}</div>
+                        ${tags.length ? `<div class="article-tags" aria-label="Ключевые слова">${tags.map(tag => `<span class="article-tag">${tag}</span>`).join('')}</div>` : ''}
+                        ${articleUrl ? `<div class="article-permalink"><a href="${articleUrl}">Открыть отдельную страницу статьи &rarr;</a></div>` : ''}
+                    </article>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
         async function loadNews() {
             try {
-                let response = await fetch('news.json');
-                let newsList = await response.json();
-                let container = document.getElementById('newsContainer');
+                const response = await fetch('news.json');
+                const newsList = await response.json();
                 
-                if (newsList.length === 0) {
-                    container.innerHTML = '<p style="text-align: center; color: var(--text-gray);">Статей пока нет.</p>';
+                if (!newsList || newsList.length === 0) {
+                    document.getElementById('newsContainer').innerHTML = '<p style="text-align: center; color: var(--text-gray);">Статей пока нет.</p>';
                     return;
                 }
 
-                let html = '';
-                newsList.forEach(item => {
-                    const full = item.full_content || item.content || '';
-                    const tagMatch = full.match(/((?:#[-а-яёa-z0-9_]+(?:[ ,]+|$))+)/i);
-                    const tags = tagMatch ? tagMatch[1].match(/#[-а-яёa-z0-9_]+/gi) || [] : [];
-                    const articleHtml = tags.length ? full.replace(tagMatch[1], '') : full;
-                    html += `
-                        <div class="news-card">
-                            <div class="news-meta">
-                                <span class="news-category">Новости проектирования</span>
-                                <span>${item.date}</span>
-                            </div>
-                            <h3>${item.title}</h3>
-                            <div class="article-body">${articleHtml}</div>
-                            ${tags.length ? `<div class="article-tags" aria-label="Ключевые слова">${tags.map(tag => `<span class="article-tag">${tag}</span>`).join('')}</div>` : ''}
-                        </div>
-                    `;
-                });
-                container.innerHTML = html;
+                allNewsItems = newsList.map(item => ({
+                    ...item,
+                    _dir: resolveDirection(item)
+                }));
+
+                const urlDir = new URLSearchParams(window.location.search).get('dir');
+                if (urlDir && EDITORIAL_DIRECTIONS.some(d => d.id === urlDir)) {
+                    activeDirectionId = urlDir;
+                }
+
+                renderDirectionsMenu();
+                renderNewsCards();
+                injectNewsSchema(allNewsItems);
+
+                if (window.location.hash) {
+                    const target = document.querySelector(window.location.hash);
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                }
             } catch (error) {
                 document.getElementById('newsContainer').innerHTML = '<p style="text-align: center; color: var(--text-gray);">Статьи пока не добавлены.</p>';
             }
