@@ -1,0 +1,135 @@
+{
+  "last_checked": "2026-11-21",
+  "baseline": "Перечень НД по Приказу Росстандарта от 28.11.2025 № 2594 (ред. от 21.01.2026)",
+  "active_norms": [
+    {
+      "id": "FZ-123",
+      "code": "ФЗ-123",
+      "edition": "изм. на 01.01.2026",
+      "area": "Базовый закон (ст. 6, 27, 37, 53, 83, 87, 88, 89)",
+      "status": "ACTIVE",
+      "monitor_url": "",
+      "last_status_hash": ""
+    },
+    {
+      "id": "SP-1",
+      "code": "СП 1.13130.2020",
+      "edition": "ред. 16.06.2025",
+      "area": "Эвакуация, пути, лестницы",
+      "status": "ACTIVE",
+      "monitor_url": "",
+      "last_status_hash": ""
+    },
+    {
+      "id": "SP-2",
+      "code": "СП 2.13130.2020",
+      "edition": "ред. 01.12.2023",
+      "area": "Огнестойкость, отсеки, преграды, проходки",
+      "status": "ACTIVE",
+      "monitor_url": "",
+      "last_status_hash": ""
+    },
+    {
+      "id": "SP-3",
+      "code": "СП 3.13130.2009",
+      "edition": "ред. 01.01.2025",
+      "area": "СОУЭ (типы, требования)",
+      "status": "ACTIVE",
+      "monitor_url": "",
+      "last_status_hash": ""
+    },
+    {
+      "id": "SP-4",
+      "code": "СП 4.13130.2013",
+      "edition": "изм. № 4 от 27.06.2023",
+      "area": "Противопожарные расстояния, проезды",
+      "status": "ACTIVE",
+      "monitor_url": "",
+      "last_status_hash": ""
+    },
+    {
+      "id": "SP-6",
+      "code": "СП 6.13130.2021",
+      "edition": "ред. 01.09.2025",
+      "area": "Электроустановки (категории надёжности)",
+      "status": "ACTIVE",
+      "monitor_url": "",
+      "last_status_hash": ""
+    },
+    {
+      "id": "SP-7",
+      "code": "СП 7.13130.2013",
+      "edition": "ред. 01.12.2023",
+      "area": "Противодымная защита (ПДВ)",
+      "status": "ACTIVE",
+      "monitor_url": "",
+      "last_status_hash": ""
+    },
+    {
+      "id": "SP-8",
+      "code": "СП 8.13130.2020",
+      "edition": "ред. 01.01.2025",
+      "area": "Наружное противопожарное водоснабжение",
+      "status": "ACTIVE",
+      "monitor_url": "",
+      "last_status_hash": ""
+    },
+    {
+      "id": "SP-10",
+      "code": "СП 10.13130.2020",
+      "edition": "ред. 01.01.2025",
+      "area": "Внутренний противопожарный водопровод",
+      "status": "ACTIVE",
+      "monitor_url": "",
+      "last_status_hash": ""
+    },
+    {
+      "id": "SP-12",
+      "code": "СП 12.13130.2009",
+      "edition": "ред. 01.01.2023",
+      "area": "Категории помещений и зданий",
+      "status": "ACTIVE",
+      "monitor_url": "",
+      "last_status_hash": ""
+    },
+    {
+      "id": "SP-484",
+      "code": "СП 484.1311500.2020",
+      "edition": "ред. 01.09.2025",
+      "area": "Системы пожарной сигнализации (общие)",
+      "status": "ACTIVE",
+      "monitor_url": "",
+      "last_status_hash": ""
+    },
+    {
+      "id": "SP-485",
+      "code": "СП 485.1311500.2020",
+      "edition": "ред. 01.09.2025",
+      "area": "АПС (автоматическая пожарная сигнализация)",
+      "status": "ACTIVE",
+      "monitor_url": "",
+      "last_status_hash": ""
+    },
+    {
+      "id": "SP-486",
+      "code": "СП 486.1311500.2020",
+      "edition": "ред. 01.09.2025",
+      "area": "АУПТ (автоматические установки пожаротушения)",
+      "status": "ACTIVE",
+      "monitor_url": "",
+      "last_status_hash": ""
+    }
+  ],
+  "cancelled_norms": [
+    {
+      "code": "СП 5.13130.2009",
+      "replaced_by": "СП 484 / СП 485 / СП 486",
+      "severity": "CRITICAL"
+    },
+    {
+      "code": "СНиП 21-01-97*",
+      "replaced_by": "СП 2.13130, ФЗ-123",
+      "severity": "CRITICAL"
+    }
+  ]
+}
