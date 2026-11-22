@@ -59,7 +59,7 @@
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         
         header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(11, 11, 11, 0.94); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
-        .header-container { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; gap: 12px; }
+        .header-container { max-width: 1320px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; gap: 12px; }
         .logo { font-weight: 800; font-size: 1.1rem; letter-spacing: 0.5px; white-space: nowrap; }
         .logo span { color: var(--primary); }
         nav ul { display: flex; list-style: none; gap: 15px; align-items: center; flex-wrap: wrap; }
@@ -67,23 +67,30 @@
         nav a:hover, nav a.active { color: var(--primary); }
         .header-phone { font-weight: 600; font-size: 0.88rem; background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); white-space: nowrap; }
 
-        .hero { min-height: 92vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 20px 70px; }
-        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(11,11,11,0.65), rgba(11,11,11,0.9)), url('assets/img/6d973a13-0343-45e6-abd4-4c5f8f274799-12119908.jpeg') center/cover no-repeat; z-index: -1; }
-        .hero-content { max-width: 680px; margin: 0 auto; position: relative; z-index: 2; width: 100%; }
-        .hero h1 { font-size: clamp(1.8rem, 3.6vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+        /* Первый экран: 3-колоночная сетка, всё прокручивается естественно и ничего не перекрывает */
+        .hero { min-height: 92vh; position: relative; display: flex; align-items: center; justify-content: center; padding: 105px 20px 55px; }
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(11,11,11,0.65), rgba(11,11,11,0.92)), url('assets/img/6d973a13-0343-45e6-abd4-4c5f8f274799-12119908.jpeg') center/cover no-repeat; z-index: -1; }
+        .hero-grid {
+            max-width: 1360px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 272px minmax(0, 1fr) 280px;
+            gap: 24px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-content { text-align: center; padding: 0 10px; }
+        .hero h1 { font-size: clamp(1.85rem, 3.4vw, 3.1rem); font-weight: 800; line-height: 1.18; margin-bottom: 18px; }
         .hero h1 span { color: var(--primary); }
-        .hero h3 { font-size: clamp(1rem, 1.8vw, 1.25rem); font-weight: 400; color: #ddd; margin-bottom: 30px; }
+        .hero h3 { font-size: clamp(0.98rem, 1.7vw, 1.2rem); font-weight: 400; color: #ddd; margin-bottom: 28px; }
 
-        /* Левая колонка: 3 бесплатных инструмента внутри главного экрана (.hero) */
+        /* Левая колонка: 3 бесплатных инструмента */
         .hero-tools-left {
-            position: absolute;
-            left: 24px;
-            bottom: 30px;
-            width: 268px;
             display: flex;
             flex-direction: column;
             gap: 12px;
-            z-index: 5;
             text-align: left;
         }
         .hero-tool-card {
@@ -116,7 +123,7 @@
         .hero-tool-title {
             font-size: 0.9rem;
             font-weight: 800;
-            line-height: 1.28;
+            line-height: 1.26;
             color: #fff;
             margin-bottom: 4px;
         }
@@ -138,37 +145,31 @@
             font-weight: 800;
         }
 
-        /* Правый верхний угол первого экрана: 3 последние новости */
-        .hero-news-right {
-            position: absolute;
-            right: 30px;
-            top: 92px;
-            width: 276px;
-            padding: 14px 15px;
+        /* Правая колонка: Новости -> Предложение за 700 ₽ -> Калькулятор цен (НЕ fixed, уходит со страницей) */
+        .hero-right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+        }
+        .hero-news-card {
+            padding: 13px 14px;
             color: #fff;
             background: linear-gradient(145deg, rgba(34,34,34,0.95) 0%, rgba(17,17,17,0.96) 100%);
             border: 1.5px solid var(--primary);
             border-radius: 15px;
             box-shadow: 0 12px 30px rgba(0,0,0,.55), 0 0 18px rgba(255,153,0,.14);
-            z-index: 5;
-            text-align: left;
-        }
-        .hero-news-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            gap: 8px;
         }
         .hero-news-list {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 7px;
+            margin-top: 8px;
         }
         .hero-news-item {
             display: block;
-            padding: 8px 10px;
-            border-radius: 10px;
+            padding: 7px 9px;
+            border-radius: 9px;
             background: rgba(255,255,255,0.04);
             border: 1px solid rgba(255,255,255,0.08);
             transition: border-color 0.2s ease, background 0.2s ease;
@@ -179,7 +180,7 @@
         }
         .hero-news-date {
             display: block;
-            font-size: 0.69rem;
+            font-size: 0.67rem;
             color: var(--primary);
             font-weight: 700;
             margin-bottom: 2px;
@@ -189,20 +190,116 @@
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            font-size: 0.78rem;
-            line-height: 1.32;
+            font-size: 0.76rem;
+            line-height: 1.3;
             font-weight: 600;
             color: #f0f0f0;
         }
         .hero-news-all {
             display: block;
-            margin-top: 10px;
+            margin-top: 8px;
             text-align: center;
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             font-weight: 700;
             color: var(--primary);
         }
         .hero-news-all:hover { color: #fff; }
+
+        /* Карточка лид-магнита за 700 ₽ внутри правой колонки */
+        #fire-lead-widget {
+            width: 100%;
+            padding: 13px 14px;
+            color: #fff;
+            background: linear-gradient(145deg, #222 0%, #111 100%);
+            border: 1.5px solid var(--primary);
+            border-radius: 15px;
+            box-shadow: 0 12px 30px rgba(0,0,0,.55), 0 0 18px rgba(255,153,0,.14);
+        }
+        #fire-lead-widget .lead-badge {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 6px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            color: #fff;
+            background: #c62828;
+            font-size: .67rem;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+        }
+        #fire-lead-widget .lead-title {
+            margin: 0 0 6px;
+            color: #fff;
+            font-size: .9rem;
+            line-height: 1.25;
+            font-weight: 800;
+        }
+        #fire-lead-widget .lead-price-line {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+        #fire-lead-widget .lead-price {
+            color: var(--primary);
+            font-size: 1.65rem;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: -.5px;
+        }
+        #fire-lead-widget .lead-price-note {
+            color: #fff;
+            font-size: .78rem;
+            font-weight: 700;
+        }
+        #fire-lead-widget .lead-description {
+            margin: 5px 0 9px;
+            color: #bdbdbd;
+            font-size: .73rem;
+            line-height: 1.35;
+        }
+        #fire-lead-widget .lead-button {
+            display: block;
+            width: 100%;
+            padding: 9px 12px;
+            border: 0;
+            border-radius: 9px;
+            color: #111;
+            background: linear-gradient(135deg, var(--primary), #ffb52e);
+            text-align: center;
+            font-size: .84rem;
+            line-height: 1.2;
+            font-weight: 900;
+            transition: transform .2s ease, filter .2s ease;
+        }
+        #fire-lead-widget .lead-button:hover {
+            color: #111;
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+        }
+
+        /* Кнопка калькулятора цен внутри правой колонки (НЕ fixed) */
+        #calc-float-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            padding: 13px 16px;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 0.92rem;
+            box-shadow: 0 10px 26px rgba(255, 153, 0, 0.35);
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        #calc-float-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(255, 153, 0, 0.55); }
         
         .btn-vr { display: inline-block; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; padding: 14px 28px; border-radius: 50px; font-weight: 700; font-size: 1rem; box-shadow: 0 10px 30px rgba(255, 153, 0, 0.4); border: 1px solid rgba(255,255,255,0.2); cursor: pointer; width: 100%; max-width: 320px; text-align: center; }
         .btn-vr:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(255, 153, 0, 0.6); }
@@ -251,107 +348,7 @@
         .ai-agents-link { color: #8ec5ff; font-weight: 700; }
         .ai-agents-link:hover { color: #fff; }
 
-        /* НЕПОДВИЖНЫЙ лид-магнит справа над калькулятором цен */
-        #fire-lead-widget {
-            position: fixed;
-            right: 30px;
-            bottom: 94px;
-            width: 276px;
-            padding: 15px;
-            color: #fff;
-            background: linear-gradient(145deg, #222 0%, #111 100%);
-            border: 2px solid var(--primary);
-            border-radius: 16px;
-            box-shadow: 0 16px 42px rgba(0,0,0,.58), 0 0 24px rgba(255,153,0,.18);
-            z-index: 9998;
-        }
-        #fire-lead-widget .lead-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 8px;
-            padding: 5px 9px;
-            border-radius: 999px;
-            color: #fff;
-            background: #c62828;
-            font-size: .7rem;
-            line-height: 1;
-            font-weight: 800;
-            letter-spacing: .5px;
-            text-transform: uppercase;
-        }
-        #fire-lead-widget .lead-title {
-            margin: 0 0 8px;
-            color: #fff;
-            font-size: .96rem;
-            line-height: 1.28;
-            font-weight: 800;
-        }
-        #fire-lead-widget .lead-price-line {
-            display: flex;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: 7px;
-            margin-bottom: 4px;
-        }
-        #fire-lead-widget .lead-price {
-            color: var(--primary);
-            font-size: 1.85rem;
-            line-height: 1;
-            font-weight: 900;
-            letter-spacing: -.7px;
-        }
-        #fire-lead-widget .lead-price-note {
-            color: #fff;
-            font-size: .8rem;
-            font-weight: 700;
-        }
-        #fire-lead-widget .lead-description {
-            margin: 6px 0 11px;
-            color: #bdbdbd;
-            font-size: .76rem;
-            line-height: 1.38;
-        }
-        #fire-lead-widget .lead-button {
-            display: block;
-            width: 100%;
-            padding: 11px 12px;
-            border: 0;
-            border-radius: 10px;
-            color: #111;
-            background: linear-gradient(135deg, var(--primary), #ffb52e);
-            text-align: center;
-            font-size: .88rem;
-            line-height: 1.2;
-            font-weight: 900;
-            box-shadow: 0 7px 18px rgba(255,153,0,.22);
-            transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
-        }
-        #fire-lead-widget .lead-button:hover {
-            color: #111;
-            transform: translateY(-2px);
-            filter: brightness(1.05);
-            box-shadow: 0 10px 24px rgba(255,153,0,.32);
-        }
-
-        /* Плавающий калькулятор (справа внизу) */
-        #calc-float-btn {
-            position: fixed; bottom: 30px; right: 30px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: #fff; padding: 14px 22px; border-radius: 50px;
-            font-weight: 700; font-size: 0.95rem;
-            box-shadow: 0 10px 30px rgba(255, 153, 0, 0.4);
-            border: 1px solid rgba(255,255,255,0.2); cursor: pointer;
-            z-index: 9999; display: flex; align-items: center; gap: 10px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: pulse-glow 2s infinite;
-        }
-        #calc-float-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(255, 153, 0, 0.6); }
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0.4); }
-            70% { box-shadow: 0 0 0 12px rgba(255, 153, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0); }
-        }
+        /* Модальное окно калькулятора (открывается только по клику) */
         #calc-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px);
@@ -399,26 +396,20 @@
         }
         .calc-action-btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
-        /* Планшеты и узкие экраны */
-        @media (max-width: 1280px) {
-            .hero { flex-direction: column; gap: 24px; }
+        /* Планшеты и ноутбуки с узким экраном */
+        @media (max-width: 1120px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                max-width: 720px;
+                gap: 24px;
+            }
+            .hero-content { order: 1; }
             .hero-tools-left {
-                position: static;
-                width: 100%;
-                max-width: 900px;
+                order: 2;
                 display: grid;
                 grid-template-columns: repeat(3, minmax(0, 1fr));
             }
-            .hero-news-right {
-                position: static;
-                width: 100%;
-                max-width: 900px;
-            }
-            .hero-news-list {
-                display: grid;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: 10px;
-            }
+            .hero-right-col { order: 3; }
         }
 
         /* Мобильная версия */
@@ -459,21 +450,9 @@
                 border-color: var(--primary);
                 color: var(--primary);
             }
-            .hero { padding-top: 150px; }
-            .hero-tools-left, .hero-news-list { grid-template-columns: 1fr; }
-            .hero-tools-left, .hero-news-right { max-width: 380px; }
+            .hero { padding-top: 145px; }
+            .hero-tools-left { grid-template-columns: 1fr; }
             .sections-checkboxes { grid-template-columns: 1fr; }
-            #calc-float-btn { right: 14px; bottom: 14px; padding: 12px 16px; font-size: 0.85rem; }
-            #fire-lead-widget {
-                right: 14px;
-                bottom: 72px;
-                width: min(230px, calc(100vw - 28px));
-                padding: 12px;
-            }
-            #fire-lead-widget .lead-title { font-size: 0.85rem; }
-            #fire-lead-widget .lead-price { font-size: 1.55rem; }
-            #fire-lead-widget .lead-description { font-size: 0.7rem; margin: 5px 0 8px; }
-            #fire-lead-widget .lead-button { padding: 9px 10px; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -505,49 +484,66 @@
 
     <section class="hero" id="main">
         <div class="hero-bg"></div>
-
-        <!-- Левая колонка: 3 бесплатных инженерных инструмента на первом экране -->
-        <aside class="hero-tools-left" aria-label="Бесплатные инженерные калькуляторы и проверка норм">
-            <a href="audit-mpb.html" class="hero-tool-card">
-                <span class="hero-tool-badge">Бесплатно • ПДФ / Ворд</span>
-                <div class="hero-tool-title">Проверка раздела МПБ по нормативам</div>
-                <div class="hero-tool-desc">Поиск отменённых СП и сверка актуальных редакций за 2 секунды.</div>
-                <span class="hero-tool-btn">Проверить нормы МПБ</span>
-            </a>
-
-            <a href="calc-sp486.html" class="hero-tool-card">
-                <span class="hero-tool-badge">СП 486.1311500.2020</span>
-                <div class="hero-tool-title">Подбор АУП / СПС (сигнализация)</div>
-                <div class="hero-tool-desc">Таблицы 1–4, правило 40% (п. 4.5) и допуск 5% (п. 4.8) с отчётом в Ворд.</div>
-                <span class="hero-tool-btn">Подобрать автоматику</span>
-            </a>
-
-            <a href="calc-razryvy-sp4.html" class="hero-tool-card">
-                <span class="hero-tool-badge">СП 4.13130.2013</span>
-                <div class="hero-tool-title">Расчёт противопожарных разрывов</div>
-                <div class="hero-tool-desc">Таблица 1 и расчёт по Приложению А с выгрузкой заключения в Ворд.</div>
-                <span class="hero-tool-btn">Рассчитать разрывы</span>
-            </a>
-        </aside>
-
-        <!-- Правый верхний угол: 3 последние новости с сайта -->
-        <aside class="hero-news-right" aria-label="Последние новости проектирования">
-            <div class="hero-news-header">
-                <span class="hero-tool-badge" style="margin:0;">Актуальные новости</span>
-            </div>
-            <div class="hero-news-list" id="heroNewsList">
-                <a href="news.html" class="hero-news-item">
-                    <span class="hero-news-date">Загрузка...</span>
-                    <span class="hero-news-title">Открыть ленту новостей проектирования</span>
+        <div class="hero-grid">
+            <!-- ЛЕВАЯ КОЛОНКА: 3 бесплатных инструмента -->
+            <aside class="hero-tools-left" aria-label="Бесплатные инженерные калькуляторы и проверка норм">
+                <a href="audit-mpb.html" class="hero-tool-card">
+                    <span class="hero-tool-badge">Бесплатно • ПДФ / Ворд</span>
+                    <div class="hero-tool-title">Проверка раздела МПБ по нормативам</div>
+                    <div class="hero-tool-desc">Поиск отменённых СП и сверка актуальных редакций за 2 секунды.</div>
+                    <span class="hero-tool-btn">Проверить нормы МПБ</span>
                 </a>
-            </div>
-            <a href="news.html" class="hero-news-all">Все новости проектирования &rarr;</a>
-        </aside>
 
-        <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
-            <h1>Разработка спецразделов <span>проектной документации</span></h1>
-            <h3>Узкая специализация · Опыт работы с 2008 года · Госэкспертиза с первого раза</h3>
-            <a href="https://max.ru/id561901317631_4_bot" target="_blank" class="btn-vr">Задать вопрос инженеру</a>
+                <a href="calc-sp486.html" class="hero-tool-card">
+                    <span class="hero-tool-badge">СП 486.1311500.2020</span>
+                    <div class="hero-tool-title">Подбор АУП / СПС (сигнализация)</div>
+                    <div class="hero-tool-desc">Таблицы 1–4, правило 40% (п. 4.5) и допуск 5% (п. 4.8) с отчётом в Ворд.</div>
+                    <span class="hero-tool-btn">Подобрать автоматику</span>
+                </a>
+
+                <a href="calc-razryvy-sp4.html" class="hero-tool-card">
+                    <span class="hero-tool-badge">СП 4.13130.2013</span>
+                    <div class="hero-tool-title">Расчёт противопожарных разрывов</div>
+                    <div class="hero-tool-desc">Таблица 1 и расчёт по Приложению А с выгрузкой заключения в Ворд.</div>
+                    <span class="hero-tool-btn">Рассчитать разрывы</span>
+                </a>
+            </aside>
+
+            <!-- ЦЕНТР: Главный заголовок -->
+            <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
+                <h1>Разработка спецразделов <span>проектной документации</span></h1>
+                <h3>Узкая специализация · Опыт работы с 2008 года · Госэкспертиза с первого раза</h3>
+                <a href="https://max.ru/id561901317631_4_bot" target="_blank" class="btn-vr">Задать вопрос инженеру</a>
+            </div>
+
+            <!-- ПРАВАЯ КОЛОНКА: 1. Новости -> 2. Предложение за 700 ₽ -> 3. Калькулятор цен (НЕ сползает при прокрутке) -->
+            <aside class="hero-right-col" aria-label="Новости, спецпредложение и калькулятор стоимости">
+                <div class="hero-news-card">
+                    <span class="hero-tool-badge" style="margin:0;">Актуальные новости</span>
+                    <div class="hero-news-list" id="heroNewsList">
+                        <a href="news.html" class="hero-news-item">
+                            <span class="hero-news-date">Загрузка...</span>
+                            <span class="hero-news-title">Открыть ленту новостей проектирования</span>
+                        </a>
+                    </div>
+                    <a href="news.html" class="hero-news-all">Все новости проектирования &rarr;</a>
+                </div>
+
+                <div id="fire-lead-widget">
+                    <div class="lead-badge">Только сегодня</div>
+                    <h2 class="lead-title">Пожарная проверка одноэтажного здания целиком</h2>
+                    <div class="lead-price-line">
+                        <span class="lead-price">700 ₽</span>
+                        <span class="lead-price-note">за всё здание</span>
+                    </div>
+                    <p class="lead-description">Специальная цена действует только сегодня. Успейте оставить заявку.</p>
+                    <a class="lead-button" href="pozharnaya-proverka.html">Получить за 700 ₽</a>
+                </div>
+
+                <button id="calc-float-btn" type="button" onclick="openCalculator()">
+                    <span>🧮</span> Калькулятор стоимости
+                </button>
+            </aside>
         </div>
     </section>
 
@@ -708,23 +704,7 @@
         <p>&copy; 2026 СпецРаздел ПД. Все права защищены. <a href="privacy.html">Политика конфиденциальности</a></p>
     </footer>
 
-    <!-- НЕПОДВИЖНЫЙ ЛИД-МАГНИТ: закреплён справа над калькулятором цен -->
-    <aside id="fire-lead-widget" aria-label="Специальное предложение: пожарная проверка одноэтажного здания за 700 рублей">
-        <div class="lead-badge">Только сегодня</div>
-        <h2 class="lead-title">Пожарная проверка одноэтажного здания целиком</h2>
-        <div class="lead-price-line">
-            <span class="lead-price">700 ₽</span>
-            <span class="lead-price-note">за всё здание</span>
-        </div>
-        <p class="lead-description">Специальная цена действует только сегодня. Успейте оставить заявку.</p>
-        <a class="lead-button" href="pozharnaya-proverka.html">Получить за 700 ₽</a>
-    </aside>
-
-    <!-- ПЛАВАЮЩИЙ КАЛЬКУЛЯТОР (справа внизу) -->
-    <button id="calc-float-btn" onclick="openCalculator()">
-        <span>🧮</span> Калькулятор стоимости
-    </button>
-
+    <!-- МОДАЛЬНОЕ ОКНО КАЛЬКУЛЯТОРА -->
     <div id="calc-modal">
         <div class="calc-container">
             <button class="calc-close" onclick="closeCalculator()">&times;</button>
@@ -802,7 +782,7 @@
     <script>
         AOS.init({ duration: 800, once: true });
 
-        // Загрузка 3 последних новостей из news.json в правый верхний блок
+        // Загрузка 3 последних новостей из news.json
         async function loadLatestHeroNews() {
             const box = document.getElementById('heroNewsList');
             if (!box) return;
