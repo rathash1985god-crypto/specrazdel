@@ -59,20 +59,84 @@
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         
         header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(11, 11, 11, 0.94); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
-        .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; gap: 12px; }
+        .header-container { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; gap: 12px; }
         .logo { font-weight: 800; font-size: 1.1rem; letter-spacing: 0.5px; white-space: nowrap; }
         .logo span { color: var(--primary); }
-        nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
-        nav a { font-size: 0.9rem; font-weight: 500; color: #ccc; white-space: nowrap; }
+        nav ul { display: flex; list-style: none; gap: 15px; align-items: center; flex-wrap: wrap; }
+        nav a { font-size: 0.86rem; font-weight: 500; color: #ccc; white-space: nowrap; }
         nav a:hover, nav a.active { color: var(--primary); }
-        .header-phone { font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); white-space: nowrap; }
+        .header-phone { font-weight: 600; font-size: 0.88rem; background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); white-space: nowrap; }
 
-        .hero { min-height: 90vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 20px 60px; }
+        .hero { min-height: 92vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 20px 70px; }
         .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(11,11,11,0.65), rgba(11,11,11,0.9)), url('assets/img/6d973a13-0343-45e6-abd4-4c5f8f274799-12119908.jpeg') center/cover no-repeat; z-index: -1; }
-        .hero-content { max-width: 900px; margin: 0 auto; position: relative; z-index: 2; width: 100%; }
-        .hero h1 { font-size: clamp(1.8rem, 4vw, 3.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+        .hero-content { max-width: 720px; margin: 0 auto; position: relative; z-index: 2; width: 100%; }
+        .hero h1 { font-size: clamp(1.8rem, 3.8vw, 3.3rem); font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
         .hero h1 span { color: var(--primary); }
-        .hero h3 { font-size: clamp(1rem, 2vw, 1.3rem); font-weight: 400; color: #ddd; margin-bottom: 30px; }
+        .hero h3 { font-size: clamp(1rem, 1.9vw, 1.25rem); font-weight: 400; color: #ddd; margin-bottom: 30px; }
+
+        /* Левая колонка бесплатных инструментов внутри главного экрана (.hero) */
+        .hero-tools-left {
+            position: absolute;
+            left: 24px;
+            bottom: 30px;
+            width: 268px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 5;
+            text-align: left;
+        }
+        .hero-tool-card {
+            display: block;
+            padding: 13px 15px;
+            color: #fff;
+            background: linear-gradient(145deg, rgba(34,34,34,0.95) 0%, rgba(17,17,17,0.96) 100%);
+            border: 1.5px solid var(--primary);
+            border-radius: 15px;
+            box-shadow: 0 12px 30px rgba(0,0,0,.55), 0 0 18px rgba(255,153,0,.14);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        .hero-tool-card:hover {
+            transform: translateY(-2px);
+            border-color: #ffb52e;
+            box-shadow: 0 15px 34px rgba(0,0,0,.65), 0 0 24px rgba(255,153,0,.28);
+        }
+        .hero-tool-badge {
+            display: inline-block;
+            margin-bottom: 6px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: rgba(255,153,0,0.16);
+            color: var(--primary);
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+        .hero-tool-title {
+            font-size: 0.9rem;
+            font-weight: 800;
+            line-height: 1.28;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .hero-tool-desc {
+            font-size: 0.75rem;
+            color: #bdbdbd;
+            line-height: 1.35;
+            margin-bottom: 9px;
+        }
+        .hero-tool-btn {
+            display: block;
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, var(--primary), #ffb52e);
+            color: #111;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 800;
+        }
         
         .btn-vr { display: inline-block; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; padding: 14px 28px; border-radius: 50px; font-weight: 700; font-size: 1rem; box-shadow: 0 10px 30px rgba(255, 153, 0, 0.4); border: 1px solid rgba(255,255,255,0.2); cursor: pointer; width: 100%; max-width: 320px; text-align: center; }
         .btn-vr:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(255, 153, 0, 0.6); }
@@ -116,48 +180,44 @@
         footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border-color); color: var(--text-gray); font-size: 0.85rem; }
         footer a { color: var(--primary); margin-left: 10px; }
 
-        /* Внутренние переходы из статей Сани. Не меняет существующие стили сайта. */
         .seo-service-link { display: inline-flex; align-items: center; gap: 8px; color: var(--primary); font-weight: 700; border-bottom: 1px solid rgba(255,153,0,.55); }
         .seo-service-link:hover { color: #fff; border-bottom-color: #fff; }
         .ai-agents-link { color: #8ec5ff; font-weight: 700; }
         .ai-agents-link:hover { color: #fff; }
 
-        /* Плавающий рекламный лид-магнит: диагональное движение по экрану */
+        /* НЕПОДВИЖНЫЙ лид-магнит справа над калькулятором цен */
         #fire-lead-widget {
-            --lead-edge: 20px;
             position: fixed;
-            left: var(--lead-edge);
-            bottom: var(--lead-edge);
-            width: min(292px, calc(100vw - 40px));
-            padding: 17px;
+            right: 30px;
+            bottom: 94px;
+            width: 276px;
+            padding: 15px;
             color: #fff;
             background: linear-gradient(145deg, #222 0%, #111 100%);
             border: 2px solid var(--primary);
-            border-radius: 18px;
+            border-radius: 16px;
             box-shadow: 0 16px 42px rgba(0,0,0,.58), 0 0 24px rgba(255,153,0,.18);
             z-index: 9998;
-            animation: fireLeadDiagonal 22s ease-in-out infinite;
-            will-change: transform;
         }
         #fire-lead-widget .lead-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            margin-bottom: 11px;
-            padding: 6px 10px;
+            margin-bottom: 8px;
+            padding: 5px 9px;
             border-radius: 999px;
             color: #fff;
             background: #c62828;
-            font-size: .72rem;
+            font-size: .7rem;
             line-height: 1;
             font-weight: 800;
-            letter-spacing: .6px;
+            letter-spacing: .5px;
             text-transform: uppercase;
         }
         #fire-lead-widget .lead-title {
-            margin: 0 0 10px;
+            margin: 0 0 8px;
             color: #fff;
-            font-size: 1.03rem;
+            font-size: .96rem;
             line-height: 1.28;
             font-weight: 800;
         }
@@ -170,32 +230,32 @@
         }
         #fire-lead-widget .lead-price {
             color: var(--primary);
-            font-size: 2rem;
+            font-size: 1.85rem;
             line-height: 1;
             font-weight: 900;
             letter-spacing: -.7px;
         }
         #fire-lead-widget .lead-price-note {
             color: #fff;
-            font-size: .82rem;
+            font-size: .8rem;
             font-weight: 700;
         }
         #fire-lead-widget .lead-description {
-            margin: 7px 0 13px;
+            margin: 6px 0 11px;
             color: #bdbdbd;
-            font-size: .78rem;
-            line-height: 1.4;
+            font-size: .76rem;
+            line-height: 1.38;
         }
         #fire-lead-widget .lead-button {
             display: block;
             width: 100%;
-            padding: 12px 14px;
+            padding: 11px 12px;
             border: 0;
-            border-radius: 11px;
+            border-radius: 10px;
             color: #111;
             background: linear-gradient(135deg, var(--primary), #ffb52e);
             text-align: center;
-            font-size: .9rem;
+            font-size: .88rem;
             line-height: 1.2;
             font-weight: 900;
             box-shadow: 0 7px 18px rgba(255,153,0,.22);
@@ -207,78 +267,8 @@
             filter: brightness(1.05);
             box-shadow: 0 10px 24px rgba(255,153,0,.32);
         }
-        @keyframes fireLeadDiagonal {
-            0%, 9% {
-                transform: translate3d(0, 0, 0);
-            }
-            48%, 58% {
-                transform: translate3d(
-                    calc(100vw - 100% - 40px),
-                    calc(-100vh + 100% + 40px),
-                    0
-                );
-            }
-            100% {
-                transform: translate3d(0, 0, 0);
-            }
-        }
 
-        @media (max-width: 768px) {
-            #fire-lead-widget {
-                --lead-edge: 12px;
-                width: min(238px, calc(100vw - 24px));
-                padding: 13px;
-                border-radius: 15px;
-                animation-name: fireLeadDiagonalMobile;
-                animation-duration: 24s;
-            }
-            #fire-lead-widget .lead-badge {
-                margin-bottom: 8px;
-                font-size: .66rem;
-            }
-            #fire-lead-widget .lead-title {
-                font-size: .9rem;
-                margin-bottom: 8px;
-            }
-            #fire-lead-widget .lead-price {
-                font-size: 1.75rem;
-            }
-            #fire-lead-widget .lead-price-note {
-                font-size: .75rem;
-            }
-            #fire-lead-widget .lead-description {
-                font-size: .72rem;
-                margin: 6px 0 10px;
-            }
-            #fire-lead-widget .lead-button {
-                padding: 10px 12px;
-                font-size: .82rem;
-            }
-            @keyframes fireLeadDiagonalMobile {
-                0%, 9% {
-                    transform: translate3d(0, 0, 0);
-                }
-                48%, 58% {
-                    transform: translate3d(
-                        calc(100vw - 100% - 24px),
-                        calc(-100vh + 100% + 24px),
-                        0
-                    );
-                }
-                100% {
-                    transform: translate3d(0, 0, 0);
-                }
-            }
-        }
-
-        /* Учитываем системную настройку уменьшения анимации. */
-        @media (prefers-reduced-motion: reduce) {
-            #fire-lead-widget {
-                animation: none;
-            }
-        }
-
-        /* Плавающий калькулятор */
+        /* Плавающий калькулятор (справа внизу) */
         #calc-float-btn {
             position: fixed; bottom: 30px; right: 30px;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
@@ -322,12 +312,10 @@
         }
         .calc-input:focus { border-color: var(--primary); }
 
-        /* Чекбоксы разделов */
         .sections-checkboxes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; background: #111; padding: 15px; border-radius: 12px; border: 1px solid #333; }
         .checkbox-label { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: #ddd; cursor: pointer; }
         .checkbox-label input { width: 16px; height: 16px; accent-color: var(--primary); cursor: pointer; }
 
-        /* Блок параметров ГОЧС */
         #gochsParams { display: none; background: rgba(255,153,0,0.03); border: 1px solid rgba(255,153,0,0.2); padding: 15px; border-radius: 12px; margin-bottom: 15px; }
         #gochsParams h4 { font-size: 0.9rem; color: var(--primary); margin-bottom: 10px; }
 
@@ -345,7 +333,19 @@
         }
         .calc-action-btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
-        /* Мобильная версия: вкладки страниц всегда видны второй строкой в шапке */
+        /* Планшеты и узкие экраны: левые карточки переходят под заголовок */
+        @media (max-width: 1260px) {
+            .hero { flex-direction: column; gap: 28px; }
+            .hero-tools-left {
+                position: static;
+                width: 100%;
+                max-width: 900px;
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        /* Мобильная версия */
         @media (max-width: 768px) { 
             .header-container {
                 flex-wrap: wrap;
@@ -371,7 +371,7 @@
             }
             nav a {
                 display: inline-block;
-                font-size: 0.85rem;
+                font-size: 0.84rem;
                 padding: 6px 12px;
                 background: rgba(255, 255, 255, 0.06);
                 border: 1px solid var(--border-color);
@@ -383,8 +383,20 @@
                 border-color: var(--primary);
                 color: var(--primary);
             }
-            .hero { padding-top: 145px; }
+            .hero { padding-top: 150px; }
+            .hero-tools-left { grid-template-columns: 1fr; max-width: 380px; }
             .sections-checkboxes { grid-template-columns: 1fr; }
+            #calc-float-btn { right: 14px; bottom: 14px; padding: 12px 16px; font-size: 0.85rem; }
+            #fire-lead-widget {
+                right: 14px;
+                bottom: 72px;
+                width: min(230px, calc(100vw - 28px));
+                padding: 12px;
+            }
+            #fire-lead-widget .lead-title { font-size: 0.85rem; }
+            #fire-lead-widget .lead-price { font-size: 1.55rem; }
+            #fire-lead-widget .lead-description { font-size: 0.7rem; margin: 5px 0 8px; }
+            #fire-lead-widget .lead-button { padding: 9px 10px; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -400,6 +412,9 @@
                 <ul>
                     <li><a href="#main">Главная</a></li>
                     <li><a href="#services">Услуги</a></li>
+                    <li><a href="audit-mpb.html">Проверка норм МПБ</a></li>
+                    <li><a href="calc-sp486.html">Автоматика СП 486</a></li>
+                    <li><a href="calc-razryvy-sp4.html">Разрывы СП 4</a></li>
                     <li><a href="ai-agents.html">ИИ-агенты 24/7</a></li>
                     <li><a href="#portfolio">Портфолио</a></li>
                     <li><a href="reviews.html">Отзывы</a></li>
@@ -413,6 +428,31 @@
 
     <section class="hero" id="main">
         <div class="hero-bg"></div>
+
+        <!-- Левая колонка: 3 бесплатных инженерных инструмента на первом экране -->
+        <aside class="hero-tools-left" aria-label="Бесплатные инженерные калькуляторы и проверка норм">
+            <a href="audit-mpb.html" class="hero-tool-card">
+                <span class="hero-tool-badge">Бесплатно • ПДФ / Ворд</span>
+                <div class="hero-tool-title">Проверка раздела МПБ по нормативам</div>
+                <div class="hero-tool-desc">Поиск отменённых СП и сверка актуальных редакций за 2 секунды.</div>
+                <span class="hero-tool-btn">Проверить нормы МПБ</span>
+            </a>
+
+            <a href="calc-sp486.html" class="hero-tool-card">
+                <span class="hero-tool-badge">СП 486.1311500.2020</span>
+                <div class="hero-tool-title">Подбор АУП / СПС (сигнализация)</div>
+                <div class="hero-tool-desc">Таблицы 1–4, правило 40% (п. 4.5) и допуск 5% (п. 4.8) с отчётом в Ворд.</div>
+                <span class="hero-tool-btn">Подобрать автоматику</span>
+            </a>
+
+            <a href="calc-razryvy-sp4.html" class="hero-tool-card">
+                <span class="hero-tool-badge">СП 4.13130.2013</span>
+                <div class="hero-tool-title">Расчёт противопожарных разрывов</div>
+                <div class="hero-tool-desc">Таблица 1 и расчёт по Приложению А с выгрузкой заключения в Ворд.</div>
+                <span class="hero-tool-btn">Рассчитать разрывы</span>
+            </a>
+        </aside>
+
         <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
             <h1>Разработка спецразделов <span>проектной документации</span></h1>
             <h3>Узкая специализация · Опыт работы с 2008 года · Госэкспертиза с первого раза</h3>
@@ -577,7 +617,7 @@
         <p>&copy; 2026 СпецРаздел ПД. Все права защищены. <a href="privacy.html">Политика конфиденциальности</a></p>
     </footer>
 
-    <!-- ПЛАВАЮЩИЙ ЛИД-МАГНИТ: движется по диагонали, калькулятор остаётся справа внизу -->
+    <!-- НЕПОДВИЖНЫЙ ЛИД-МАГНИТ: закреплён справа над калькулятором цен -->
     <aside id="fire-lead-widget" aria-label="Специальное предложение: пожарная проверка одноэтажного здания за 700 рублей">
         <div class="lead-badge">Только сегодня</div>
         <h2 class="lead-title">Пожарная проверка одноэтажного здания целиком</h2>
@@ -589,7 +629,7 @@
         <a class="lead-button" href="pozharnaya-proverka.html">Получить за 700 ₽</a>
     </aside>
 
-    <!-- ПЛАВАЮЩИЙ КАЛЬКУЛЯТОР -->
+    <!-- ПЛАВАЮЩИЙ КАЛЬКУЛЯТОР (справа внизу) -->
     <button id="calc-float-btn" onclick="openCalculator()">
         <span>🧮</span> Калькулятор стоимости
     </button>
@@ -610,7 +650,6 @@
                 </div>
             </div>
 
-            <!-- Дополнительные параметры для ГОЧС (методика с учетом числа аварий) -->
             <div id="gochsParams">
                 <h4>⚙️ Дополнительные параметры для расчета ПМ ГОЧС:</h4>
                 <div class="calc-group" style="margin-bottom: 10px;">
