@@ -69,12 +69,12 @@
 
         .hero { min-height: 92vh; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 20px 70px; }
         .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(11,11,11,0.65), rgba(11,11,11,0.9)), url('assets/img/6d973a13-0343-45e6-abd4-4c5f8f274799-12119908.jpeg') center/cover no-repeat; z-index: -1; }
-        .hero-content { max-width: 720px; margin: 0 auto; position: relative; z-index: 2; width: 100%; }
-        .hero h1 { font-size: clamp(1.8rem, 3.8vw, 3.3rem); font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+        .hero-content { max-width: 680px; margin: 0 auto; position: relative; z-index: 2; width: 100%; }
+        .hero h1 { font-size: clamp(1.8rem, 3.6vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
         .hero h1 span { color: var(--primary); }
-        .hero h3 { font-size: clamp(1rem, 1.9vw, 1.25rem); font-weight: 400; color: #ddd; margin-bottom: 30px; }
+        .hero h3 { font-size: clamp(1rem, 1.8vw, 1.25rem); font-weight: 400; color: #ddd; margin-bottom: 30px; }
 
-        /* Левая колонка бесплатных инструментов внутри главного экрана (.hero) */
+        /* Левая колонка: 3 бесплатных инструмента внутри главного экрана (.hero) */
         .hero-tools-left {
             position: absolute;
             left: 24px;
@@ -137,6 +137,72 @@
             font-size: 0.8rem;
             font-weight: 800;
         }
+
+        /* Правый верхний угол первого экрана: 3 последние новости */
+        .hero-news-right {
+            position: absolute;
+            right: 30px;
+            top: 92px;
+            width: 276px;
+            padding: 14px 15px;
+            color: #fff;
+            background: linear-gradient(145deg, rgba(34,34,34,0.95) 0%, rgba(17,17,17,0.96) 100%);
+            border: 1.5px solid var(--primary);
+            border-radius: 15px;
+            box-shadow: 0 12px 30px rgba(0,0,0,.55), 0 0 18px rgba(255,153,0,.14);
+            z-index: 5;
+            text-align: left;
+        }
+        .hero-news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 8px;
+        }
+        .hero-news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .hero-news-item {
+            display: block;
+            padding: 8px 10px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+        .hero-news-item:hover {
+            border-color: var(--primary);
+            background: rgba(255,153,0,0.09);
+        }
+        .hero-news-date {
+            display: block;
+            font-size: 0.69rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .hero-news-title {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            font-size: 0.78rem;
+            line-height: 1.32;
+            font-weight: 600;
+            color: #f0f0f0;
+        }
+        .hero-news-all {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .hero-news-all:hover { color: #fff; }
         
         .btn-vr { display: inline-block; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; padding: 14px 28px; border-radius: 50px; font-weight: 700; font-size: 1rem; box-shadow: 0 10px 30px rgba(255, 153, 0, 0.4); border: 1px solid rgba(255,255,255,0.2); cursor: pointer; width: 100%; max-width: 320px; text-align: center; }
         .btn-vr:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(255, 153, 0, 0.6); }
@@ -333,15 +399,25 @@
         }
         .calc-action-btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
-        /* Планшеты и узкие экраны: левые карточки переходят под заголовок */
-        @media (max-width: 1260px) {
-            .hero { flex-direction: column; gap: 28px; }
+        /* Планшеты и узкие экраны */
+        @media (max-width: 1280px) {
+            .hero { flex-direction: column; gap: 24px; }
             .hero-tools-left {
                 position: static;
                 width: 100%;
                 max-width: 900px;
                 display: grid;
                 grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+            .hero-news-right {
+                position: static;
+                width: 100%;
+                max-width: 900px;
+            }
+            .hero-news-list {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 10px;
             }
         }
 
@@ -384,7 +460,8 @@
                 color: var(--primary);
             }
             .hero { padding-top: 150px; }
-            .hero-tools-left { grid-template-columns: 1fr; max-width: 380px; }
+            .hero-tools-left, .hero-news-list { grid-template-columns: 1fr; }
+            .hero-tools-left, .hero-news-right { max-width: 380px; }
             .sections-checkboxes { grid-template-columns: 1fr; }
             #calc-float-btn { right: 14px; bottom: 14px; padding: 12px 16px; font-size: 0.85rem; }
             #fire-lead-widget {
@@ -451,6 +528,20 @@
                 <div class="hero-tool-desc">Таблица 1 и расчёт по Приложению А с выгрузкой заключения в Ворд.</div>
                 <span class="hero-tool-btn">Рассчитать разрывы</span>
             </a>
+        </aside>
+
+        <!-- Правый верхний угол: 3 последние новости с сайта -->
+        <aside class="hero-news-right" aria-label="Последние новости проектирования">
+            <div class="hero-news-header">
+                <span class="hero-tool-badge" style="margin:0;">Актуальные новости</span>
+            </div>
+            <div class="hero-news-list" id="heroNewsList">
+                <a href="news.html" class="hero-news-item">
+                    <span class="hero-news-date">Загрузка...</span>
+                    <span class="hero-news-title">Открыть ленту новостей проектирования</span>
+                </a>
+            </div>
+            <a href="news.html" class="hero-news-all">Все новости проектирования &rarr;</a>
         </aside>
 
         <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
@@ -710,6 +801,39 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true });
+
+        // Загрузка 3 последних новостей из news.json в правый верхний блок
+        async function loadLatestHeroNews() {
+            const box = document.getElementById('heroNewsList');
+            if (!box) return;
+            try {
+                const resp = await fetch('./news.json?t=' + Date.now());
+                if (!resp.ok) return;
+                const data = await resp.json();
+                let items = [];
+                if (Array.isArray(data)) {
+                    items = data;
+                } else if (data && typeof data === 'object') {
+                    items = data.items || data.news || data.articles || data.posts || [];
+                }
+                const latest = items.slice(0, 3);
+                if (!latest.length) return;
+
+                box.innerHTML = latest.map(item => {
+                    const href = (item.url && String(item.url).trim()) ? item.url : 'news.html';
+                    const date = item.date || '';
+                    const title = String(item.title || 'Новость проектирования')
+                        .replace(/&/g, '&amp;')
+                        .replace(/</g, '&lt;')
+                        .replace(/>/g, '&gt;');
+                    return `<a href="${href}" class="hero-news-item">
+                        ${date ? `<span class="hero-news-date">${date}</span>` : ''}
+                        <span class="hero-news-title">${title}</span>
+                    </a>`;
+                }).join('');
+            } catch (e) {}
+        }
+        loadLatestHeroNews();
 
         function openCalculator() {
             document.getElementById('calc-modal').style.display = 'flex';
