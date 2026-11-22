@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Определитель АУП, СПС и АДПИ по СП 486.1311500.2020 | СпецРаздел ПД</title>
+    <meta name="description" content="Онлайн-калькулятор определения необходимости АУП, СПС и АДПИ по СП 486.1311500.2020 (таблицы 1–4): правило 40% (п. 4.5), допуск 5% (п. 4.8), исключения (п. 4.4), реконструкция (ст. 4 ФЗ-123) и выгрузка заключения в Ворд.">
+    <meta name="keywords" content="СП 486.1311500.2020 калькулятор, определение АУП СПС АДПИ, правило 40 процентов СП 486, замена АУП на СПС 5 процентов, пожарная автоматика расчет, СпецРаздел ПД">
+    <link rel="canonical" href="https://www.specrazdel56.ru/calc-sp486.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Определитель АУП, СПС и АДПИ по СП 486.1311500.2020 | СпецРаздел ПД">
+    <meta property="og:description" content="Инженерный подбор систем противопожарной автоматики для промышленных, складских и гражданских объектов с выгрузкой заключения в Ворд.">
+    <meta property="og:url" content="https://www.specrazdel56.ru/calc-sp486.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Определитель АУП, СПС и АДПИ по СП 486.1311500.2020",
+      "applicationCategory": "EngineeringApplication",
+      "operatingSystem": "All",
+      "url": "https://www.specrazdel56.ru/calc-sp486.html",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RUB" },
+      "publisher": { "@type": "Organization", "name": "СпецРаздел ПД", "url": "https://www.specrazdel56.ru/" }
+    }
+    </script>
+
+    <!-- Счётчик Яндекс.Метрики -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114435285', 'ym');
+        ym(114435285, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/114435285" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+    <style>
+        :root {
+            --primary: #ff9900; --primary-soft: #ffbd66; --dark: #080a0f;
+            --text-gray: #aeb6c4; --text: #fff; --border-color: #283142;
+            --ok: #3ad27d; --warn: #ffb84d; --err: #ff5d5d; --info: #4ec3ff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { color: var(--text); background: radial-gradient(circle at 50% -10%, #202b3e 0, var(--dark) 45%); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.25s; }
+
+        header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(11, 11, 11, 0.92); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
+        .header-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-weight: 800; font-size: 1.1rem; }
+        .logo span { color: var(--primary); }
+        nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
+        nav a { font-size: 0.9rem; font-weight: 500; color: #ccc; }
+        nav a:hover, nav a.active { color: var(--primary); }
+        .header-phone { font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); }
+
+        .wrap { max-width: 1120px; margin: 0 auto; padding: 115px 20px 80px; }
+        .hero { margin-bottom: 24px; }
+        .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+        .badge { display: inline-block; background: rgba(255,153,0,0.14); color: var(--primary); border: 1px solid rgba(255,153,0,0.4); padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; }
+        .badge-ok { background: rgba(58,210,125,0.12); color: var(--ok); border-color: rgba(58,210,125,0.45); }
+        .hero h1 { font-size: clamp(1.65rem, 3vw, 2.3rem); font-weight: 800; line-height: 1.25; margin-bottom: 10px; }
+        .hero p { color: var(--text-gray); max-width: 880px; font-size: 0.96rem; }
+
+        .card { background: linear-gradient(145deg, rgba(24,30,43,0.96), rgba(14,17,24,0.98)); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+        .card h2 { font-size: 1.14rem; font-weight: 700; margin-bottom: 15px; color: var(--primary-soft); }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+
+        .field { margin-bottom: 12px; }
+        .field label { display: block; font-size: 0.82rem; font-weight: 600; color: #d5dce6; margin-bottom: 5px; }
+        .field small { display: block; font-size: 0.75rem; color: var(--text-gray); margin-top: 3px; }
+        input[type="text"], input[type="number"], select {
+            width: 100%; background: #0c1017; border: 1px solid var(--border-color);
+            color: #fff; padding: 9px 11px; border-radius: 9px; font-size: 0.89rem; outline: none;
+        }
+        input:focus, select:focus { border-color: var(--primary); }
+
+        .room-row {
+            display: grid; grid-template-columns: 1.3fr 2.1fr 0.75fr 40px; gap: 10px; align-items: end;
+            background: rgba(255,255,255,0.025); border: 1px solid var(--border-color);
+            padding: 12px; border-radius: 12px; margin-bottom: 10px;
+        }
+        .btn-del {
+            background: rgba(255,93,93,0.14); color: var(--err); border: 1px solid rgba(255,93,93,0.4);
+            border-radius: 8px; height: 38px; cursor: pointer; font-weight: 700; font-size: 1rem;
+        }
+        .btn-del:hover { background: rgba(255,93,93,0.28); }
+
+        .check-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+        .check-item {
+            display: flex; align-items: flex-start; gap: 10px; background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-color); padding: 10px 12px; border-radius: 10px; cursor: pointer; font-size: 0.85rem; color: #d8dee9;
+        }
+        .check-item input { margin-top: 3px; accent-color: var(--primary); width: 16px; height: 16px; flex-shrink: 0; }
+
+        .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+        .btn {
+            border: none; border-radius: 10px; padding: 12px 22px; font-size: 0.93rem;
+            font-weight: 700; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-primary { background: var(--primary); color: #080a0f; }
+        .btn-primary:hover { background: var(--primary-soft); }
+        .btn-secondary { background: rgba(255,255,255,0.06); color: #fff; border: 1px solid var(--border-color); }
+        .btn-secondary:hover { border-color: var(--primary); }
+
+        .result-box { display: none; }
+        .alert { padding: 16px 18px; border-radius: 12px; margin-bottom: 12px; border: 1px solid; font-size: 0.91rem; }
+        .alert-err { background: rgba(255, 93, 93, 0.1); border-color: rgba(255, 93, 93, 0.5); }
+        .alert-warn { background: rgba(255, 184, 77, 0.1); border-color: rgba(255, 184, 77, 0.5); }
+        .alert-ok { background: rgba(58, 210, 125, 0.1); border-color: rgba(58, 210, 125, 0.5); }
+        .alert-info { background: rgba(78, 195, 255, 0.1); border-color: rgba(78, 195, 255, 0.45); }
+        .alert h3 { font-size: 1.03rem; margin-bottom: 4px; }
+
+        .kpi-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 16px 0; }
+        .kpi { background: #0c1017; border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; }
+        .kpi span { display: block; font-size: 0.76rem; color: var(--text-gray); margin-bottom: 4px; }
+        .kpi strong { font-size: 1.18rem; color: #fff; }
+
+        .table-wrap { overflow-x: auto; margin: 12px 0 18px; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        th, td { padding: 9px 10px; border: 1px solid var(--border-color); text-align: left; vertical-align: top; }
+        th { background: rgba(255,255,255,0.05); color: var(--primary-soft); font-weight: 700; }
+
+        .pill { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.76rem; font-weight: 700; white-space: nowrap; }
+        .pill-aup { background: rgba(255, 93, 93, 0.18); color: #ff8c8c; border: 1px solid rgba(255, 93, 93, 0.45); }
+        .pill-sps { background: rgba(78, 195, 255, 0.16); color: #7cd4ff; border: 1px solid rgba(78, 195, 255, 0.45); }
+        .pill-sub { background: rgba(255, 184, 77, 0.16); color: #ffd080; border: 1px solid rgba(255, 184, 77, 0.45); }
+        .pill-no { background: rgba(58, 210, 125, 0.14); color: #6ee8a3; border: 1px solid rgba(58, 210, 125, 0.4); }
+
+        .cta-box { margin-top: 24px; padding: 24px; border-radius: 14px; background: rgba(255,153,0,0.08); border: 1px solid rgba(255,153,0,0.45); }
+        .cta-box h3 { font-size: 1.12rem; margin-bottom: 8px; }
+        .cta-box p { font-size: 0.92rem; color: #ddd; margin-bottom: 14px; }
+
+        footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border-color); color: var(--text-gray); font-size: 0.85rem; }
+        @media (max-width: 860px) {
+            nav { display: none; }
+            .grid-2, .grid-3, .grid-4, .check-grid, .kpi-row, .room-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo"><a href="index.html">СпецРаздел<span>ПД</span></a></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="news.html">Блог и новости</a></li>
+                <li><a href="calc-razryvy-sp4.html">Разрывы СП 4</a></li>
+                <li><a href="calc-sp486.html" class="active">Автоматика СП 486</a></li>
+                <li><a href="audit-mpb.html">Проверка норм МПБ</a></li>
+                <li><a href="index.html#contacts">Контакты</a></li>
+            </ul>
+        </nav>
+        <a href="tel:+79960789054" class="header-phone">+7 (996) 078-90-54</a>
+    </div>
+</header>
+
+<main class="wrap">
+    <section class="hero">
+        <div class="badges">
+            <span class="badge">СП 486.1311500.2020 • Таблицы 1–4 • Правило 40% и допуск 5%</span>
+            <span class="badge badge-ok" id="normsStatusBadge">Загрузка актуальности СП 486...</span>
+        </div>
+        <h1>Определитель состава АУП, СПС и АДПИ для любых объектов</h1>
+        <p>Инженерный расчёт необходимости систем противопожарной автоматики для промышленных, складских и гражданских объектов с учётом исключений (п. 4.4), правила 40% (п. 4.5), замены АУП на СПС при превышении ≤ 5% (п. 4.8) и особенностей реконструкции (ст. 4 ФЗ-123).</p>
+    </section>
+
+    <!-- Шаг 1: Здание в целом (Таблица 1) -->
+    <section class="card">
+        <h2>1. Здание в целом (Таблица 1 СП 486 и вид строительства)</h2>
+        <div class="grid-3">
+            <div class="field">
+                <label for="obj_name">Наименование объекта</label>
+                <input type="text" id="obj_name" value="Производственно-складской корпус">
+            </div>
+            <div class="field">
+                <label for="work_type">Вид работ (ст. 4 ФЗ-123)</label>
+                <select id="work_type">
+                    <option value="new" selected>Новое строительство</option>
+                    <option value="recon">Реконструкция / техперевооружение</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="b_area">Общая площадь всех этажей здания, м²</label>
+                <input type="number" id="b_area" step="1" min="1" value="1200">
+                <small>Используется для расчёта правила 40% (п. 4.5 СП 486)</small>
+            </div>
+        </div>
+        <div class="grid-2">
+            <div class="field">
+                <label for="b_type">Тип здания по Таблице 1 СП 486 (или отсылочному СП)</label>
+                <select id="b_type">
+                    <option value="other" selected>Иное здание (определяется по помещениям Таблицы 3)</option>
+                    <option value="wh_rack">Склад категории В со стеллажами высотой ≥ 5,5 м (табл. 1, п. 1)</option>
+                    <option value="wh_2fl">Склад категории В высотой 2 этажа и более (табл. 1, п. 2)</option>
+                    <option value="high_30">Здание высотой &gt; 30 м (кроме Ф1.3 и произв. Г, Д) (табл. 1, п. 5)</option>
+                    <option value="mkd">Многоквартирный жилой дом Ф1.3 высотой до 75 м (табл. 1, п. 6.1)</option>
+                    <option value="mkd_75">Жилой дом высотой &gt; 75 м (табл. 1, п. 6.3)</option>
+                    <option value="pub_lmk">Общественное здание из лёгких металлоконструкций (табл. 1, п. 9)</option>
+                    <option value="trade_1">Одноэтажное торговое здание (табл. 1, п. 12)</option>
+                    <option value="trade_2">Торговое здание 2 этажа и более (табл. 1, п. 12)</option>
+                    <option value="ref_155">Объект нефтепродуктообеспечения (отсылка к СП 155)</option>
+                    <option value="ref_156">Автозаправочная станция — АЗС (отсылка к СП 156)</option>
+                    <option value="ref_153">Объект железнодорожного транспорта (отсылка к СП 153)</option>
+                    <option value="ref_364">Гараж / мастерская (отсылка к СП 364)</option>
+                    <option value="ref_120">Метрополитен (отсылка к СП 120)</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="fpo_info">Класс ФПО и степень огнестойкости (для паспорта отчёта)</label>
+                <input type="text" id="fpo_info" value="Ф5.2, II степень огнестойкости, С0">
+            </div>
+        </div>
+    </section>
+
+    <!-- Шаг 2: Помещения (Таблица 3) -->
+    <section class="card">
+        <h2>2. Отдельные помещения (Таблица 3 и исключения п. 4.4 СП 486)</h2>
+        <p style="font-size:0.86rem; color:var(--text-gray); margin-bottom:14px;">Добавьте помещения из экспликации. Для промышленных и складских помещений (Ф5) категория предварительно должна быть определена расчётом по СП 12.13130.2009.</p>
+        <div id="roomsList"></div>
+        <div class="actions">
+            <button type="button" class="btn btn-secondary" onclick="addRoomRow()">+ Добавить помещение</button>
+        </div>
+    </section>
+
+    <!-- Шаг 3: Сооружения и оборудование (Таблицы 2 и 4) -->
+    <section class="card">
+        <h2>3. Сооружения (Таблица 2) и оборудование (Таблица 4 СП 486)</h2>
+        <div class="grid-2" style="margin-bottom: 12px;">
+            <div class="field">
+                <label for="cable_vol">Кабельные сооружения (тоннели, коллекторы), объём м³</label>
+                <input type="number" id="cable_vol" step="1" min="0" value="0">
+                <small>Объём &gt; 100 м³ — АУП; ≤ 100 м³ — СПС (табл. 2, п. 4)</small>
+            </div>
+            <div class="field">
+                <label for="ceiling_load">Пространство за подвесным потолком (горючая масса кабелей, л/м)</label>
+                <input type="number" id="ceiling_load" step="0.1" min="0" value="0">
+                <small>≥ 7 л/м — АУП; от 1,5 до 7 л/м — СПС (табл. 2, п. 10; проверить прим. 2 и 4)</small>
+            </div>
+        </div>
+        <div class="check-grid">
+            <label class="check-item"><input type="checkbox" id="eq_paint"> Окрасочные камеры с ЛВЖ/ГЖ (табл. 4 — АУП)</label>
+            <label class="check-item"><input type="checkbox" id="eq_trans"> Трансформаторы мощностью ≥ 200 МВА (220–330 кВ) (табл. 4 — АУП)</label>
+            <label class="check-item"><input type="checkbox" id="eq_rack"> Стеллажи высотой &gt; 5,5 м для горючих материалов (табл. 4 — АУП)</label>
+            <label class="check-item"><input type="checkbox" id="eq_elcab"> Электрощиты и электрошкафы объёмом ≥ 0,03 м³ (табл. 4, п. 9.2 — АУП)</label>
+            <label class="check-item"><input type="checkbox" id="eq_fridge"> Охлаждаемые камеры заводского изготовления с пребыванием людей (табл. 4, п. 8 — СПС)</label>
+        </div>
+    </section>
+
+    <div class="actions" style="margin-bottom: 24px;">
+        <button type="button" class="btn btn-primary" onclick="runSp486()">Сформировать заключение по СП 486</button>
+        <button type="button" class="btn btn-secondary" id="btnWord" style="display:none;" onclick="exportWord()">Скачать заключение (Ворд)</button>
+        <button type="button" class="btn btn-secondary" id="btnPrint" style="display:none;" onclick="window.print()">Печать</button>
+    </div>
+
+    <!-- Результаты -->
+    <section class="card result-box" id="resultSection">
+        <h2>Итоговое заключение по СП 486.1311500.2020</h2>
+        <div id="alertsWrap"></div>
+        <div class="kpi-row" id="kpiRow"></div>
+        <div class="table-wrap" id="resultTableWrap"></div>
+
+        <div class="cta-box">
+            <h3>Нужен раздел 9 ПБ или аудит поэтажных планов перед экспертизой?</h3>
+            <p>Проверю правильность выбора АУП, СПС и СОУЭ, выполню расчёт категорий помещений по СП 12 и разработаю раздел 9 «Мероприятия по обеспечению пожарной безопасности» по ПП РФ № 87.</p>
+            <div class="actions" style="margin-top: 10px;">
+                <a href="index.html#contacts" class="btn btn-primary">Прислать ТЗ и планировки</a>
+                <a href="tel:+79960789054" class="btn btn-secondary">+7 (996) 078-90-54</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 СпецРаздел ПД. Определитель противопожарной автоматики по СП 486.1311500.2020.</p>
+</footer>
+
+<script>
+let sp486EditionText = "СП 486.1311500.2020 (действующая редакция)";
+
+async function loadNormsStatus() {
+    const badge = document.getElementById("normsStatusBadge");
+    try {
+        const resp = await fetch("./norms_config.json?t=" + Date.now());
+        if (resp.ok) {
+            const cfg = await resp.json();
+            const dt = (cfg.last_checked || "2026-11-21").split("-").reverse().join(".");
+            const sp = (cfg.active_norms || []).find(n => n.id === "SP-486" || (n.code || "").includes("486"));
+            const ed = sp && sp.detected_edition_date ? `ред. от ${sp.detected_edition_date}` : "действует";
+            sp486EditionText = `СП 486.1311500.2020 (${ed}, проверено ${dt})`;
+            badge.textContent = `СП 486 (${ed}) • Проверено: ${dt}`;
+            return;
+        }
+    } catch (e) {}
+    badge.textContent = "СП 486.1311500.2020 • Действующая редакция";
+}
+loadNormsStatus();
+
+const ROOM_TYPES = [
+    { id: "v1_base", label: "Склад / помещение категории В1 в подвале (табл. 3, п. 4.1)", mode: "aup_always", norm: "табл. 3, п. 4.1" },
+    { id: "v1_above", label: "Склад / помещение категории В1 в надземных этажах (табл. 3, п. 4.2)", mode: "threshold", thr: 300, norm: "табл. 3, п. 4.2" },
+    { id: "v2v3_above", label: "Помещение категории В2–В3 в надземных этажах (табл. 3, п. 5.2)", mode: "threshold", thr: 1000, norm: "табл. 3, п. 5.2" },
+    { id: "ab_lvzh", label: "Производственное А, Б с ЛВЖ/ГЖ/сжиж. газами/пылями (табл. 3, п. 7)", mode: "threshold", thr: 300, norm: "табл. 3, п. 7" },
+    { id: "a_gas", label: "Помещение категории А только с горючими газами (табл. 3, п. 7.1)", mode: "sps_always", norm: "табл. 3, п. 7.1" },
+    { id: "fridge_ind", label: "Промышленный холодильник (табл. 3, п. 6)", mode: "sps_always", norm: "табл. 3, п. 6" },
+    { id: "server", label: "Серверная / ЦОД (табл. 3, п. 38)", mode: "threshold", thr: 24, norm: "табл. 3, п. 38" },
+    { id: "trade_in", label: "Встроенное помещение торговли (табл. 3, п. 39)", mode: "threshold", thr: 500, norm: "табл. 3, п. 39" },
+    { id: "trash", label: "Мусоросборная камера (табл. 3, п. 46)", mode: "sps_always", norm: "табл. 3, п. 46" },
+    { id: "no_cat", label: "Помещение Ф5 без определённой категории (требуется СП 12)", mode: "need_cat", norm: "СП 12.13130.2009" },
+    { id: "exempt_44", label: "Исключение п. 4.4 (санузел, душевая, венткамера не А/Б, насосная, ЛК, тамбур)", mode: "exempt", norm: "п. 4.4" }
+];
+
+let lastWordHtml = "";
+
+function addRoomRow(defaultName = "", defaultType = "v1_above", defaultArea = 100) {
+    const wrap = document.getElementById("roomsList");
+    const row = document.createElement("div");
+    row.className = "room-row";
+    const options = ROOM_TYPES.map(t => `<option value="${t.id}" ${t.id === defaultType ? "selected" : ""}>${t.label}</option>`).join("");
+    row.innerHTML = `
+        <div class="field" style="margin:0;">
+            <label>Наименование помещения</label>
+            <input type="text" class="r-name" value="${defaultName}" placeholder="Например: Склад готовой продукции">
+        </div>
+        <div class="field" style="margin:0;">
+            <label>Тип помещения по СП 486</label>
+            <select class="r-type">${options}</select>
+        </div>
+        <div class="field" style="margin:0;">
+            <label>Площадь, м²</label>
+            <input type="number" class="r-area" step="0.5" min="1" value="${defaultArea}">
+        </div>
+        <button type="button" class="btn-del" title="Удалить" onclick="this.parentElement.remove()">×</button>
+    `;
+    wrap.appendChild(row);
+}
+
+// Стартовые примеры
+addRoomRow("Склад сырья (кат. В1, 1 этаж)", "v1_above", 312);
+addRoomRow("Серверная", "server", 30);
+addRoomRow("Санузел / душевая", "exempt_44", 18);
+
+function runSp486() {
+    const objName = document.getElementById("obj_name").value.trim() || "Объект защиты";
+    const workType = document.getElementById("work_type").value;
+    const bType = document.getElementById("b_type").value;
+    const bArea = parseFloat(document.getElementById("b_area").value) || 0;
+    const fpoInfo = document.getElementById("fpo_info").value.trim() || "не указаны";
+
+    const rows = [];
+    let buildingRequiresAup = false;
+
+    // 1. Здание в целом (Таблица 1 или отсылочный СП)
+    const refMap = {
+        ref_155: ["СП 155.13130", "Объекты нефтепродуктообеспечения — требование определяется по СП 155"],
+        ref_156: ["СП 156.13130", "АЗС — требование определяется по СП 156"],
+        ref_153: ["СП 153.13130", "Объекты ж/д транспорта — требование определяется по СП 153"],
+        ref_364: ["СП 364.1311500", "Гаражи и мастерские — требование определяется по СП 364"],
+        ref_120: ["СП 120.13330", "Метрополитены — требование определяется по СП 120"]
+    };
+
+    if (refMap[bType]) {
+        rows.push({ obj: `Здание: ${objName}`, aup: "По спец. СП", sps: "По спец. СП", adpi: "Нет", norm: refMap[bType][0], note: refMap[bType][1], pill: "sub" });
+    } else if (bType === "wh_rack") {
+        buildingRequiresAup = true;
+        rows.push({ obj: `Здание: ${objName}`, aup: "Да", sps: "Нет", adpi: "Нет", norm: "табл. 1, п. 1", note: "Склад категории В со стеллажами ≥ 5,5 м (АУП независимо от площади)", pill: "aup" });
+    } else if (bType === "wh_2fl") {
+        buildingRequiresAup = true;
+        rows.push({ obj: `Здание: ${objName}`, aup: "Да", sps: "Нет", adpi: "Нет", norm: "табл. 1, п. 2", note: "Склад категории В высотой ≥ 2 этажей (АУП независимо от площади)", pill: "aup" });
+    } else if (bType === "high_30") {
+        buildingRequiresAup = true;
+        rows.push({ obj: `Здание: ${objName}`, aup: "Да", sps: "Нет", adpi: "Нет", norm: "табл. 1, п. 5", note: "Здание высотой > 30 м (кроме Ф1.3 и произв. Г, Д)", pill: "aup" });
+    } else if (bType === "mkd") {
+        rows.push({ obj: `Здание: ${objName}`, aup: "Нет", sps: "Да", adpi: "Да*", norm: "табл. 1, п. 6.1", note: "СПС независимо от площади (*АДПИ в жилых помещениях по нормам ПБ)", pill: "sps" });
+    } else if (bType === "mkd_75") {
+        buildingRequiresAup = true;
+        rows.push({ obj: `Здание: ${objName}`, aup: "Да", sps: "Нет", adpi: "Нет", norm: "табл. 1, п. 6.3", note: "Жилое здание высотой > 75 м", pill: "aup" });
+    } else if (bType === "pub_lmk") {
+        rows.push({ obj: `Здание: ${objName}`, aup: "Уточнить*", sps: "Да", adpi: "Нет", norm: "табл. 1, п. 9", note: "Общественное здание из лёгких металлоконструкций — проверить площадь и этажность по п. 9 табл. 1", pill: "sub" });
+    } else if (bType === "trade_1") {
+        const isAup = bArea >= 3500;
+        const overPct = isAup ? ((bArea - 3500) / 3500) * 100 : 0;
+        if (isAup && overPct <= 5.0) {
+            rows.push({ obj: `Здание: ${objName}`, aup: "Да (или СПС*)", sps: "Допускается*", adpi: "Нет", norm: "табл. 1, п. 12; п. 4.8", note: `Порог 3500 м² превышен на ${overPct.toFixed(1)}% (≤ 5%): допускается замена АУП на СПС`, pill: "sub" });
+        } else if (isAup) {
+            buildingRequiresAup = true;
+            rows.push({ obj: `Здание: ${objName}`, aup: "Да", sps: "Нет", adpi: "Нет", norm: "табл. 1, п. 12", note: "Одноэтажное торговое здание ≥ 3500 м²", pill: "aup" });
+        } else {
+            rows.push({ obj: `Здание: ${objName}`, aup: "Нет", sps: "Да", adpi: "Нет", norm: "табл. 1, п. 12", note: "Одноэтажное торговое здание < 3500 м²", pill: "sps" });
+        }
+    } else if (bType === "trade_2") {
+        const isAup = bArea >= 3500;
+        if (isAup) buildingRequiresAup = true;
+        rows.push({ obj: `Здание: ${objName}`, aup: isAup ? "Да" : "Уточнить*", sps: isAup ? "Нет" : "Да", adpi: "Нет", norm: "табл. 1, п. 12", note: "Для торговых зданий ≥ 2 этажей проверить площадь торговых залов по этажам (табл. 1, п. 12)", pill: isAup ? "aup" : "sub" });
+    } else {
+        rows.push({ obj: `Здание: ${objName}`, aup: "По табл. 3", sps: "По табл. 3", adpi: "Нет", norm: "табл. 1", note: "Прямого требования АУП на всё здание по табл. 1 нет — см. помещения и правило 40% (п. 4.5)", pill: "no" });
+    }
+
+    // 2. Помещения (Таблица 3 + п. 4.4 + п. 4.8 + накопление для п. 4.5)
+    let aupRoomsAreaStrict = 0;
+    let sub5Count = 0;
+    let needCatCount = 0;
+
+    document.querySelectorAll(".room-row").forEach((el, idx) => {
+        const name = el.querySelector(".r-name").value.trim() || `Помещение №${idx + 1}`;
+        const typeId = el.querySelector(".r-type").value;
+        const area = parseFloat(el.querySelector(".r-area").value) || 0;
+        const cfg = ROOM_TYPES.find(t => t.id === typeId);
+        if (!cfg) return;
+
+        if (cfg.mode === "exempt") {
+            rows.push({ obj: `${name} (${area} м²)`, aup: "Нет", sps: "Нет", adpi: "Нет", norm: cfg.norm, note: "Не подлежит защите (исключение п. 4.4 СП 486)", pill: "no" });
+        } else if (cfg.mode === "need_cat") {
+            needCatCount++;
+            rows.push({ obj: `${name} (${area} м²)`, aup: "Требуется уточнение", sps: "Требуется уточнение", adpi: "Нет", norm: cfg.norm, note: "Не определена категория помещения Ф5 — сначала выполнить расчёт по СП 12.13130.2009", pill: "sub" });
+        } else if (cfg.mode === "aup_always") {
+            aupRoomsAreaStrict += area;
+            rows.push({ obj: `${name} (${area} м²)`, aup: "Да", sps: "Нет", adpi: "Нет", norm: cfg.norm, note: "Требуется АУП независимо от площади", pill: "aup" });
+        } else if (cfg.mode === "sps_always") {
+            rows.push({ obj: `${name} (${area} м²)`, aup: "Нет", sps: "Да", adpi: "Нет", norm: cfg.norm, note: "Требуется СПС независимо от площади", pill: "sps" });
+        } else if (cfg.mode === "threshold") {
+            if (area >= cfg.thr) {
+                aupRoomsAreaStrict += area;
+                const overPct = ((area - cfg.thr) / cfg.thr) * 100;
+                if (overPct <= 5.0) {
+                    sub5Count++;
+                    rows.push({
+                        obj: `${name} (${area} м²)`, aup: "Да (или СПС*)", sps: "Допускается*", adpi: "Нет",
+                        norm: `${cfg.norm}; п. 4.8`,
+                        note: `Порог ${cfg.thr} м² превышен на ${overPct.toFixed(1)}% (≤ 5%): допускается замена АУП на СПС по п. 4.8 СП 486`,
+                        pill: "sub"
+                    });
+                } else {
+                    rows.push({
+                        obj: `${name} (${area} м²)`, aup: "Да", sps: "Нет", adpi: "Нет",
+                        norm: cfg.norm,
+                        note: `Площадь ≥ ${cfg.thr} м² (превышение ${overPct.toFixed(1)}% > 5%, замена по п. 4.8 невозможна)`,
+                        pill: "aup"
+                    });
+                }
+            } else {
+                rows.push({ obj: `${name} (${area} м²)`, aup: "Нет", sps: "Да", adpi: "Нет", norm: cfg.norm, note: `Площадь < ${cfg.thr} м² — требуется СПС`, pill: "sps" });
+            }
+        }
+    });
+
+    // 3. Сооружения (Таблица 2) и Оборудование (Таблица 4)
+    const cableVol = parseFloat(document.getElementById("cable_vol").value) || 0;
+    if (cableVol > 100) {
+        rows.push({ obj: `Кабельное сооружение (${cableVol} м³)`, aup: "Да", sps: "Нет", adpi: "Нет", norm: "табл. 2, п. 4", note: "Объём > 100 м³ — требуется АУП", pill: "aup" });
+    } else if (cableVol > 0) {
+        rows.push({ obj: `Кабельное сооружение (${cableVol} м³)`, aup: "Нет", sps: "Да", adpi: "Нет", norm: "табл. 2, п. 4", note: "Объём ≤ 100 м³ — требуется СПС", pill: "sps" });
+    }
+
+    const ceilLoad = parseFloat(document.getElementById("ceiling_load").value) || 0;
+    if (ceilLoad >= 7) {
+        rows.push({ obj: `Запотолочное пространство (${ceilLoad} л/м)`, aup: "Да", sps: "Нет", adpi: "Нет", norm: "табл. 2, п. 10", note: "Горючая масса кабелей ≥ 7 л/м (проверить примечания 2 и 4 к табл. 2)", pill: "aup" });
+    } else if (ceilLoad >= 1.5) {
+        rows.push({ obj: `Запотолочное пространство (${ceilLoad} л/м)`, aup: "Нет", sps: "Да", adpi: "Нет", norm: "табл. 2, п. 10", note: "Горючая масса кабелей от 1,5 до 7 л/м (проверить примечания 2 и 4 к табл. 2)", pill: "sps" });
+    }
+
+    if (document.getElementById("eq_paint").checked) rows.push({ obj: "Окрасочные камеры с ЛВЖ/ГЖ", aup: "Да", sps: "Нет", adpi: "Нет", norm: "табл. 4", note: "Требуется АУП независимо от типа", pill: "aup" });
+    if (document.getElementById("eq_trans").checked) rows.push({ obj: "Трансформаторы ≥ 200 МВА (220–330 кВ)", aup: "Да", sps: "Нет", adpi: "Нет", norm: "табл. 4", note: "Требуется АУП", pill: "aup" });
+    if (document.getElementById("eq_rack").checked) rows.push({ obj: "Стеллажи > 5,5 м (горючие материалы)", aup: "Да", sps: "Нет", adpi: "Нет", norm: "табл. 4", note: "Требуется АУП", pill: "aup" });
+    if (document.getElementById("eq_elcab").checked) rows.push({ obj: "Электрощиты и электрошкафы объёмом ≥ 0,03 м³", aup: "Да (автономная)", sps: "Нет", adpi: "Нет", norm: "табл. 4, п. 9.2", note: "Подлежат защите автоматической установкой пожаротушения", pill: "aup" });
+    if (document.getElementById("eq_fridge").checked) rows.push({ obj: "Охлаждаемые камеры заводского изготовления с пребыванием людей", aup: "Нет", sps: "Да", adpi: "Нет", norm: "табл. 4, п. 8", note: "Требуется СПС", pill: "sps" });
+
+    // 4. Правило 40% (п. 4.5 СП 486)
+    const share40 = bArea > 0 ? (aupRoomsAreaStrict / bArea) * 100 : 0;
+    const rule40Triggered = share40 >= 40;
+
+    let alertsHtml = "";
+    if (workType === "recon") {
+        alertsHtml += `<div class="alert alert-info"><h3>Режим реконструкции (ст. 4 ч. 4 ФЗ-123)</h3><p>Требования СП 486 применяются в объёме проводимого вмешательства (если меняется функциональное назначение помещения — как для нового объекта; к незатронутой существующей части применяются ранее действовавшие нормы).</p></div>`;
+    }
+    if (buildingRequiresAup) {
+        alertsHtml += `<div class="alert alert-err"><h3>Требуется АУП на всё здание (Таблица 1 СП 486)</h3><p>Здание подпадает под прямое требование оборудования автоматической установкой пожаротушения в целом (кроме помещений-исключений по п. 4.4).</p></div>`;
+    } else if (rule40Triggered) {
+        alertsHtml += `<div class="alert alert-err"><h3>Сработало правило 40% (п. 4.5 СП 486.1311500.2020)</h3><p>Суммарная площадь помещений, подлежащих защите АУП по таблице 3 (без учёта замены по п. 4.8), составляет <strong>${aupRoomsAreaStrict.toFixed(1)} м² (${share40.toFixed(1)}%)</strong> от общей площади здания (${bArea} м²). Поскольку доля ≥ 40%, <strong>требуется оборудовать АУП всё здание целиком</strong> (кроме исключений по п. 4.4).</p></div>`;
+    } else {
+        alertsHtml += `<div class="alert alert-ok"><h3>Правило 40% (п. 4.5) не превышено — защита локально по помещениям</h3><p>Доля помещений, требующих АУП по таблице 3, составляет <strong>${share40.toFixed(1)}%</strong> (${aupRoomsAreaStrict.toFixed(1)} м² из ${bArea} м²). Оборудовать АУП всё здание целиком по п. 4.5 не требуется.</p></div>`;
+    }
+    if (sub5Count > 0) {
+        alertsHtml += `<div class="alert alert-warn"><h3>Допускается замена АУП на СПС по п. 4.8 (допуск 5%)</h3><p>Для <strong>${sub5Count}</strong> пом. превышение порога площади составляет ≤ 5% — СП 486 допускает применить СПС вместо АУП.</p></div>`;
+    }
+    if (needCatCount > 0) {
+        alertsHtml += `<div class="alert alert-warn"><h3>Не хватает категорий помещений (${needCatCount})</h3><p>Для помещений класса Ф5 без расчёта категорий по СП 12.13130.2009 невозможно окончательно применить таблицу 3 СП 486.</p></div>`;
+    }
+
+    document.getElementById("alertsWrap").innerHTML = alertsHtml;
+    document.getElementById("kpiRow").innerHTML = `
+        <div class="kpi"><span>Площадь здания</span><strong>${bArea} м²</strong></div>
+        <div class="kpi"><span>Площадь под АУП (табл. 3)</span><strong>${aupRoomsAreaStrict.toFixed(1)} м²</strong></div>
+        <div class="kpi"><span>Доля для п. 4.5 (порог 40%)</span><strong style="color:${rule40Triggered ? 'var(--err)' : 'var(--ok)'}">${share40.toFixed(1)}%</strong></div>
+        <div class="kpi"><span>Позиций в отчёте</span><strong>${rows.length}</strong></div>`;
+
+    const pillClass = p => p === "aup" ? "pill-aup" : p === "sps" ? "pill-sps" : p === "sub" ? "pill-sub" : "pill-no";
+    const tableHtml = `
+        <table>
+            <thead>
+                <tr>
+                    <th>Объект (здание / помещение / сооружение / оборудование)</th>
+                    <th>Требуется АУП</th>
+                    <th>Требуется СПС</th>
+                    <th>Требуется АДПИ</th>
+                    <th>Норма СП 486</th>
+                    <th>Обоснование и примечания</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${rows.map(r => `
+                    <tr>
+                        <td><strong>${r.obj}</strong></td>
+                        <td><span class="pill ${pillClass(r.pill)}">${r.aup}</span></td>
+                        <td>${r.sps}</td>
+                        <td>${r.adpi}</td>
+                        <td>${r.norm}</td>
+                        <td>${r.note}</td>
+                    </tr>
+                `).join("")}
+            </tbody>
+        </table>`;
+    document.getElementById("resultTableWrap").innerHTML = tableHtml;
+
+    const sec = document.getElementById("resultSection");
+    sec.style.display = "block";
+    document.getElementById("btnWord").style.display = "inline-flex";
+    document.getElementById("btnPrint").style.display = "inline-flex";
+
+    lastWordHtml = `
+        <h1>Заключение по определению состава АУП, СПС и АДПИ</h1>
+        <p><strong>Объект:</strong> ${objName}<br><strong>Характеристики:</strong> ${fpoInfo} | Площадь здания: ${bArea} м² | Вид работ: ${workType === "recon" ? "Реконструкция (ст. 4 ФЗ-123)" : "Новое строительство"}<br><strong>Нормативная база:</strong> ${sp486EditionText}<br><strong>Дата расчёта:</strong> ${new Date().toLocaleDateString('ru-RU')}</p>
+        ${alertsHtml}
+        <h3>Итоговая таблица требований (Таблицы 1–4 СП 486.1311500.2020)</h3>
+        ${tableHtml}
+        <p style="margin-top:18px; font-size:10pt; color:#555;">СпецРаздел ПД — разработка разделов ПБ, ГОЧС, ТБЭ по ПП РФ № 87 | Тел.: +7 (996) 078-90-54 | www.specrazdel56.ru</p>
+    `;
+
+    sec.scrollIntoView({ behavior: "smooth" });
+}
+
+function exportWord() {
+    if (!lastWordHtml) return;
+    const doc = `
+        <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+        <head><meta charset="utf-8"><style>
+            body { font-family: Arial, sans-serif; font-size: 11pt; color: #111; }
+            table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+            th, td { border: 1px solid #444; padding: 6px; font-size: 9.5pt; }
+            th { background: #eee; }
+        </style></head>
+        <body>${lastWordHtml}</body></html>`;
+    const blob = new Blob(['\ufeff', doc], { type: 'application/msword' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "zaklyuchenie-SP486-specrazdel56.doc";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+</script>
+
+<!-- Аналитика -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
