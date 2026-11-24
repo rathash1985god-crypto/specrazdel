@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Калькулятор НПВ и ВПВ по СП 8.13130.2020, СП 10.13130.2020 и ФЗ-123 | СпецРаздел ПД</title>
+    <meta name="description" content="Бесплатный инженерный калькулятор НПВ и ВПВ: точные таблицы СП 8.13130.2020 и СП 10.13130.2020, все исключения по п. 1.4 СП 10, ст. 68 и ст. 99 ФЗ-123, расчёт запаса воды в резервуарах и выгрузка заключения в Ворд.">
+    <meta name="keywords" content="калькулятор НПВ ВПВ, СП 8.13130.2020, СП 10.13130.2020 пункт 1.4, статья 68 ФЗ-123, статья 99 ФЗ-123, расход воды на пожаротушение, СпецРаздел ПД">
+    <link rel="canonical" href="https://www.specrazdel56.ru/calc-sp8-sp10.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Калькулятор НПВ и ВПВ по СП 8, СП 10 и ФЗ-123 | СпецРаздел ПД">
+    <meta property="og:description" content="Определение необходимости НПВ и ВПВ со всеми исключениями (п. 1.4 СП 10, ст. 68 и ст. 99 ФЗ-123), расхода воды и запаса в резервуарах с выгрузкой в Ворд.">
+    <meta property="og:url" content="https://www.specrazdel56.ru/calc-sp8-sp10.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Калькулятор НПВ и ВПВ по СП 8.13130.2020, СП 10.13130.2020 и ФЗ-123",
+      "applicationCategory": "EngineeringApplication",
+      "operatingSystem": "All",
+      "url": "https://www.specrazdel56.ru/calc-sp8-sp10.html",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RUB" },
+      "publisher": { "@type": "Organization", "name": "СпецРаздел ПД", "url": "https://www.specrazdel56.ru/" }
+    }
+    </script>
+
+    <!-- Счётчик Яндекс.Метрики -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114435285', 'ym');
+        ym(114435285, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/114435285" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+    <style>
+        :root {
+            --primary: #ff9900; --primary-soft: #ffbd66; --dark: #080a0f;
+            --text-gray: #aeb6c4; --text: #fff; --border-color: #283142;
+            --ok: #3ad27d; --warn: #ffb84d; --err: #ff5d5d; --info: #4ec3ff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { color: var(--text); background: radial-gradient(circle at 50% -10%, #202b3e 0, var(--dark) 45%); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.25s; }
+
+        header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(11, 11, 11, 0.92); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
+        .header-container { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-weight: 800; font-size: 1.1rem; }
+        .logo span { color: var(--primary); }
+        nav ul { display: flex; list-style: none; gap: 18px; align-items: center; }
+        nav a { font-size: 0.88rem; font-weight: 500; color: #ccc; }
+        nav a:hover, nav a.active { color: var(--primary); }
+        .header-phone { font-weight: 600; font-size: 0.88rem; background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); }
+
+        .wrap { max-width: 1140px; margin: 0 auto; padding: 115px 20px 80px; }
+        .hero { margin-bottom: 24px; }
+        .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+        .badge { display: inline-block; background: rgba(255,153,0,0.14); color: var(--primary); border: 1px solid rgba(255,153,0,0.4); padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; }
+        .badge-ok { background: rgba(58,210,125,0.12); color: var(--ok); border-color: rgba(58,210,125,0.45); }
+        .hero h1 { font-size: clamp(1.65rem, 3vw, 2.3rem); font-weight: 800; line-height: 1.25; margin-bottom: 10px; }
+        .hero p { color: var(--text-gray); max-width: 890px; font-size: 0.96rem; }
+
+        .card { background: linear-gradient(145deg, rgba(24,30,43,0.96), rgba(14,17,24,0.98)); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+        .card h2 { font-size: 1.14rem; font-weight: 700; margin-bottom: 15px; color: var(--primary-soft); }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+
+        .field { margin-bottom: 12px; }
+        .field label { display: block; font-size: 0.82rem; font-weight: 600; color: #d5dce6; margin-bottom: 5px; }
+        .field small { display: block; font-size: 0.74rem; color: var(--text-gray); margin-top: 3px; }
+        input[type="text"], input[type="number"], select {
+            width: 100%; background: #0c1017; border: 1px solid var(--border-color);
+            color: #fff; padding: 9px 11px; border-radius: 9px; font-size: 0.89rem; outline: none;
+        }
+        input:focus, select:focus { border-color: var(--primary); }
+
+        .check-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 8px; }
+        .check-item {
+            display: flex; align-items: flex-start; gap: 9px; background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-color); padding: 10px 12px; border-radius: 10px; cursor: pointer; font-size: 0.84rem; color: #d8dee9;
+        }
+        .check-item input { margin-top: 3px; accent-color: var(--primary); width: 16px; height: 16px; flex-shrink: 0; }
+
+        .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+        .btn {
+            border: none; border-radius: 10px; padding: 12px 22px; font-size: 0.93rem;
+            font-weight: 700; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-primary { background: var(--primary); color: #080a0f; }
+        .btn-primary:hover { background: var(--primary-soft); }
+        .btn-secondary { background: rgba(255,255,255,0.06); color: #fff; border: 1px solid var(--border-color); }
+        .btn-secondary:hover { border-color: var(--primary); }
+
+        .result-box { display: none; }
+        .verdict-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-bottom: 18px; }
+        .v-card { border-radius: 14px; padding: 18px; border: 1px solid; background: #0c1017; }
+        .v-card.req { border-color: rgba(255, 153, 0, 0.55); background: rgba(255, 153, 0, 0.07); }
+        .v-card.ok { border-color: rgba(58, 210, 125, 0.5); background: rgba(58, 210, 125, 0.07); }
+        .v-card h3 { font-size: 1.02rem; margin-bottom: 6px; color: #fff; }
+        .v-big { font-size: 1.42rem; font-weight: 800; color: var(--primary); margin: 6px 0; }
+        .v-card.ok .v-big { color: var(--ok); }
+        .v-meta { font-size: 0.84rem; color: #d5dce6; line-height: 1.5; }
+
+        .detail-block { background: #0c1017; border: 1px solid var(--border-color); border-radius: 12px; padding: 16px 18px; margin-bottom: 14px; font-size: 0.87rem; color: #d8dee9; }
+        .detail-block h4 { color: var(--primary-soft); font-size: 0.96rem; margin-bottom: 8px; }
+        .detail-block ul { padding-left: 18px; }
+        .detail-block li { margin-bottom: 5px; }
+
+        .cta-box { margin-top: 24px; padding: 24px; border-radius: 14px; background: rgba(255,153,0,0.08); border: 1px solid rgba(255,153,0,0.45); }
+        .cta-box h3 { font-size: 1.12rem; margin-bottom: 8px; }
+        .cta-box p { font-size: 0.92rem; color: #ddd; margin-bottom: 14px; }
+
+        footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border-color); color: var(--text-gray); font-size: 0.85rem; }
+        @media (max-width: 860px) {
+            nav { display: none; }
+            .grid-2, .grid-3, .grid-4, .check-grid, .verdict-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo"><a href="index.html">СпецРаздел<span>ПД</span></a></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="news.html">Блог и новости</a></li>
+                <li><a href="audit-mpb.html">Проверка норм МПБ</a></li>
+                <li><a href="calc-sp486.html">Автоматика СП 486</a></li>
+                <li><a href="calc-razryvy-sp4.html">Разрывы СП 4</a></li>
+                <li><a href="calc-sp8-sp10.html" class="active">Водоснабжение СП 8/10</a></li>
+                <li><a href="index.html#contacts">Контакты</a></li>
+            </ul>
+        </nav>
+        <a href="tel:+79960789054" class="header-phone">+7 (996) 078-90-54</a>
+    </div>
+</header>
+
+<main class="wrap">
+    <section class="hero">
+        <div class="badges">
+            <span class="badge">ФЗ-123 (ст. 62, 68, 86, 99) • СП 8.13130.2020 • СП 10.13130.2020</span>
+            <span class="badge badge-ok" id="normsStatusBadge">Загрузка актуальности СП 8 и СП 10...</span>
+        </div>
+        <h1>Калькулятор наружного (НПВ) и внутреннего (ВПВ) противопожарного водоснабжения</h1>
+        <p>Полный инженерный расчёт с учётом всех нормативных исключений: ч. 4 и ч. 5 ст. 68, ч. 1 ст. 99 ФЗ-123 (когда НПВ не требуется или допускаются резервуары), п. 1.4 СП 10.13130.2020 (когда ВПВ не требуется), точных таблиц 2, 3, 4 СП 8 и таблиц 7.1, 7.2 СП 10.</p>
+    </section>
+
+    <section class="card">
+        <h2>1. Основные параметры объекта</h2>
+        <div class="grid-3">
+            <div class="field">
+                <label for="obj_name">Наименование объекта</label>
+                <input type="text" id="obj_name" value="Цех по производству алюминиевых корпусов">
+            </div>
+            <div class="field">
+                <label for="fpo">Класс ФПО и назначение здания</label>
+                <select id="fpo" onchange="toggleFields()">
+                    <option value="Ф5.1" selected>Ф5.1 — Производственное здание</option>
+                    <option value="Ф5.2">Ф5.2 — Складское здание</option>
+                    <option value="Ф1.3">Ф1.3 — Многоквартирный жилой дом</option>
+                    <option value="Ф1.1">Ф1.1 — Больницы, дома престарелых, спальные корпуса</option>
+                    <option value="Ф1.2">Ф1.2 — Гостиницы, общежития</option>
+                    <option value="Ф2.1">Ф2.1 — Театры, кинотеатры, клубы, библиотеки</option>
+                    <option value="Ф2.2">Ф2.2 / Ф3.1 — Музеи, выставки, торговля</option>
+                    <option value="Ф4.3">Ф4.3 / Ф3.4 / Ф3.5 / Ф3.6 / Ф4.2 — Офисы, АБК, поликлиники, ВУЗы</option>
+                    <option value="Ф1.4">Ф1.4 / Ф2.3 / Ф2.4 — Одноквартирные дома, открытые сооружения</option>
+                </select>
+            </div>
+            <div class="field" id="catWrap">
+                <label for="cat">Категория здания по взрывопожарной опасности (Ф5)</label>
+                <select id="cat">
+                    <option value="А">А (повышенная взрывопожароопасность)</option>
+                    <option value="Б">Б (взрывопожароопасность)</option>
+                    <option value="В" selected>В (пожароопасность)</option>
+                    <option value="Г">Г (умеренная пожароопасность)</option>
+                    <option value="Д">Д (пониженная пожароопасность)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid-4">
+            <div class="field">
+                <label for="fire_deg">Степень огнестойкости</label>
+                <select id="fire_deg">
+                    <option value="I">I степень</option>
+                    <option value="II" selected>II степень</option>
+                    <option value="III">III степень</option>
+                    <option value="IV">IV степень</option>
+                    <option value="V">V степень</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="kpo">Класс КПО</label>
+                <select id="kpo">
+                    <option value="С0" selected>С0</option>
+                    <option value="С1">С1</option>
+                    <option value="С2">С2</option>
+                    <option value="С3">С3</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="vol">Строительный объём, м³</label>
+                <input type="number" id="vol" step="0.1" min="1" value="20671.64">
+                <small>В таблицах СП 8 и СП 10 — в тыс. м³</small>
+            </div>
+            <div class="field">
+                <label for="floors">Этажность (надземных)</label>
+                <input type="number" id="floors" step="1" min="1" value="1">
+            </div>
+        </div>
+
+        <div class="grid-4">
+            <div class="field">
+                <label for="height">Высота здания, м</label>
+                <input type="number" id="height" step="0.5" min="2" value="14.0">
+            </div>
+            <div class="field" id="widthWrap">
+                <label for="width">Ширина здания Ф5, м</label>
+                <input type="number" id="width" step="0.5" min="1" value="36.0">
+                <small>≤ 60 м — табл. 3; &gt; 60 м (без фонарей) — табл. 4</small>
+            </div>
+            <div class="field">
+                <label for="location">Расположение объекта (ст. 68, 99 ФЗ-123)</label>
+                <select id="location">
+                    <option value="in_town" selected>В границах населённого пункта / промплощадки</option>
+                    <option value="out_town">Вне населённого пункта (отдельно стоящее)</option>
+                    <option value="small_50">Населённый пункт до 50 жителей</option>
+                    <option value="small_5000">Населённый пункт до 5000 жителей</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="people">Одновременное пребывание людей, чел.</label>
+                <input type="number" id="people" step="1" min="0" value="30">
+                <small>Для исключения ч. 5 ст. 68 ФЗ-123 (до 50 чел.)</small>
+            </div>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>2. Специальные исключения и поправки (п. 1.4 СП 10, п. 5.5 СП 8, ст. 68 ФЗ-123)</h2>
+        <div class="grid-2" style="margin-bottom: 10px;">
+            <div class="field">
+                <label for="vpv_exempt">Особый объект из перечня исключений ВПВ (п. 1.4 СП 10.13130.2020)</label>
+                <select id="vpv_exempt">
+                    <option value="none" selected>Нет (обычный объект — проверяется по таблицам 7.1 / 7.2)</option>
+                    <option value="school_kind">Школа, гимназия, лицей (кроме интернатов) или детский сад</option>
+                    <option value="season_cinema">Кинотеатр сезонного действия (на любое количество мест)</option>
+                    <option value="banya">Баня или сауна</option>
+                    <option value="agro_feed">Склад грубых кормов, пестицидов или минеральных удобрений</option>
+                    <option value="agro_proc">Здание переработки с/х продукции кат. В, I–II ст., объём ≤ 5000 м³</option>
+                    <option value="tp_el">Трансформаторная подстанция / помещение с электросиловым оборудованием (насосная, венткамера)</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="duration_mode">Продолжительность тушения пожара (п. 5.17 СП 8.13130.2020)</label>
+                <select id="duration_mode">
+                    <option value="auto" selected>Автоматически по п. 5.17 СП 8 (2 ч для I–II ст. НГ кат. Г/Д; иначе 3 ч)</option>
+                    <option value="3">Принудительно 3 часа</option>
+                    <option value="2">Принудительно 2 часа</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="check-grid">
+            <label class="check-item"><input type="checkbox" id="opt_wood_ii"> Здание II степени огнестойкости с деревянными конструкциями (+5 л/с к табл. 3/4 СП 8, прим. 5)</label>
+            <label class="check-item"><input type="checkbox" id="opt_lmk_g24"> Ф5.1 (1–2 эт.) / Ф5.2 (1 эт.) до 18 м с мет. каркасом и утеплителем Г2–Г4 (+10 л/с, п. 5.5 СП 8)</label>
+            <label class="check-item"><input type="checkbox" id="opt_agro_5"> Сельхозздание I–II ст., С0/С1, объём ≤ 5 тыс. м³, кат. Г/Д (5 л/с по прим. 3 к табл. 3/4 СП 8)</label>
+            <label class="check-item"><input type="checkbox" id="opt_no_ring"> В населённом пункте отсутствует кольцевой наружный противопожарный водопровод (ч. 4 ст. 68 ФЗ-123)</label>
+        </div>
+
+        <div class="actions">
+            <button type="button" class="btn btn-primary" onclick="calcWater()">Рассчитать НПВ и ВПВ</button>
+            <button type="button" class="btn btn-secondary" id="btnWord" style="display:none;" onclick="exportWord()">Скачать обоснование (Ворд)</button>
+            <button type="button" class="btn btn-secondary" id="btnPrint" style="display:none;" onclick="window.print()">Печать</button>
+        </div>
+    </section>
+
+    <section class="card result-box" id="resultSection">
+        <h2>Результаты расчёта противопожарного водоснабжения</h2>
+        <div class="verdict-grid" id="verdictGrid"></div>
+        <div id="detailsWrap"></div>
+
+        <div class="cta-box">
+            <h3>Нужно обосновать НПВ и ВПВ в разделе 9 МПБ или снять замечания экспертизы?</h3>
+            <p>Подготовлю раздел 9 «Мероприятия по обеспечению пожарной безопасности», проверю радиусы гидрантов на ПЗУ, рассчитаю пожарные резервуары или проведу аудит проектной документации по нормам пожарной безопасности.</p>
+            <div class="actions" style="margin-top: 10px;">
+                <a href="index.html#contacts" class="btn btn-primary">Обсудить объект с инженером</a>
+                <a href="tel:+79960789054" class="btn btn-secondary">+7 (996) 078-90-54</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 СпецРаздел ПД. Калькулятор НПВ и ВПВ по СП 8.13130.2020, СП 10.13130.2020 и ФЗ-123.</p>
+</footer>
+
+<script>
+let normsLabel = "СП 8.13130.2020 и СП 10.13130.2020";
+let lastWordHtml = "";
+
+async function loadNormsStatus() {
+    const badge = document.getElementById("normsStatusBadge");
+    try {
+        const resp = await fetch("./norms_config.json?t=" + Date.now());
+        if (resp.ok) {
+            const cfg = await resp.json();
+            const dt = (cfg.last_checked || "2026-11-21").split("-").reverse().join(".");
+            const sp8 = (cfg.active_norms || []).find(n => n.id === "SP-8");
+            const sp10 = (cfg.active_norms || []).find(n => n.id === "SP-10");
+            const ed8 = sp8 && sp8.detected_edition_date ? `ред. от ${sp8.detected_edition_date}` : "действует";
+            const ed10 = sp10 && sp10.detected_edition_date ? `ред. от ${sp10.detected_edition_date}` : "действует";
+            normsLabel = `СП 8.13130.2020 (${ed8}) и СП 10.13130.2020 (${ed10})`;
+            badge.textContent = `СП 8 (${ed8}) • СП 10 (${ed10}) • Проверено: ${dt}`;
+            return;
+        }
+    } catch (e) {}
+    badge.textContent = "СП 8.13130.2020 • СП 10.13130.2020 • Действуют";
+}
+loadNormsStatus();
+
+function toggleFields() {
+    const fpo = document.getElementById("fpo").value;
+    const isF5 = fpo.startsWith("Ф5");
+    document.getElementById("catWrap").style.display = isF5 ? "block" : "none";
+    document.getElementById("widthWrap").style.display = isF5 ? "block" : "none";
+}
+
+function calcWater() {
+    const objName = document.getElementById("obj_name").value.trim() || "Объект проектирования";
+    const fpo = document.getElementById("fpo").value;
+    const isF5 = fpo.startsWith("Ф5");
+    const cat = document.getElementById("cat").value;
+    const deg = document.getElementById("fire_deg").value;
+    const kpo = document.getElementById("kpo").value;
+    const vol = parseFloat(document.getElementById("vol").value) || 0;
+    const volK = vol / 1000.0;
+    const floors = parseInt(document.getElementById("floors").value, 10) || 1;
+    const height = parseFloat(document.getElementById("height").value) || 3.5;
+    const width = parseFloat(document.getElementById("width").value) || 20;
+    const loc = document.getElementById("location").value;
+    const people = parseInt(document.getElementById("people").value, 10) || 0;
+    const vpvExempt = document.getElementById("vpv_exempt").value;
+    const durMode = document.getElementById("duration_mode").value;
+
+    const optWoodII = document.getElementById("opt_wood_ii").checked;
+    const optLmkG24 = document.getElementById("opt_lmk_g24").checked;
+    const optAgro5 = document.getElementById("opt_agro_5").checked;
+    const optNoRing = document.getElementById("opt_no_ring").checked;
+
+    if (vol <= 0) {
+        alert("Введите строительный объём здания больше 0.");
+        return;
+    }
+
+    // ================= 1. РАСЧЁТ НПВ (ФЗ-123 ст. 68, 99 + СП 8.13130.2020) =================
+    let npvRequired = true;
+    let npvFlow = 10;
+    let npvNorm = "";
+    let npvReason = "";
+    let npvReservoirAllowed = "";
+
+    // Проверка исключений, когда НПВ НЕ ТРЕБУЕТСЯ (ст. 68 ч. 5 и ст. 99 ч. 1 ФЗ-123)
+    if (loc === "small_50") {
+        npvRequired = false; npvFlow = 0;
+        npvNorm = "ФЗ-123, ч. 5 ст. 68";
+        npvReason = "Для населённых пунктов с числом жителей до 50 человек допускается не предусматривать противопожарное водоснабжение (ч. 5 ст. 68 ФЗ-123).";
+    } else if (loc === "out_town" && ["Ф1.2", "Ф1.3", "Ф1.4", "Ф2.2"].includes(fpo) && people <= 50 && vol <= 1000) {
+        npvRequired = false; npvFlow = 0;
+        npvNorm = "ФЗ-123, ч. 5 ст. 68";
+        npvReason = `Отдельно стоящее здание класса ${fpo} вне населённого пункта (до 50 человек, объём ${vol} м³ ≤ 1000 м³) — противопожарное водоснабжение допускается не предусматривать (ч. 5 ст. 68 ФЗ-123).`;
+    } else if (isF5 && (deg === "I" || deg === "II") && cat === "Д" && vol <= 1000) {
+        npvRequired = false; npvFlow = 0;
+        npvNorm = "ФЗ-123, ч. 1 ст. 99";
+        npvReason = `Отдельно стоящее здание класса ${fpo}, ${deg} степени огнестойкости, категории Д объёмом ${vol} м³ (≤ 1000 м³) — противопожарное водоснабжение допускается не предусматривать (ч. 1 ст. 99 ФЗ-123).`;
+    } else if (isF5 && loc === "out_town" && ((["А", "Б", "В"].includes(cat) && vol <= 500) || (["Г", "Д"].includes(cat) && vol <= 1000))) {
+        npvRequired = false; npvFlow = 0;
+        npvNorm = "ФЗ-123, ч. 1 ст. 99";
+        npvReason = `Расположенное вне населённых пунктов отдельно стоящее здание класса ${fpo} категории ${cat} объёмом ${vol} м³ — противопожарное водоснабжение допускается не предусматривать (ч. 1 ст. 99 ФЗ-123).`;
+    } else if (isF5) {
+        const isGD = (cat === "Г" || cat === "Д");
+        if (optAgro5 && (deg === "I" || deg === "II") && (kpo === "С0" || kpo === "С1") && volK <= 5 && isGD) {
+            npvFlow = 5;
+            npvNorm = "СП 8.13130.2020, примечание 3 к Таблицам 3 и 4";
+            npvReason = "Для зданий с/х предприятий I и II ст. огнестойкости, С0/С1, объёмом ≤ 5 тыс. м³, категорий Г и Д расход на НПВ составляет 5 л/с.";
+        } else if (width <= 60) {
+            npvNorm = "ФЗ-123 (ст. 62, 68); СП 8.13130.2020, п. 5.3, Таблица 3";
+            if ((deg === "I" || deg === "II") && kpo === "С0") {
+                if (isGD) npvFlow = volK <= 50 ? 10 : volK <= 200 ? 15 : volK <= 400 ? 20 : volK <= 600 ? 25 : 35;
+                else npvFlow = volK <= 5 ? 10 : volK <= 20 ? 15 : volK <= 50 ? 20 : volK <= 200 ? 30 : volK <= 400 ? 35 : volK <= 600 ? 40 : 50;
+            } else if (deg === "III" && (kpo === "С0" || kpo === "С1")) {
+                if (isGD) npvFlow = volK <= 5 ? 10 : volK <= 20 ? 15 : volK <= 50 ? 25 : volK <= 200 ? 35 : volK <= 400 ? 40 : 45;
+                else npvFlow = volK <= 3 ? 10 : volK <= 5 ? 15 : volK <= 20 ? 20 : volK <= 50 ? 30 : volK <= 200 ? 45 : volK <= 400 ? 60 : 75;
+            } else if (deg === "IV" && (kpo === "С0" || kpo === "С1")) {
+                if (isGD) npvFlow = volK <= 3 ? 10 : volK <= 5 ? 15 : volK <= 20 ? 20 : volK <= 50 ? 30 : volK <= 200 ? 40 : volK <= 400 ? 50 : 60;
+                else npvFlow = volK <= 3 ? 15 : volK <= 5 ? 20 : volK <= 20 ? 25 : volK <= 50 ? 40 : volK <= 200 ? 60 : volK <= 400 ? 80 : 100;
+            } else if (deg === "IV" && (kpo === "С2" || kpo === "С3")) {
+                if (cat === "Д") npvFlow = volK <= 3 ? 10 : volK <= 5 ? 15 : volK <= 20 ? 20 : volK <= 50 ? 30 : 45;
+                else npvFlow = volK <= 3 ? 15 : volK <= 5 ? 20 : volK <= 20 ? 25 : volK <= 50 ? 40 : 65;
+            } else {
+                // V степень
+                if (cat === "Д") npvFlow = volK <= 3 ? 10 : volK <= 5 ? 15 : volK <= 20 ? 20 : volK <= 50 ? 30 : 55;
+                else npvFlow = volK <= 3 ? 15 : volK <= 5 ? 20 : volK <= 20 ? 25 : volK <= 50 ? 40 : 70;
+            }
+            npvReason = `Здание класса ${fpo} шириной ${width} м (≤ 60 м), степень ${deg}, класс ${kpo}, категория ${cat}, объём ${volK.toFixed(2)} тыс. м³ → по Таблице 3 СП 8 базовый расход ${npvFlow} л/с.`;
+        } else {
+            npvNorm = "ФЗ-123 (ст. 62, 68); СП 8.13130.2020, п. 5.3, Таблица 4";
+            if (isGD) npvFlow = volK <= 50 ? 10 : volK <= 100 ? 15 : volK <= 200 ? 20 : volK <= 300 ? 25 : volK <= 400 ? 30 : volK <= 500 ? 35 : volK <= 600 ? 40 : volK <= 700 ? 45 : 50;
+            else npvFlow = volK <= 50 ? 20 : volK <= 100 ? 30 : volK <= 200 ? 40 : volK <= 300 ? 50 : volK <= 400 ? 60 : volK <= 500 ? 70 : volK <= 600 ? 80 : volK <= 700 ? 90 : 100;
+            npvReason = `Здание класса ${fpo} без фонарей шириной ${width} м (≥ 60 м), категория ${cat}, объём ${volK.toFixed(2)} тыс. м³ → по Таблице 4 СП 8 базовый расход ${npvFlow} л/с.`;
+        }
+
+        // Надбавки СП 8
+        if (optWoodII && deg === "II") {
+            npvFlow += 5;
+            npvReason += " +5 л/с за деревянные конструкции во II ст. огнестойкости (прим. 5 к табл. 3/4 СП 8).";
+        }
+        if (optLmkG24 && height <= 18) {
+            npvFlow += 10;
+            npvReason += " +10 л/с за металлические конструкции с утеплителем Г2–Г4 (п. 5.5 СП 8).";
+        }
+    } else if (fpo === "Ф1.3" || fpo === "Ф1.4") {
+        npvNorm = "ФЗ-123 (ст. 62, 68); СП 8.13130.2020, п. 5.2, Таблица 2";
+        if (floors <= 2) npvFlow = (loc === "small_5000" && volK <= 1) ? 5 : (volK <= 5 ? 10 : 15);
+        else if (floors <= 12) npvFlow = volK <= 1 ? 10 : volK <= 25 ? 15 : volK <= 50 ? 20 : 25;
+        else if (floors <= 16) npvFlow = volK <= 25 ? 20 : volK <= 50 ? 25 : 25;
+        else npvFlow = volK <= 25 ? 20 : volK <= 50 ? 25 : volK <= 150 ? 30 : 35;
+        npvReason = `Здание класса ${fpo}, этажность ${floors}, объём ${volK.toFixed(2)} тыс. м³ → по Таблице 2 СП 8 расход на НПВ составляет ${npvFlow} л/с.`;
+    } else {
+        npvNorm = "ФЗ-123 (ст. 62, 68); СП 8.13130.2020, п. 5.2, Таблица 2";
+        if (floors <= 2) npvFlow = (loc === "small_5000" && volK <= 1) ? 5 : (volK <= 5 ? 10 : volK <= 25 ? 15 : 20);
+        else if (floors <= 6) npvFlow = volK <= 1 ? 10 : volK <= 5 ? 15 : volK <= 25 ? 20 : volK <= 50 ? 25 : 30;
+        else if (floors <= 12) npvFlow = volK <= 25 ? 25 : volK <= 50 ? 30 : 35;
+        else npvFlow = volK <= 50 ? 30 : 35;
+        npvReason = `Общественное/административное здание (${fpo}), этажность ${floors}, объём ${volK.toFixed(2)} тыс. м³ → по Таблице 2 СП 8 расход на НПВ составляет ${npvFlow} л/с.`;
+    }
+
+    // Проверка допустимости пожарных резервуаров / водоёмов (ч. 4 ст. 68 ФЗ-123)
+    if (npvRequired) {
+        if (loc === "small_5000") {
+            npvReservoirAllowed = "Допускается НПВ от пожарных резервуаров / водоёмов (населённый пункт до 5000 жителей, ч. 4 ст. 68 ФЗ-123).";
+        } else if (isF5 && ["В", "Г", "Д"].includes(cat) && npvFlow <= 15) {
+            npvReservoirAllowed = `Допускается НПВ от пожарных резервуаров / водоёмов (здание Ф5 категории ${cat} при расходе ≤ 15 л/с, ч. 4 ст. 68 ФЗ-123).`;
+        } else if (!isF5 && vol <= 1000 && optNoRing) {
+            npvReservoirAllowed = "Допускается НПВ от пожарных резервуаров / водоёмов (отдельно стоящее здание до 1000 м³ без кольцевого НПВ, ч. 4 ст. 68 ФЗ-123).";
+        } else {
+            npvReservoirAllowed = "По общему правилу (ч. 3 ст. 68 ФЗ-123) требуется наружный противопожарный водопровод с пожарными гидрантами (при отсутствии сети — обоснование резервуаров по п. 9.1 / 10.1 СП 8).";
+        }
+    }
+
+    // Продолжительность тушения по п. 5.17 СП 8
+    let duration = 3;
+    if (durMode === "2") duration = 2;
+    else if (durMode === "auto" && isF5 && (deg === "I" || deg === "II") && kpo === "С0" && (cat === "Г" || cat === "Д")) duration = 2;
+    const reserveVol = npvRequired ? Math.round(npvFlow * 3.6 * duration) : 0;
+
+    // ================= 2. РАСЧЁТ ВПВ (СП 10.13130.2020: п. 1.4, табл. 7.1, 7.2, п. 7.13) =================
+    let vpvRequired = false;
+    let vpvJets = 0;
+    let vpvPerJet = 0;
+    let vpvTotal = 0;
+    let vpvNorm = "";
+    let vpvReason = "";
+
+    const exemptMap = {
+        school_kind: "Здания общеобразовательных организаций (кроме школ-интернатов) и дошкольных учреждений (детсадов)",
+        season_cinema: "Здания кинотеатров сезонного действия",
+        banya: "Бани и сауны",
+        agro_feed: "Здания складов грубых кормов, пестицидов и минеральных удобрений",
+        agro_proc: "Производственные здания по переработке с/х продукции категории В, I–II ст. огнестойкости объёмом до 5000 м³",
+        tp_el: "Трансформаторные подстанции и помещения с электросиловым оборудованием (насосные станции, венткамеры)"
+    };
+
+    if (vpvExempt !== "none") {
+        vpvRequired = false;
+        vpvNorm = "СП 10.13130.2020, п. 1.4";
+        vpvReason = `ВПВ не требуется на основании прямого исключения п. 1.4 СП 10.13130.2020: ${exemptMap[vpvExempt]}.`;
+    } else if (isF5) {
+        const isGD = (cat === "Г" || cat === "Д");
+        if (isGD && (deg === "I" || deg === "II")) {
+            vpvRequired = false;
+            vpvNorm = "СП 10.13130.2020, п. 1.4";
+            vpvReason = `В производственных и складских зданиях I и II степеней огнестойкости категорий Г и Д ВПВ не требуется независимо от их объёма (п. 1.4 СП 10.13130.2020).`;
+        } else if (isGD && ["III", "IV", "V"].includes(deg) && vol <= 5000) {
+            vpvRequired = false;
+            vpvNorm = "СП 10.13130.2020, п. 1.4";
+            vpvReason = `В производственных и складских зданиях III–V степеней огнестойкости категорий Г и Д объёмом не более 5000 м³ (${vol} м³) ВПВ не требуется (п. 1.4 СП 10.13130.2020).`;
+        } else if (!isGD && vol < 500) {
+            vpvRequired = false;
+            vpvNorm = "СП 10.13130.2020, Таблица 7.2";
+            vpvReason = `Для зданий категорий А, Б, В объёмом менее 500 м³ (${vol} м³) ВПВ по Таблице 7.2 СП 10 не требуется.`;
+        } else if (height > 50 && vol > 150000) {
+            vpvRequired = true; vpvJets = 4; vpvPerJet = 5.0; vpvTotal = 20.0;
+            vpvNorm = "СП 10.13130.2020, п. 7.13";
+            vpvReason = "Для производственных зданий высотой свыше 50 м и объёмом более 150 000 м³ требуется 4 ПК-с по 5,0 л/с (общий расход 20,0 л/с).";
+        } else {
+            vpvRequired = true;
+            vpvNorm = "СП 10.13130.2020, Таблица 7.2";
+            const big = volK > 150;
+            if ((deg === "I" || deg === "II") && (kpo === "С0" || kpo === "С1")) {
+                vpvJets = big ? 3 : 2; vpvPerJet = 2.5;
+            } else if (deg === "III" && !isGD) {
+                vpvJets = big ? 3 : 2; vpvPerJet = 2.5;
+            } else if (deg === "III" && isGD) {
+                vpvJets = 2; vpvPerJet = 2.5;
+            } else if (deg === "IV" && (cat === "А" || cat === "Б")) {
+                vpvJets = big ? 3 : 2; vpvPerJet = 2.5;
+            } else if (deg === "IV" && cat === "В" && (kpo === "С0" || kpo === "С1")) {
+                vpvJets = 2; vpvPerJet = big ? 5.0 : 2.5;
+            } else if (deg === "IV" && cat === "В" && (kpo === "С2" || kpo === "С3")) {
+                vpvJets = big ? 4 : 3; vpvPerJet = 2.5;
+            } else if (deg === "IV" && isGD) {
+                vpvJets = 2; vpvPerJet = 2.5;
+            } else if (deg === "V" && cat === "В") {
+                vpvJets = 2; vpvPerJet = big ? 5.0 : 2.5;
+            } else {
+                vpvJets = big ? 2 : 1; vpvPerJet = 2.5;
+            }
+            vpvTotal = vpvJets * vpvPerJet;
+            vpvReason = `Здание класса ${fpo} высотой ${height} м, степень ${deg}, класс ${kpo}, категория ${cat}, объём ${volK.toFixed(2)} тыс. м³ → по Таблице 7.2 СП 10 требуется ${vpvJets} струи по ${vpvPerJet.toFixed(1)} л/с (общий расчётный расход ${vpvTotal.toFixed(1)} л/с).`;
+        }
+    } else {
+        vpvNorm = "СП 10.13130.2020, Таблица 7.1";
+        if (fpo === "Ф1.3") {
+            if (floors < 12 && height < 30) {
+                vpvRequired = false;
+                vpvReason = "Для многоквартирных жилых домов (Ф1.3) ниже 12 этажей (и высотой менее 30 м) ВПВ по Таблице 7.1 СП 10 не требуется.";
+            } else if (floors <= 16 && height <= 50) {
+                vpvRequired = true; vpvJets = 2; vpvPerJet = 2.5; vpvTotal = 5.0;
+                vpvReason = "Для Ф1.3 (12–16 этажей / 30–50 м): 1 струя по 2,5 л/с при длине коридора до 10 м, или 2 струи по 2,5 л/с при длине коридора свыше 10 м.";
+            } else {
+                vpvRequired = true; vpvJets = 2; vpvPerJet = 2.5; vpvTotal = 5.0;
+                vpvReason = "Для Ф1.3 (свыше 16 этажей / 50–75 м): 2 струи по 2,5 л/с независимо от длины коридора.";
+            }
+        } else if (fpo === "Ф1.1") {
+            vpvRequired = true;
+            vpvJets = (floors <= 3 && height <= 8) ? 1 : 2; vpvPerJet = 2.5; vpvTotal = vpvJets * 2.5;
+            vpvReason = `Для зданий Ф1.1 независимо от объёма требуется ВПВ: ${vpvJets} струи по 2,5 л/с (Табл. 7.1, п. 3 СП 10).`;
+        } else if (fpo === "Ф2.1") {
+            vpvRequired = true; vpvJets = 2; vpvPerJet = 2.5; vpvTotal = 5.0;
+            vpvReason = "Для зданий Ф2.1 (театры, клубы, библиотеки): 1 струя по 2,5 л/с (до 300 мест / до 2,5 тыс. м²) или 2 струи по 2,5 л/с (свыше 300 мест / 2,5 тыс. м²).";
+        } else if (fpo === "Ф2.2") {
+            vpvRequired = true;
+            vpvJets = (floors <= 3 && height <= 8) ? 1 : 2; vpvPerJet = 2.5; vpvTotal = vpvJets * 2.5;
+            vpvReason = `Для зданий Ф2.2 / Ф3.1 (музеи, выставки, торговля): ${vpvJets} струи по 2,5 л/с (Табл. 7.1, п. 6 СП 10).`;
+        } else if (fpo === "Ф1.2") {
+            vpvRequired = true;
+            vpvJets = (floors <= 10 && height <= 28) ? 1 : 2; vpvPerJet = 2.5; vpvTotal = vpvJets * 2.5;
+            vpvReason = `Для общежитий коридорного типа Ф1.2: ${vpvJets} струи по 2,5 л/с (Табл. 7.1, п. 7 СП 10).`;
+        } else if (fpo === "Ф4.3") {
+            if (floors < 6 && height < 18) {
+                vpvRequired = false;
+                vpvReason = "Для административно-бытовых и офисных зданий (Ф4.3, Ф3.4, Ф3.5, Ф3.6, Ф4.2) ниже 6 этажей (и высотой менее 18 м) ВПВ по Таблице 7.1 (п. 2) СП 10 не требуется.";
+            } else if (floors <= 10 && height <= 30) {
+                vpvRequired = true; vpvJets = 1; vpvPerJet = 2.5; vpvTotal = 2.5;
+                vpvReason = "Для Ф4.3 (6–10 этажей / 18–30 м): требуется 1 струя по 2,5 л/с (Табл. 7.1, п. 2 СП 10).";
+            } else {
+                vpvRequired = true; vpvJets = 2; vpvPerJet = 2.5; vpvTotal = 5.0;
+                vpvReason = "Для Ф4.3 (свыше 10 этажей / 30–50 м): требуется 2 струи по 2,5 л/с (Табл. 7.1, п. 2 СП 10).";
+            }
+        } else {
+            vpvRequired = false;
+            vpvReason = "Для одноквартирных жилых домов (Ф1.4) и открытых сооружений (Ф2.3, Ф2.4) ВПВ по Таблице 7.1 СП 10 не нормируется.";
+        }
+    }
+
+    // ================= ВЫВОД РЕЗУЛЬТАТОВ =================
+    const verdictHtml = `
+        <div class="v-card ${npvRequired ? 'req' : 'ok'}">
+            <h3>1. Наружное пожаротушение (НПВ)</h3>
+            <div class="v-big">${npvRequired ? `ТРЕБУЕТСЯ: ${npvFlow} л/с` : 'НЕ ТРЕБУЕТСЯ'}</div>
+            <div class="v-meta">
+                ${npvRequired ? `<strong>Запас воды в резервуарах (${duration} ч):</strong> ${reserveVol} м³<br>` : ''}
+                <strong>Норма:</strong> ${npvNorm}
+            </div>
+        </div>
+        <div class="v-card ${vpvRequired ? 'req' : 'ok'}">
+            <h3>2. Внутренний водопровод (ВПВ)</h3>
+            <div class="v-big">${vpvRequired ? `ТРЕБУЕТСЯ: ${vpvTotal.toFixed(1)} л/с` : 'НЕ ТРЕБУЕТСЯ'}</div>
+            <div class="v-meta">
+                ${vpvRequired ? `<strong>Струи:</strong> ${vpvJets} струи по ${vpvPerJet.toFixed(1)} л/с<br>` : ''}
+                <strong>Норма:</strong> ${vpvNorm}
+            </div>
+        </div>
+    `;
+    document.getElementById("verdictGrid").innerHTML = verdictHtml;
+
+    const detailsHtml = `
+        <div class="detail-block">
+            <h4>Обоснование по НПВ (ФЗ-123 и СП 8.13130.2020)</h4>
+            <ul>
+                <li><strong>Нормативная база:</strong> ${npvNorm}.</li>
+                <li><strong>Анализ условий:</strong> ${npvReason}</li>
+                ${npvRequired ? `<li><strong>Источник НПВ (ст. 68 ФЗ-123):</strong> ${npvReservoirAllowed}</li>
+                <li><strong>Расчёт пожарного запаса воды (п. 5.17, 10.2 СП 8):</strong> V = q × 3,6 × t = ${npvFlow} × 3,6 × ${duration} = <strong>${reserveVol} м³</strong> (не менее 2 резервуаров по 50% объёма, п. 10.3 СП 8).</li>` : ''}
+            </ul>
+        </div>
+        <div class="detail-block">
+            <h4>Обоснование по ВПВ (ФЗ-123 ст. 86 и СП 10.13130.2020)</h4>
+            <ul>
+                <li><strong>Нормативная база:</strong> ${vpvNorm}.</li>
+                <li><strong>Анализ условий:</strong> ${vpvReason}</li>
+                ${vpvRequired ? `<li><strong>Дополнительно:</strong> проверить расстановку пожарных кранов (орошение каждой точки 2 струями при 2 и более расчётных ПК, п. 6.1.13 СП 10) и минимальный напор у диктующего ПК (табл. 7.3 СП 10).</li>` : ''}
+            </ul>
+        </div>
+    `;
+    document.getElementById("detailsWrap").innerHTML = detailsHtml;
+
+    const sec = document.getElementById("resultSection");
+    sec.style.display = "block";
+    document.getElementById("btnWord").style.display = "inline-flex";
+    document.getElementById("btnPrint").style.display = "inline-flex";
+
+    lastWordHtml = `
+        <h1>Обоснование наружного (НПВ) и внутреннего (ВПВ) противопожарного водоснабжения</h1>
+        <p><strong>Объект:</strong> ${objName}<br>
+        <strong>Параметры:</strong> Класс ${fpo}${isF5 ? `, категория ${cat}, ширина ${width} м` : ''}, степень огнестойкости ${deg}, класс КПО ${kpo}, этажность ${floors}, высота ${height} м, строительный объём ${vol} м³ (${volK.toFixed(2)} тыс. м³).<br>
+        <strong>Нормативная база:</strong> ФЗ-123 (ст. 62, 68, 86, 99); ${normsLabel}.<br>
+        <strong>Дата расчёта:</strong> ${new Date().toLocaleDateString('ru-RU')}</p>
+        <h3>Итоговые показатели</h3>
+        <p><strong>1. НПВ:</strong> ${npvRequired ? `Требуется, расход ${npvFlow} л/с (запас воды на ${duration} ч: ${reserveVol} м³)` : 'Не требуется'}.<br>
+        <strong>2. ВПВ:</strong> ${vpvRequired ? `Требуется, ${vpvJets} струи по ${vpvPerJet.toFixed(1)} л/с (общий расход ${vpvTotal.toFixed(1)} л/с)` : 'Не требуется'}.</p>
+        ${detailsHtml}
+        <p style="margin-top:18px; font-size:10pt; color:#555;">СпецРаздел ПД — разработка и аудит разделов ПБ, ГОЧС, ТБЭ по ПП РФ № 87 | Тел.: +7 (996) 078-90-54 | www.specrazdel56.ru</p>
+    `;
+
+    sec.scrollIntoView({ behavior: "smooth" });
+}
+
+function exportWord() {
+    if (!lastWordHtml) return;
+    const doc = `
+        <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+        <head><meta charset="utf-8"><style>
+            body { font-family: Arial, sans-serif; font-size: 11pt; color: #111; }
+            h1 { font-size: 14pt; } h3, h4 { font-size: 11.5pt; margin-top: 12px; }
+        </style></head>
+        <body>${lastWordHtml}</body></html>`;
+    const blob = new Blob(['\ufeff', doc], { type: 'application/msword' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "raschet-NPV-VPV-specrazdel56.doc";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+</script>
+
+<!-- Аналитика -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
