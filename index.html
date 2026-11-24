@@ -59,13 +59,13 @@
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         
         header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(11, 11, 11, 0.94); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
-        .header-container { max-width: 1320px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; gap: 12px; }
+        .header-container { max-width: 1360px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; gap: 12px; }
         .logo { font-weight: 800; font-size: 1.1rem; letter-spacing: 0.5px; white-space: nowrap; }
         .logo span { color: var(--primary); }
-        nav ul { display: flex; list-style: none; gap: 15px; align-items: center; flex-wrap: wrap; }
-        nav a { font-size: 0.86rem; font-weight: 500; color: #ccc; white-space: nowrap; }
+        nav ul { display: flex; list-style: none; gap: 13px; align-items: center; flex-wrap: wrap; }
+        nav a { font-size: 0.84rem; font-weight: 500; color: #ccc; white-space: nowrap; }
         nav a:hover, nav a.active { color: var(--primary); }
-        .header-phone { font-weight: 600; font-size: 0.88rem; background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); white-space: nowrap; }
+        .header-phone { font-weight: 600; font-size: 0.86rem; background: rgba(255,255,255,0.05); padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); white-space: nowrap; }
 
         /* Первый экран: 3-колоночная сетка, всё прокручивается естественно и ничего не перекрывает */
         .hero { min-height: 92vh; position: relative; display: flex; align-items: center; justify-content: center; padding: 105px 20px 55px; }
@@ -75,7 +75,7 @@
             width: 100%;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 272px minmax(0, 1fr) 280px;
+            grid-template-columns: 274px minmax(0, 1fr) 280px;
             gap: 24px;
             align-items: center;
             position: relative;
@@ -86,20 +86,20 @@
         .hero h1 span { color: var(--primary); }
         .hero h3 { font-size: clamp(0.98rem, 1.7vw, 1.2rem); font-weight: 400; color: #ddd; margin-bottom: 28px; }
 
-        /* Левая колонка: 3 бесплатных инструмента */
+        /* Левая колонка: 4 бесплатных инструмента */
         .hero-tools-left {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             text-align: left;
         }
         .hero-tool-card {
             display: block;
-            padding: 13px 15px;
+            padding: 11px 14px;
             color: #fff;
             background: linear-gradient(145deg, rgba(34,34,34,0.95) 0%, rgba(17,17,17,0.96) 100%);
             border: 1.5px solid var(--primary);
-            border-radius: 15px;
+            border-radius: 14px;
             box-shadow: 0 12px 30px rgba(0,0,0,.55), 0 0 18px rgba(255,153,0,.14);
             transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
@@ -110,38 +110,38 @@
         }
         .hero-tool-badge {
             display: inline-block;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             padding: 3px 8px;
             border-radius: 999px;
             background: rgba(255,153,0,0.16);
             color: var(--primary);
-            font-size: 0.68rem;
+            font-size: 0.66rem;
             font-weight: 800;
             letter-spacing: 0.4px;
             text-transform: uppercase;
         }
         .hero-tool-title {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 800;
-            line-height: 1.26;
+            line-height: 1.24;
             color: #fff;
             margin-bottom: 4px;
         }
         .hero-tool-desc {
-            font-size: 0.75rem;
+            font-size: 0.74rem;
             color: #bdbdbd;
-            line-height: 1.35;
-            margin-bottom: 9px;
+            line-height: 1.32;
+            margin-bottom: 8px;
         }
         .hero-tool-btn {
             display: block;
             width: 100%;
-            padding: 8px 10px;
-            border-radius: 9px;
+            padding: 7px 10px;
+            border-radius: 8px;
             background: linear-gradient(135deg, var(--primary), #ffb52e);
             color: #111;
             text-align: center;
-            font-size: 0.8rem;
+            font-size: 0.79rem;
             font-weight: 800;
         }
 
@@ -407,7 +407,7 @@
             .hero-tools-left {
                 order: 2;
                 display: grid;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
             .hero-right-col { order: 3; }
         }
@@ -471,6 +471,7 @@
                     <li><a href="audit-mpb.html">Проверка норм МПБ</a></li>
                     <li><a href="calc-sp486.html">Автоматика СП 486</a></li>
                     <li><a href="calc-razryvy-sp4.html">Разрывы СП 4</a></li>
+                    <li><a href="calc-sp8-sp10.html">НПВ / ВПВ (СП 8/10)</a></li>
                     <li><a href="ai-agents.html">ИИ-агенты 24/7</a></li>
                     <li><a href="#portfolio">Портфолио</a></li>
                     <li><a href="reviews.html">Отзывы</a></li>
@@ -485,7 +486,7 @@
     <section class="hero" id="main">
         <div class="hero-bg"></div>
         <div class="hero-grid">
-            <!-- ЛЕВАЯ КОЛОНКА: 3 бесплатных инструмента -->
+            <!-- ЛЕВАЯ КОЛОНКА: 4 бесплатных инструмента -->
             <aside class="hero-tools-left" aria-label="Бесплатные инженерные калькуляторы и проверка норм">
                 <a href="audit-mpb.html" class="hero-tool-card">
                     <span class="hero-tool-badge">Бесплатно • ПДФ / Ворд</span>
@@ -506,6 +507,13 @@
                     <div class="hero-tool-title">Расчёт противопожарных разрывов</div>
                     <div class="hero-tool-desc">Таблица 1 и расчёт по Приложению А с выгрузкой заключения в Ворд.</div>
                     <span class="hero-tool-btn">Рассчитать разрывы</span>
+                </a>
+
+                <a href="calc-sp8-sp10.html" class="hero-tool-card">
+                    <span class="hero-tool-badge">СП 8 • СП 10 • ФЗ-123</span>
+                    <div class="hero-tool-title">Расчёт НПВ и ВПВ (водоснабжение)</div>
+                    <div class="hero-tool-desc">Расход воды (л/с), струи, резервуары и исключения п. 1.4 СП 10 и ст. 68 ФЗ-123.</div>
+                    <span class="hero-tool-btn">Рассчитать НПВ / ВПВ</span>
                 </a>
             </aside>
 
