@@ -145,7 +145,7 @@
             font-weight: 800;
         }
 
-        /* Правая колонка: Новости -> Предложение за 700 ₽ -> Калькулятор цен (НЕ fixed, уходит со страницей) */
+        /* Правая колонка: Новости -> Предложение за 700 ₽ -> Калькулятор цен */
         .hero-right-col {
             display: flex;
             flex-direction: column;
@@ -281,7 +281,7 @@
             filter: brightness(1.05);
         }
 
-        /* Кнопка калькулятора цен внутри правой колонки (НЕ fixed) */
+        /* Кнопка калькулятора цен внутри правой колонки */
         #calc-float-btn {
             width: 100%;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
@@ -301,7 +301,7 @@
         }
         #calc-float-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(255, 153, 0, 0.55); }
         
-        .btn-vr { display: inline-block; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; padding: 14px 28px; border-radius: 50px; font-weight: 700; font-size: 1rem; box-shadow: 0 10px 30px rgba(255, 153, 0, 0.4); border: 1px solid rgba(255,255,255,0.2); cursor: pointer; width: 100%; max-width: 320px; text-align: center; }
+        .btn-vr { display: inline-block; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; padding: 14px 28px; border-radius: 50px; font-weight: 700; font-size: 1rem; box-shadow: 0 10px 30px rgba(255, 153, 0, 0.4); border: 1px solid rgba(255,255,255,0.2); cursor: pointer; width: 100%; max-width: 320px; text-align: center; transition: transform 0.2s, box-shadow 0.2s; }
         .btn-vr:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(255, 153, 0, 0.6); }
 
         .services { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
@@ -317,7 +317,7 @@
         .service-body h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; color: #fff; }
         .service-body p { font-size: 0.9rem; color: var(--text-gray); margin-bottom: 20px; flex-grow: 1; }
         
-        .service-btn { display: block; align-self: stretch; padding: 12px; border: 1px solid var(--border-color); border-radius: 10px; font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.03); cursor: pointer; color: #fff; text-align: center; }
+        .service-btn { display: block; width: 100%; align-self: stretch; padding: 12px; border: 1px solid var(--border-color); border-radius: 10px; font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.03); cursor: pointer; color: #fff; text-align: center; transition: 0.25s; }
         .service-btn:hover { background: var(--primary); color: #000; border-color: var(--primary); }
 
         .portfolio-section { padding: 80px 20px; max-width: 1000px; margin: 0 auto; }
@@ -521,10 +521,10 @@
             <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
                 <h1>Разработка спецразделов <span>проектной документации</span></h1>
                 <h3>Узкая специализация · Опыт работы с 2008 года · Госэкспертиза с первого раза</h3>
-                <a href="https://max.ru/id561901317631_4_bot" target="_blank" class="btn-vr">Задать вопрос инженеру</a>
+                <button type="button" class="btn-vr" onclick="openPetrChatSafe('Задать вопрос инженеру')">Задать вопрос инженеру</button>
             </div>
 
-            <!-- ПРАВАЯ КОЛОНКА: 1. Новости -> 2. Предложение за 700 ₽ -> 3. Калькулятор цен (НЕ сползает при прокрутке) -->
+            <!-- ПРАВАЯ КОЛОНКА: 1. Новости -> 2. Предложение за 700 ₽ -> 3. Калькулятор цен -->
             <aside class="hero-right-col" aria-label="Новости, спецпредложение и калькулятор стоимости">
                 <div class="hero-news-card">
                     <span class="hero-tool-badge" style="margin:0;">Актуальные новости</span>
@@ -567,7 +567,7 @@
                     <div class="service-price">27 000 – 93 000 ₽</div>
                     <h3>Раздел 9 «Пожарная безопасность» (ПБ)</h3>
                     <p>Разработка проектной документации по требованиям ФЗ №123 и СП 1.13130.2020. Согласование с первого раза.</p>
-                    <a href="https://max.ru/id561901317631_4_bot" target="_blank" class="service-btn">Обсудить задачу</a>
+                    <button type="button" class="service-btn" onclick="openPetrChatSafe('Раздел 9 (ПБ)', 'Здравствуйте! Интересует разработка Раздела 9 «Пожарная безопасность» (ПБ).')">Обсудить задачу</button>
                 </div>
             </div>
 
@@ -576,7 +576,7 @@
                     <div class="service-price">30 000 – 160 000 ₽</div>
                     <h3>Раздел 13 «ПМ ГОЧС»</h3>
                     <p>Инженерно-технические мероприятия гражданской обороны и предупреждения чрезвычайных ситуаций.</p>
-                    <a href="https://max.ru/id561901317631_4_bot" target="_blank" class="service-btn">Обсудить задачу</a>
+                    <button type="button" class="service-btn" onclick="openPetrChatSafe('Раздел 13 (ГОЧС)', 'Здравствуйте! Интересует разработка Раздела 13 «ПМ ГОЧС».')">Обсудить задачу</button>
                 </div>
             </div>
 
@@ -585,7 +585,7 @@
                     <div class="service-price">22 000 – 45 000 ₽</div>
                     <h3>Раздел 10 «Безопасная эксплуатация» (ТБЭ)</h3>
                     <p>Требования к обеспечению безопасной эксплуатации объектов капитального строительства.</p>
-                    <a href="https://max.ru/id561901317631_4_bot" target="_blank" class="service-btn">Обсудить задачу</a>
+                    <button type="button" class="service-btn" onclick="openPetrChatSafe('Раздел 10 (ТБЭ)', 'Здравствуйте! Интересует разработка Раздела 10 «Безопасная эксплуатация» (ТБЭ).')">Обсудить задачу</button>
                 </div>
             </div>
 
@@ -594,7 +594,7 @@
                     <div class="service-price">25 000 – 37 000 ₽</div>
                     <h3>Раздел «Антитеррористическая защищенность»</h3>
                     <p>Разработка отдельного проектного подраздела под актуальные требования законодательства и экспертов.</p>
-                    <a href="https://max.ru/id561901317631_4_bot" target="_blank" class="service-btn">Обсудить задачу</a>
+                    <button type="button" class="service-btn" onclick="openPetrChatSafe('Раздел АТЗ', 'Здравствуйте! Интересует разработка раздела «Антитеррористическая защищённость» (АТЗ).')">Обсудить задачу</button>
                 </div>
             </div>
 
@@ -603,7 +603,7 @@
                     <div class="service-price">800 – 2 000 ₽ / м³</div>
                     <h3>Расчёт категории помещений по взрывопожароопасности</h3>
                     <p>Определение категорий помещений производственного и складского назначения по СП 12.13330.2009.</p>
-                    <a href="https://max.ru/id561901317631_4_bot" target="_blank" class="service-btn">Обсудить задачу</a>
+                    <button type="button" class="service-btn" onclick="openPetrChatSafe('Расчёт категорий', 'Здравствуйте! Нужен расчёт категорий помещений по взрывопожарной и пожарной опасности.')">Обсудить задачу</button>
                 </div>
             </div>
 
@@ -703,7 +703,7 @@
         </div>
         <div class="contacts-grid">
             <div class="contact-box"><h4>Адрес</h4><p>г. Оренбург, пр-кт Гагарина, 29/2</p></div>
-            <div class="contact-box"><h4>График</h4><p>Пн–Пт: 10:00 — 19:00</p></div>
+            <div class="contact-box"><h4>График</h4><p>Пн–Пт: 9:00 — 20:00</p></div>
             <div class="contact-box"><h4>Связь</h4><p>+7 (996) 078-90-54<br>designer.85@bk.ru</p></div>
         </div>
     </section>
@@ -781,7 +781,7 @@
                     <span class="calc-val" id="resDays">0 рабочих дней</span>
                 </div>
 
-                <button class="calc-action-btn" onclick="sendCalcToMaxBot()" style="margin-top: 15px;">Передать расчет в Макс-бот к Петру 🚀</button>
+                <button class="calc-action-btn" onclick="sendCalcToPetrChat()" style="margin-top: 15px;">Обсудить расчёт в чате с Петром 🚀</button>
             </div>
         </div>
     </div>
@@ -789,6 +789,17 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true });
+
+        function openPetrChatSafe(context, prefill) {
+            if (typeof window.openPetrChat === 'function') {
+                window.openPetrChat(context || 'Сайт СпецРазделПД', prefill || '');
+            } else {
+                const link = prefill
+                    ? `https://max.ru/id561901317631_4_bot?start=${encodeURIComponent(prefill)}`
+                    : 'https://max.ru/id561901317631_4_bot';
+                window.open(link, '_blank');
+            }
+        }
 
         // Загрузка 3 последних новостей из news.json
         async function loadLatestHeroNews() {
@@ -922,9 +933,9 @@
             document.getElementById('calcResultBox').style.display = 'block';
         }
 
-        function sendCalcToMaxBot() {
+        function sendCalcToPetrChat() {
             let area = document.getElementById('calcArea').value;
-            let floors = document.getElementById('calcFloors').value;
+            let floors = document.getElementById('calcFloors').value || '1';
             let total = document.getElementById('resTotal').innerText;
             let days = document.getElementById('resDays').innerText;
 
@@ -934,12 +945,14 @@
             if (document.getElementById('chkTBE').checked) selectedSections.push('ТБЭ');
             if (document.getElementById('chkATZ').checked) selectedSections.push('АТЗ');
 
-            let userMsg = `Здравствуйте! Расчет с сайта: Разделы: [${selectedSections.join(', ')}]. Площадь ${area} м², Этажность: ${floors} эт. Ориентировочная стоимость: ${total}, срок: ${days}. Хочу обсудить детали проекта.`;
-            
-            let maxBotLink = `https://max.ru/id561901317631_4_bot?start=${encodeURIComponent(userMsg)}`;
-            window.open(maxBotLink, '_blank');
+            let userMsg = `Здравствуйте! Расчёт с калькулятора: разделы [${selectedSections.join(', ')}], площадь ${area} м², этажность ${floors} эт. Итого: ${total}, срок: ${days}. Хочу обсудить детали и получить КП.`;
+            closeCalculator();
+            openPetrChatSafe('Калькулятор на сайте', userMsg);
         }
     </script>
+
+    <!-- Чат-виджет нейропродавца Петра -->
+    <script src="petr_widget.js" defer></script>
 
     <!-- Vercel Analytics -->
     <script>
