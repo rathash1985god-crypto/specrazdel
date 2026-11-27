@@ -1,11 +1,22 @@
 // api/webchat.js — Vercel Serverless Function для чата Петра (без VPS, VPN и туннелей)
-// Требует 3 переменные окружения в Vercel:
-//   UPSTASH_REDIS_REST_URL   (создаётся в 2 клика в Vercel -> Storage -> Upstash Redis)
-//   UPSTASH_REDIS_REST_TOKEN (создаётся автоматически вместе с Upstash Redis)
-//   WEBCHAT_SECRET           (любой ваш длинный пароль, такой же прописать в .env у petr_bot.py)
+// Автоматически поддерживает переменные Upstash/Vercel:
+//   KV_REST_API_URL / UPSTASH_REDIS_REST_URL / STORAGE_REST_API_URL
+//   KV_REST_API_TOKEN / UPSTASH_REDIS_REST_TOKEN / STORAGE_REST_API_TOKEN
+//   WEBCHAT_SECRET
 
-const REDIS_URL = (process.env.UPSTASH_REDIS_REST_URL || "").replace(/\/+$/, "");
-const REDIS_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN || "";
+const REDIS_URL = (
+  process.env.KV_REST_API_URL ||
+  process.env.UPSTASH_REDIS_REST_URL ||
+  process.env.STORAGE_REST_API_URL ||
+  ""
+).replace(/\/+$/, "");
+
+const REDIS_TOKEN =
+  process.env.KV_REST_API_TOKEN ||
+  process.env.UPSTASH_REDIS_REST_TOKEN ||
+  process.env.STORAGE_REST_API_TOKEN ||
+  "";
+
 const SECRET = process.env.WEBCHAT_SECRET || "";
 
 const ALLOWED_ORIGINS = [
@@ -51,7 +62,7 @@ function isAuthorizedBot(req) {
 async function isPetrOnline() {
   const lastSeen = await redisCmd(["GET", "petr:last_seen"]);
   if (!lastSeen) return false;
-  return Date.now() - Number(lastSeen) < 22000; // 22 сек
+  return Date.now() - Number(lastSeen) < 25000; // 25 сек (под опрос раз в 10 сек)
 }
 
 export default async function handler(req, res) {
