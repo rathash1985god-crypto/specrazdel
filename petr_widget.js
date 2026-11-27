@@ -1,4 +1,4 @@
-// petr_widget.js — Чат-виджет нейропродавца Петра для сайта specrazdel56.ru
+// petr_widget.js — Живой чат нейропродавца Петра для сайта specrazdel56.ru
 (function () {
   if (window.__petrWidgetLoaded) return;
   window.__petrWidgetLoaded = true;
@@ -19,7 +19,7 @@
   const clientId = getClientId();
   let currentContext = document.title || "Сайт СпецРазделПД";
   let isOpen = false;
-  let isOnline = true;
+  let isOnline = false;
   let isSending = false;
 
   const style = document.createElement("style");
@@ -47,7 +47,7 @@
 
     #petr-box {
       position: fixed; right: 20px; bottom: 82px; z-index: 9999;
-      width: 375px; max-width: calc(100vw - 24px); height: 550px; max-height: calc(100vh - 110px);
+      width: 375px; max-width: calc(100vw - 24px); height: 520px; max-height: calc(100vh - 110px);
       background: #141414; border: 1.5px solid #2e2e2e; border-radius: 18px;
       box-shadow: 0 22px 60px rgba(0,0,0,0.75); display: none; flex-direction: column;
       overflow: hidden; font-family: Inter, sans-serif; color: #fff;
@@ -85,52 +85,35 @@
     .petr-msg.user { align-self: flex-end; background: #ff9900; color: #111; font-weight: 500; }
     .petr-msg.typing { color: #a0a0a0; font-style: italic; }
 
-    .petr-quick {
-      padding: 8px 12px 4px; display: flex; flex-wrap: wrap; gap: 6px; background: #141414;
-      border-top: 1px solid #232323;
-    }
-    .petr-chip {
-      font-size: 11.5px; padding: 5px 9px; border-radius: 999px; cursor: pointer;
-      background: #1e1e1e; color: #ddd; border: 1px solid #333;
-    }
-    .petr-chip:hover { border-color: #ff9900; color: #ff9900; }
-
     .petr-input-row {
       padding: 10px; background: #181818; border-top: 1px solid #2a2a2a;
       display: flex; gap: 8px; align-items: center;
     }
     .petr-input {
-      flex: 1; padding: 10px 12px; border-radius: 10px; border: 1px solid #333;
+      flex: 1; padding: 11px 13px; border-radius: 10px; border: 1px solid #333;
       background: #0f0f0f; color: #fff; font-size: 13.5px; outline: none;
     }
     .petr-input:focus { border-color: #ff9900; }
     .petr-send {
-      padding: 10px 14px; border-radius: 10px; border: none; cursor: pointer;
-      background: linear-gradient(135deg, #ff9900, #e08500); color: #111; font-weight: 800; font-size: 13px;
+      padding: 11px 15px; border-radius: 10px; border: none; cursor: pointer;
+      background: linear-gradient(135deg, #ff9900, #e08500); color: #111; font-weight: 800; font-size: 14px;
     }
     .petr-send:disabled { opacity: 0.5; cursor: not-allowed; }
-
-    .petr-offline-form {
-      display: none; flex-direction: column; gap: 8px; padding: 12px;
-      background: #181818; border-top: 1px solid #2a2a2a;
-    }
-    .petr-offline-form.active { display: flex; }
-    .petr-offline-note { font-size: 12px; color: #ccc; line-height: 1.38; }
   `;
   document.head.appendChild(style);
 
   const launcher = document.createElement("button");
   launcher.id = "petr-launcher";
   launcher.type = "button";
-  launcher.innerHTML = `<span class="petr-dot" id="petrLauncherDot"></span><span>Чат с инженером • Онлайн</span>`;
+  launcher.innerHTML = `<span class="petr-dot offline" id="petrLauncherDot"></span><span id="petrLauncherLabel">Чат с инженером</span>`;
 
   const box = document.createElement("div");
   box.id = "petr-box";
   box.innerHTML = `
     <div class="petr-header">
       <div class="petr-title-wrap">
-        <div class="petr-title"><span class="petr-dot" id="petrHeaderDot"></span>Пётр • ИИ-инженер</div>
-        <div class="petr-sub" id="petrStatusText">Онлайн • Будни (Пн–Пт) с 9:00 до 20:00</div>
+        <div class="petr-title"><span class="petr-dot offline" id="petrHeaderDot"></span>Пётр • Консультант</div>
+        <div class="petr-sub" id="petrStatusText">Пн–Пт с 9:00 до 20:00</div>
       </div>
       <div class="petr-header-actions">
         <a class="petr-max-btn" href="${MAX_BOT_URL}" target="_blank" rel="noopener">В MAX</a>
@@ -138,20 +121,9 @@
       </div>
     </div>
     <div class="petr-messages" id="petrMessages"></div>
-    <div class="petr-quick" id="petrQuick">
-      <button type="button" class="petr-chip" data-msg="Нужно рассчитать стоимость и сроки по объекту">Рассчитать цену</button>
-      <button type="button" class="petr-chip" data-msg="Работаете без НДС и по ЭДО?">Без НДС и ЭДО</button>
-      <button type="button" class="petr-chip" data-msg="Какие исходные данные нужны для старта?">Исходные данные</button>
-    </div>
     <form class="petr-input-row" id="petrForm">
-      <input class="petr-input" id="petrInput" type="text" maxlength="1000" placeholder="Напишите объект, площадь, разделы..." autocomplete="off">
+      <input class="petr-input" id="petrInput" type="text" maxlength="1000" placeholder="Напишите сообщение..." autocomplete="off">
       <button class="petr-send" id="petrSendBtn" type="submit">→</button>
-    </form>
-    <form class="petr-offline-form" id="petrOfflineForm">
-      <div class="petr-offline-note">Чат работает в будни (Пн–Пт) с 9:00 до 20:00. Сейчас мы офлайн — оставьте email и параметры объекта, утром направим КП со сроками, ценой без НДС и перечнем исходных данных:</div>
-      <input class="petr-input" id="petrOffEmail" type="email" required placeholder="Ваш рабочий email">
-      <input class="petr-input" id="petrOffMsg" type="text" required placeholder="Объект, площадь, нужные разделы (ПБ, ГОЧС...)">
-      <button class="petr-send" type="submit">Получить КП на почту</button>
     </form>
   `;
 
@@ -162,10 +134,9 @@
   const formEl = document.getElementById("petrForm");
   const inputEl = document.getElementById("petrInput");
   const sendBtn = document.getElementById("petrSendBtn");
-  const quickEl = document.getElementById("petrQuick");
-  const offlineForm = document.getElementById("petrOfflineForm");
   const statusText = document.getElementById("petrStatusText");
   const launcherDot = document.getElementById("petrLauncherDot");
+  const launcherLabel = document.getElementById("petrLauncherLabel");
   const headerDot = document.getElementById("petrHeaderDot");
 
   function addMessage(text, who) {
@@ -181,25 +152,38 @@
     isOnline = online;
     launcherDot.classList.toggle("offline", !online);
     headerDot.classList.toggle("offline", !online);
-    launcher.querySelector("span:last-child").textContent = online
+    launcherLabel.textContent = online
       ? "Чат с инженером • Онлайн"
-      : "Запрос КП • Пн–Пт 9:00–20:00";
+      : "Чат с инженером • Пн–Пт 9:00–20:00";
     statusText.textContent = online
-      ? "Онлайн • Будни (Пн–Пт) с 9:00 до 20:00"
-      : "Офлайн • Работаем Пн–Пт с 9:00 до 20:00";
-    formEl.style.display = online ? "flex" : "none";
-    quickEl.style.display = online ? "flex" : "none";
-    offlineForm.classList.toggle("active", !online);
+      ? "Онлайн • Пн–Пт с 9:00 до 20:00"
+      : "Не в сети • Пн–Пт с 9:00 до 20:00";
   }
 
   async function refreshStatus() {
     try {
-      const r = await fetch(`${API_BASE}?action=status`);
+      const r = await fetch(`${API_BASE}?action=status&t=${Date.now()}`);
       const d = await r.json();
       if (d && d.ok) setOnlineUi(Boolean(d.online));
     } catch (_) {
       setOnlineUi(false);
     }
+  }
+
+  async function saveOfflineMessage(text) {
+    const emailMatch = text.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
+    try {
+      await fetch(`${API_BASE}?action=lead`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          clientId,
+          email: emailMatch ? emailMatch[0] : "",
+          message: text,
+          context: currentContext,
+        }),
+      });
+    } catch (_) {}
   }
 
   async function sendMessage(text) {
@@ -210,7 +194,7 @@
 
     addMessage(text, "user");
     inputEl.value = "";
-    const typingEl = addMessage("Пётр рассчитывает и отвечает...", "bot typing");
+    const typingEl = addMessage("Пётр печатает...", "bot typing");
 
     try {
       const sendResp = await fetch(`${API_BASE}?action=send`, {
@@ -223,12 +207,17 @@
       if (!sendData.ok || sendData.status === "offline") {
         typingEl.remove();
         setOnlineUi(false);
-        addMessage("Чат работает в будни (Пн–Пт) с 9:00 до 20:00. Оставьте email в форме ниже — подготовим КП по вашему объекту с перечнем исходных данных.", "bot");
+        await saveOfflineMessage(text);
+        addMessage(
+          `Сейчас я временно не в сети (график Пн–Пт с 9:00 до 20:00). Ваше сообщение сохранил — оставьте здесь же email или телефон, и как только подключусь, сразу отвечу. Срочно можно написать на ${EMAIL_ADDR}.`,
+          "bot"
+        );
         return;
       }
 
+      setOnlineUi(true);
       const jobId = sendData.jobId;
-      const deadline = Date.now() + 38000;
+      const deadline = Date.now() + 45000;
       let finalReply = null;
 
       while (Date.now() < deadline) {
@@ -246,11 +235,11 @@
       if (finalReply) {
         addMessage(finalReply, "bot");
       } else {
-        addMessage(`Ответ занял чуть больше обычного. Напишите ваш email — направим КП по объекту, или отправьте ТЗ сразу на ${EMAIL_ADDR}.`, "bot");
+        addMessage(`Не успел получить ответ. Попробуйте повторить сообщение или напишите на ${EMAIL_ADDR}.`, "bot");
       }
     } catch (_) {
       typingEl.remove();
-      addMessage(`Временная ошибка связи. Вы можете написать в MAX или отправить ТЗ на ${EMAIL_ADDR}.`, "bot");
+      addMessage(`Временная ошибка связи. Можно написать в MAX или на ${EMAIL_ADDR}.`, "bot");
     } finally {
       isSending = false;
       sendBtn.disabled = false;
@@ -263,10 +252,7 @@
     isOpen = true;
     box.classList.add("open");
     if (!messagesEl.children.length) {
-      addMessage(
-        "Здравствуйте! Я Пётр. Работаю в будни (Пн–Пт) с 9:00 до 20:00. Напишите, какой у вас объект (площадь, этажность) и какие разделы нужны — сразу посчитаю ориентировочную стоимость без НДС, сроки и помогу с КП или договором по ЭДО.",
-        "bot"
-      );
+      addMessage("Здравствуйте! Я Пётр. Чем могу помочь? Задавайте любой вопрос.", "bot");
     }
     refreshStatus();
     if (prefill) {
@@ -295,29 +281,7 @@
     sendMessage(inputEl.value);
   });
 
-  quickEl.addEventListener("click", (e) => {
-    const btn = e.target.closest(".petr-chip");
-    if (btn && btn.dataset.msg) sendMessage(btn.dataset.msg);
-  });
-
-  offlineForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("petrOffEmail").value.trim();
-    const msg = document.getElementById("petrOffMsg").value.trim();
-    if (!email || !msg) return;
-    try {
-      await fetch(`${API_BASE}?action=lead`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ clientId, email, message: msg, context: currentContext }),
-      });
-      offlineForm.reset();
-      addMessage(`Заявка принята! Как только Пётр выйдет в сеть (Пн–Пт 9:00–20:00), подготовим КП по объекту и перечень исходных данных на ${email}.`, "bot");
-    } catch (_) {
-      addMessage(`Не удалось отправить форму — напишите напрямую на ${EMAIL_ADDR}.`, "bot");
-    }
-  });
-
   window.openPetrChat = openChat;
   refreshStatus();
+  setInterval(refreshStatus, 15000);
 })();
