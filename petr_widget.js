@@ -1,6 +1,4 @@
-// petr-widget.js — Чат-виджет нейропродавца Петра для сайта specrazdel56.ru
-// Подключение одной строкой перед </body> на любых страницах сайта:
-//   <script src="petr-widget.js" defer></script>
+// petr_widget.js — Чат-виджет нейропродавца Петра для сайта specrazdel56.ru
 (function () {
   if (window.__petrWidgetLoaded) return;
   window.__petrWidgetLoaded = true;
@@ -26,6 +24,11 @@
 
   const style = document.createElement("style");
   style.textContent = `
+    @keyframes petrPulse {
+      0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.75); }
+      70% { box-shadow: 0 0 0 8px rgba(46, 204, 113, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+    }
     #petr-launcher {
       position: fixed; right: 20px; bottom: 20px; z-index: 9998;
       display: flex; align-items: center; gap: 10px;
@@ -36,12 +39,15 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     #petr-launcher:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(255,153,0,0.35); }
-    .petr-dot { width: 9px; height: 9px; border-radius: 50%; background: #2ecc71; display: inline-block; }
-    .petr-dot.offline { background: #888; }
+    .petr-dot {
+      width: 10px; height: 10px; border-radius: 50%; background: #2ecc71;
+      display: inline-block; flex-shrink: 0; animation: petrPulse 2s infinite;
+    }
+    .petr-dot.offline { background: #888; animation: none; }
 
     #petr-box {
       position: fixed; right: 20px; bottom: 82px; z-index: 9999;
-      width: 375px; max-width: calc(100vw - 24px); height: 540px; max-height: calc(100vh - 110px);
+      width: 375px; max-width: calc(100vw - 24px); height: 550px; max-height: calc(100vh - 110px);
       background: #141414; border: 1.5px solid #2e2e2e; border-radius: 18px;
       box-shadow: 0 22px 60px rgba(0,0,0,0.75); display: none; flex-direction: column;
       overflow: hidden; font-family: Inter, sans-serif; color: #fff;
@@ -52,9 +58,9 @@
       padding: 13px 15px; background: #1c1c1c; border-bottom: 1px solid #2b2b2b;
       display: flex; align-items: center; justify-content: space-between; gap: 8px;
     }
-    .petr-title-wrap { display: flex; flex-direction: column; }
+    .petr-title-wrap { display: flex; flex-direction: column; gap: 2px; }
     .petr-title { font-size: 14px; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 7px; }
-    .petr-sub { font-size: 11px; color: #a0a0a0; }
+    .petr-sub { font-size: 11px; color: #b5b5b5; }
     .petr-header-actions { display: flex; align-items: center; gap: 8px; }
     .petr-max-btn {
       font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 999px;
@@ -109,14 +115,14 @@
       background: #181818; border-top: 1px solid #2a2a2a;
     }
     .petr-offline-form.active { display: flex; }
-    .petr-offline-note { font-size: 12px; color: #ccc; line-height: 1.35; }
+    .petr-offline-note { font-size: 12px; color: #ccc; line-height: 1.38; }
   `;
   document.head.appendChild(style);
 
   const launcher = document.createElement("button");
   launcher.id = "petr-launcher";
   launcher.type = "button";
-  launcher.innerHTML = `<span class="petr-dot" id="petrLauncherDot"></span><span>Спросить Петра • расчёт и КП</span>`;
+  launcher.innerHTML = `<span class="petr-dot" id="petrLauncherDot"></span><span>Чат с инженером • Онлайн</span>`;
 
   const box = document.createElement("div");
   box.id = "petr-box";
@@ -124,7 +130,7 @@
     <div class="petr-header">
       <div class="petr-title-wrap">
         <div class="petr-title"><span class="petr-dot" id="petrHeaderDot"></span>Пётр • ИИ-инженер</div>
-        <div class="petr-sub" id="petrStatusText">Онлайн • расчёт цены без НДС и КП</div>
+        <div class="petr-sub" id="petrStatusText">Онлайн • Будни (Пн–Пт) с 9:00 до 20:00</div>
       </div>
       <div class="petr-header-actions">
         <a class="petr-max-btn" href="${MAX_BOT_URL}" target="_blank" rel="noopener">В MAX</a>
@@ -142,7 +148,7 @@
       <button class="petr-send" id="petrSendBtn" type="submit">→</button>
     </form>
     <form class="petr-offline-form" id="petrOfflineForm">
-      <div class="petr-offline-note">Пётр сейчас офлайн. Оставьте email и параметры объекта — направим КП со сроками, ценой без НДС и перечнем исходных данных:</div>
+      <div class="petr-offline-note">Чат работает в будни (Пн–Пт) с 9:00 до 20:00. Сейчас мы офлайн — оставьте email и параметры объекта, утром направим КП со сроками, ценой без НДС и перечнем исходных данных:</div>
       <input class="petr-input" id="petrOffEmail" type="email" required placeholder="Ваш рабочий email">
       <input class="petr-input" id="petrOffMsg" type="text" required placeholder="Объект, площадь, нужные разделы (ПБ, ГОЧС...)">
       <button class="petr-send" type="submit">Получить КП на почту</button>
@@ -175,9 +181,12 @@
     isOnline = online;
     launcherDot.classList.toggle("offline", !online);
     headerDot.classList.toggle("offline", !online);
+    launcher.querySelector("span:last-child").textContent = online
+      ? "Чат с инженером • Онлайн"
+      : "Запрос КП • Пн–Пт 9:00–20:00";
     statusText.textContent = online
-      ? "Онлайн • расчёт цены без НДС и КП"
-      : "Офлайн • оставьте email для КП";
+      ? "Онлайн • Будни (Пн–Пт) с 9:00 до 20:00"
+      : "Офлайн • Работаем Пн–Пт с 9:00 до 20:00";
     formEl.style.display = online ? "flex" : "none";
     quickEl.style.display = online ? "flex" : "none";
     offlineForm.classList.toggle("active", !online);
@@ -214,7 +223,7 @@
       if (!sendData.ok || sendData.status === "offline") {
         typingEl.remove();
         setOnlineUi(false);
-        addMessage("Пётр сейчас офлайн. Оставьте email в форме ниже — пришлём КП по вашему объекту с перечнем исходных данных.", "bot");
+        addMessage("Чат работает в будни (Пн–Пт) с 9:00 до 20:00. Оставьте email в форме ниже — подготовим КП по вашему объекту с перечнем исходных данных.", "bot");
         return;
       }
 
@@ -255,7 +264,7 @@
     box.classList.add("open");
     if (!messagesEl.children.length) {
       addMessage(
-        "Здравствуйте! Я Пётр. Напишите, какой у вас объект (площадь, этажность) и какие разделы нужны — сразу посчитаю ориентировочную стоимость без НДС, сроки и помогу с КП или договором по ЭДО.",
+        "Здравствуйте! Я Пётр. Работаю в будни (Пн–Пт) с 9:00 до 20:00. Напишите, какой у вас объект (площадь, этажность) и какие разделы нужны — сразу посчитаю ориентировочную стоимость без НДС, сроки и помогу с КП или договором по ЭДО.",
         "bot"
       );
     }
@@ -303,13 +312,12 @@
         body: JSON.stringify({ clientId, email, message: msg, context: currentContext }),
       });
       offlineForm.reset();
-      addMessage(`Заявка принята! Как только Пётр выйдет в сеть, подготовим КП по объекту и перечень исходных данных на ${email}.`, "bot");
+      addMessage(`Заявка принята! Как только Пётр выйдет в сеть (Пн–Пт 9:00–20:00), подготовим КП по объекту и перечень исходных данных на ${email}.`, "bot");
     } catch (_) {
       addMessage(`Не удалось отправить форму — напишите напрямую на ${EMAIL_ADDR}.`, "bot");
     }
   });
 
-  // Глобальная функция для вызова чата из кнопок и калькулятора на сайте
   window.openPetrChat = openChat;
   refreshStatus();
 })();
